@@ -1,0 +1,27 @@
+{
+  "name": "heritage-quest",
+  "version": "1.0.0",
+  "description": "Gamified Heritage Exploration Platform with GPS, QR Codes, and AI Guide",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
+  },
+  "keywords": [
+    "heritage",
+    "treasure-hunt",
+    "gamification",
+    "tourism",
+    "qr-code",
+    "gps",
+    "ai-guide",
+    "hackathon"
+  ],
+  "author": "Heritage Quest Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4"
+  }
+}

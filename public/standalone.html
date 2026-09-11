@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Heritage Quest — The Lost Royal Seal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Leaflet Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- QR Code & Scanner -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+<style>
+  :root{
+    --bg:#14121a;
+    --bg-2:#0f0d14;
+    --surface:#1f1b28;
+    --surface-2:#2a2433;
+    --line: rgba(201,164,104,0.18);
+    --sandstone:#c9a468;
+    --torch:#e8934a;
+    --torch-dim: rgba(232,147,74,0.35);
+    --wax:#8b2635;
+    --wax-bright:#c0455a;
+    --parchment:#ece4d3;
+    --muted:#8f879c;
+    --success:#7a9b6e;
+    --display: 'Cinzel', serif;
+    --body: 'Spectral', serif;
+    --mono: 'Space Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(232,147,74,0.10), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 85% 100%, rgba(139,38,53,0.12), transparent 60%),
+      var(--bg);
+    color:var(--parchment);
+    font-family:var(--body);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--torch); color:#1a1410; }
+  a{color:var(--sandstone);}
+
+  #app{
+    max-width:540px;
+    margin:0 auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    padding-bottom:24px;
+  }
+
+  /* ---------- HUD ---------- */
+  #hud{
+    position:sticky; top:0; z-index:50;
+    background:linear-gradient(180deg, rgba(15,13,20,0.98), rgba(15,13,20,0.90));
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(8px);
+    padding:10px 16px 12px;
+  }
+  #hud.hidden{ display:none; }
+  .hud-top{ display:flex; align-items:center; justify-content:space-between; }
+  .hud-title{ font-family:var(--display); font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--sandstone); display:flex; align-items:center; gap:6px; }
+  .hud-actions{ display:flex; align-items:center; gap:8px; }
+  .hud-timer{ font-family:var(--mono); font-size:14px; color:var(--torch); letter-spacing:0.05em; }
+  .icon-btn{ background:transparent; border:1px solid var(--line); color:var(--sandstone); border-radius:4px; padding:5px 8px; font-size:12px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
+  .icon-btn:hover{ border-color:var(--torch); background:rgba(232,147,74,0.1); }
+  .seal-row{ display:flex; gap:10px; margin-top:10px; justify-content:center; }
+  .seal{
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 32% 28%, #3a3446, #221e2c 70%);
+    border:1px solid rgba(201,164,104,0.25);
+    transition:transform .5s cubic-bezier(.2,1.4,.4,1), background .5s, border-color .5s, box-shadow .5s;
+    position:relative;
+  }
+  .seal svg{ width:20px; height:20px; opacity:0.35; transition:opacity .5s; }
+  .seal.done{
+    background:radial-gradient(circle at 32% 28%, #e8934a, #a85a24 75%);
+    border-color:var(--torch);
+    box-shadow:0 0 14px rgba(232,147,74,0.55), inset 0 0 8px rgba(255,220,180,0.4);
+    transform:scale(1.08) rotate(-4deg);
+  }
+  .seal.done svg{ opacity:1; }
+  .seal.current{ border-color:var(--torch); box-shadow:0 0 0 3px rgba(232,147,74,0.15); }
+
+  /* ---------- Screens ---------- */
+  .screen{ display:none; flex:1; flex-direction:column; padding:24px 20px 10px; animation:fadeUp .45s ease; }
+  .screen.active{ display:flex; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .eyebrow.torch{ color:var(--torch); }
+  h1{ font-family:var(--display); font-weight:600; font-size:clamp(26px,6.5vw,34px); line-height:1.15; margin:0 0 12px; color:var(--parchment); }
+  h2{ font-family:var(--display); font-weight:600; font-size:21px; line-height:1.3; margin:0 0 12px; color:var(--parchment); }
+  p{ line-height:1.65; margin:0 0 14px; color:#d8cfc0; font-size:15px; }
+  .lede{ font-size:16.5px; font-style:italic; color:var(--sandstone); }
+  .rule{ height:1px; background:linear-gradient(90deg, var(--sandstone), transparent); opacity:0.35; margin:16px 0; }
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px 18px;
+    margin-bottom:14px;
+    position:relative;
+  }
+  .card::before{
+    content:'';
+    position:absolute; inset:0; border-radius:4px; padding:1px;
+    background:linear-gradient(160deg, rgba(201,164,104,0.25), transparent 40%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    pointer-events:none;
+  }
+
+  .quest-selector{ display:flex; flex-direction:column; gap:10px; margin:12px 0 16px; }
+  .quest-card{ background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:13px 15px; cursor:pointer; transition:transform .2s, border-color .2s, background .2s; }
+  .quest-card:hover{ transform:translateY(-2px); border-color:var(--torch); background:var(--surface-2); }
+  .quest-card.active{ border-color:var(--torch); background:rgba(232,147,74,0.12); box-shadow:0 0 12px rgba(232,147,74,0.2); }
+  .quest-meta{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--muted); }
+  .quest-title{ font-family:var(--display); font-size:15.5px; color:var(--parchment); font-weight:600; margin-top:3px; }
+  .quest-loc{ font-size:12.5px; color:var(--sandstone); margin-top:2px; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--torch); color:#1a1108; border:none; border-radius:2px;
+    padding:13px 20px; cursor:pointer; width:100%;
+    transition:transform .15s, box-shadow .15s, background .15s;
+    box-shadow:0 2px 0 #a85a24;
+  }
+  .btn:active{ transform:translateY(2px); box-shadow:0 0 0 #a85a24; }
+  .btn:hover{ background:#f0a05f; }
+  .btn.secondary{ background:transparent; color:var(--sandstone); border:1px solid var(--sandstone); box-shadow:none; }
+  .btn.secondary:hover{ background:rgba(201,164,104,0.08); }
+  .btn.wax{ background:var(--wax); box-shadow:0 2px 0 #601a24; color:var(--parchment); }
+  .btn.wax:hover{ background:var(--wax-bright); }
+  .btn:disabled{ opacity:0.4; cursor:not-allowed; }
+  .btn-row{ display:flex; gap:10px; margin-top:6px; }
+  .btn-row .btn{ flex:1; }
+
+  input[type=text], textarea{
+    width:100%; background:var(--bg-2); border:1px solid var(--line); color:var(--parchment);
+    font-family:var(--mono); font-size:14px; padding:12px 14px; border-radius:2px;
+    margin-bottom:10px; letter-spacing:0.03em;
+  }
+  input[type=text]:focus, textarea:focus{ outline:none; border-color:var(--torch); }
+  input[type=text]::placeholder{ color:var(--muted); }
+
+  .hint-toggle{ font-family:var(--mono); font-size:12px; color:var(--muted); text-decoration:underline; cursor:pointer; background:none; border:none; padding:0; margin-bottom:10px; }
+  .hint-box{ display:none; font-size:13.5px; color:var(--sandstone); background:rgba(201,164,104,0.08); border-left:2px solid var(--sandstone); padding:10px 12px; margin:-4px 0 12px; }
+  .hint-box.show{ display:block; }
+  .feedback{ font-family:var(--mono); font-size:13px; margin-top:6px; min-height:18px; }
+  .feedback.err{ color:var(--wax-bright); }
+  .feedback.ok{ color:var(--success); }
+
+  /* Symbol puzzle */
+  .symbol-track{ display:flex; align-items:center; gap:8px; justify-content:center; margin:18px 0 8px; flex-wrap:wrap; }
+  .symbol{ width:44px; height:44px; border-radius:6px; background:var(--bg-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--sandstone); }
+  .symbol.missing{ border:1px dashed var(--torch); color:var(--torch); font-family:var(--mono); font-size:14px; }
+  .opt-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+  .opt{ background:var(--bg-2); border:1px solid var(--line); border-radius:4px; padding:14px; text-align:center; font-size:18px; cursor:pointer; transition:border-color .15s, background .15s; color:var(--sandstone); }
+  .opt:hover{ border-color:var(--torch); background:rgba(232,147,74,0.06); }
+  .opt.selected{ border-color:var(--torch); background:rgba(232,147,74,0.14); }
+
+  /* Dialogue */
+  .dialogue{ display:flex; gap:12px; align-items:flex-start; margin-bottom:16px; }
+  .portrait{ width:48px; height:48px; flex:none; border-radius:50%; background:radial-gradient(circle at 35% 30%, #3a3446, #1a1622); border:1px solid var(--sandstone); display:flex; align-items:center; justify-content:center; font-size:22px; }
+  .speech{ background:var(--surface); border:1px solid var(--line); border-radius:2px 10px 10px 10px; padding:12px 14px; font-style:italic; color:var(--sandstone); font-size:14.5px; line-height:1.55; }
+  .choice{ display:block; width:100%; text-align:left; background:var(--bg-2); border:1px solid var(--line); color:var(--parchment); font-family:var(--body); font-size:14px; padding:12px 14px; border-radius:3px; margin-bottom:8px; cursor:pointer; }
+  .choice:hover{ border-color:var(--torch); }
+  .choice.wrong{ border-color:var(--wax); background:rgba(139,38,53,0.14); }
+  .choice.right{ border-color:var(--success); background:rgba(122,155,110,0.16); }
+
+  /* Final */
+  .frag-list{ list-style:none; padding:0; margin:0 0 16px; display:flex; flex-direction:column; gap:8px; }
+  .frag-list li{ font-family:var(--mono); font-size:12.5px; background:var(--bg-2); border-left:2px solid var(--torch); padding:10px 12px; color:var(--sandstone); }
+  .final-opt{ display:flex; align-items:center; gap:12px; background:var(--bg-2); border:1px solid var(--line); border-radius:4px; padding:14px; margin-bottom:10px; cursor:pointer; }
+  .final-opt:hover{ border-color:var(--torch); }
+  .final-opt .mark{ width:16px; height:16px; border-radius:50%; border:1px solid var(--sandstone); flex:none; }
+  .final-opt.selected{ border-color:var(--torch); }
+  .final-opt.selected .mark{ background:var(--torch); }
+
+  /* Seal reveal */
+  .seal-reveal{ width:160px; height:160px; margin:10px auto 16px; position:relative; }
+  .seal-reveal svg{ width:100%; height:100%; animation:sealPop 1s cubic-bezier(.2,1.6,.3,1); }
+  @keyframes sealPop{ 0%{ transform:scale(0.3) rotate(-30deg); opacity:0; } 60%{ transform:scale(1.1) rotate(6deg); opacity:1; } 100%{ transform:scale(1) rotate(0); } }
+
+  .badge{ display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--torch); border:1px solid var(--torch-dim); padding:4px 9px; border-radius:20px; margin-bottom:14px; }
+  .scan-box{ background:var(--bg-2); border:1px solid var(--line); border-radius:6px; overflow:hidden; margin-bottom:12px; min-height:200px; display:flex; align-items:center; justify-content:center; }
+  .or-div{ text-align:center; font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.15em; margin:12px 0; text-transform:uppercase; }
+
+  footer.nav-foot{ padding:16px 20px 4px; }
+  .link-row{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; }
+  .link-row span{ cursor:pointer; text-decoration:underline; }
+
+  /* GM Panel */
+  .qr-card{ text-align:center; background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:14px; margin-bottom:12px; }
+  .qr-card canvas{ margin:8px auto; border-radius:4px; background:#fff; padding:6px; }
+  .code-line{ font-family:var(--mono); font-size:13px; color:var(--torch); margin-top:4px; }
+  .toggle-row{ display:flex; align-items:center; justify-content:space-between; background:var(--surface); border:1px solid var(--line); padding:12px 14px; border-radius:4px; margin-bottom:14px; }
+  .switch{ width:42px; height:24px; background:var(--bg-2); border:1px solid var(--line); border-radius:20px; position:relative; cursor:pointer; flex:none; }
+  .switch::after{ content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:var(--muted); transition:transform .2s, background .2s; }
+  .switch.on{ background:rgba(232,147,74,0.25); border-color:var(--torch); }
+  .switch.on::after{ transform:translateX(18px); background:var(--torch); }
+
+  /* Stats */
+  .stats-row{ display:flex; gap:8px; margin-top:10px; }
+  .chip{ flex:1; background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:6px 8px; text-align:center; }
+  .chip .chip-val{ font-family:var(--mono); font-size:13.5px; color:var(--torch); }
+  .chip .chip-lbl{ font-family:var(--mono); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-top:1px; }
+
+  /* Toast */
+  #toastHost{ position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:200; display:flex; flex-direction:column; gap:8px; align-items:center; pointer-events:none; width:100%; max-width:480px; padding:0 16px; }
+  .toast{ font-family:var(--mono); font-size:12.5px; background:#1a1622; border:1px solid var(--torch); color:var(--torch); padding:8px 16px; border-radius:20px; box-shadow:0 4px 16px rgba(0,0,0,0.5); animation:toastIn .35s ease, toastOut .4s ease 2.1s forwards; }
+  @keyframes toastIn{ from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes toastOut{ to{opacity:0; transform:translateY(-10px);} }
+
+  /* Badges */
+  .badge-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  .badge-item{ background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:12px 10px; text-align:center; }
+  .badge-item .b-icon{ font-size:24px; }
+  .badge-item .b-name{ font-family:var(--mono); font-size:11px; color:var(--sandstone); margin-top:6px; text-transform:uppercase; letter-spacing:.04em; }
+  .badge-item .b-desc{ font-size:11.5px; color:var(--muted); margin-top:3px; line-height:1.3; }
+  .stat-summary{ display:flex; gap:8px; justify-content:center; margin:14px 0; flex-wrap:wrap; }
+
+  /* Leaderboard */
+  .lb-row{ display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:10px 14px; margin-bottom:8px; }
+  .lb-rank{ font-family:var(--mono); font-size:13.5px; color:var(--torch); width:26px; }
+  .lb-name{ flex:1; font-size:14px; }
+  .lb-score{ font-family:var(--mono); font-size:13px; color:var(--sandstone); }
+  .lb-row.me{ border-color:var(--torch); background:rgba(232,147,74,0.08); }
+
+  /* Lang */
+  .lang-toggle{ font-family:var(--mono); font-size:11px; color:var(--sandstone); border:1px solid var(--line); background:transparent; border-radius:20px; padding:4px 10px; cursor:pointer; letter-spacing:.05em; }
+
+  /* AI Assistant */
+  .ai-fab{ position:fixed; bottom:18px; right:18px; z-index:150; width:52px; height:52px; border-radius:50%; background:var(--torch); border:none; box-shadow:0 4px 16px rgba(0,0,0,0.5); font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .ai-panel{ position:fixed; inset:0; background:rgba(10,9,14,0.75); backdrop-filter:blur(4px); z-index:200; display:none; align-items:flex-end; justify-content:center; }
+  .ai-panel.open{ display:flex; }
+  .ai-sheet{ background:var(--bg-2); border:1px solid var(--line); border-top-left-radius:14px; border-top-right-radius:14px; width:100%; max-width:540px; max-height:80vh; display:flex; flex-direction:column; }
+  .ai-head{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--line); }
+  .ai-head .t{ font-family:var(--display); font-size:15px; color:var(--sandstone); }
+  .ai-close{ background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; line-height:1; }
+  .ai-msgs{ flex:1; overflow-y:auto; padding:14px 18px; display:flex; flex-direction:column; gap:10px; min-height:220px; }
+  .ai-msg{ max-width:85%; padding:9px 13px; border-radius:10px; font-size:13.5px; line-height:1.5; }
+  .ai-msg.bot{ background:var(--surface); border:1px solid var(--line); align-self:flex-start; color:var(--sandstone); font-style:italic; }
+  .ai-msg.user{ background:rgba(232,147,74,0.16); border:1px solid var(--torch-dim); align-self:flex-end; color:var(--parchment); }
+  .ai-input-row{ display:flex; gap:8px; padding:12px 14px; border-top:1px solid var(--line); }
+  .ai-input-row input{ margin-bottom:0; }
+  .ai-input-row button{ width:auto; flex:none; padding:12px 16px; }
+  .ai-suggest{ display:flex; gap:6px; flex-wrap:wrap; padding:0 18px 10px; }
+  .ai-chip{ font-family:var(--mono); font-size:11px; background:var(--surface); border:1px solid var(--line); color:var(--muted); padding:5px 10px; border-radius:14px; cursor:pointer; }
+  .ai-chip:hover{ border-color:var(--torch); color:var(--sandstone); }
+
+  /* Map Modal */
+  .map-modal{ position:fixed; inset:0; background:rgba(10,9,14,0.85); backdrop-filter:blur(5px); z-index:180; display:none; flex-direction:column; padding:16px; align-items:center; justify-content:center; }
+  .map-modal.open{ display:flex; }
+  .map-dialog{ background:var(--bg-2); border:1px solid var(--torch); border-radius:8px; width:100%; max-width:520px; height:80vh; display:flex; flex-direction:column; overflow:hidden; }
+  .map-header{ display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); font-family:var(--display); color:var(--sandstone); }
+  #leafletMap{ flex:1; width:100%; background:#111; }
+  .radar-pulse{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--torch); box-shadow:0 0 0 0 rgba(232,147,74,0.7); animation:pulseRadar 1.5s infinite; }
+  @keyframes pulseRadar{ 0%{ transform:scale(0.95); box-shadow:0 0 0 0 rgba(232,147,74,0.7); } 70%{ transform:scale(1); box-shadow:0 0 0 10px rgba(232,147,74,0); } 100%{ transform:scale(0.95); box-shadow:0 0 0 0 rgba(232,147,74,0); } }
+
+  .cert-container{ text-align:center; margin:16px 0; }
+  #certCanvas{ max-width:100%; height:auto; border:2px solid var(--torch); border-radius:6px; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
+
+  @media print{
+    body{ background:#fff; color:#000; }
+    #hud, .ai-fab, .btn, .nav-foot{ display:none !important; }
+    .qr-card{ border:1px solid #000; break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="hud-title"><span>🏛️</span><span>Heritage Quest</span></div>
+      <div class="hud-actions">
+        <div class="hud-timer" id="timerDisplay">00:00</div>
+        <button class="icon-btn" onclick="openMapModal()" title="View GPS Radar Map">🗺️ Map</button>
+        <button class="lang-toggle" id="langBtn" onclick="cycleLanguage()">EN</button>
+      </div>
+    </div>
+    <div class="seal-row" id="sealRow"></div>
+    <div class="stats-row">
+      <div class="chip"><div class="chip-val" id="statPoints">0</div><div class="chip-lbl" data-i18n="hudPoints">Points</div></div>
+      <div class="chip"><div class="chip-val" id="statXP">0</div><div class="chip-lbl" data-i18n="hudXP">XP</div></div>
+      <div class="chip"><div class="chip-val" id="statLevel">Lv.1</div><div class="chip-lbl" id="statLevelName" data-i18n="hudLevel">Level</div></div>
+    </div>
+  </div>
+
+  <div id="toastHost"></div>
+
+  <!-- 0. INTRO / MISSION BRIEFING -->
+  <section class="screen active" id="screen-intro">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <div class="eyebrow torch" data-i18n="briefing">Field Mission Briefing</div>
+      <button class="lang-toggle" id="langBtnIntro" onclick="cycleLanguage()">EN</button>
+    </div>
+    
+    <h1 id="questBriefingTitle">The Lost Royal Seal</h1>
+    <p class="lede" id="questBriefingSub">Vijayanagara Empire — 16th Century</p>
+    
+    <div class="rule"></div>
+    
+    <!-- Multi-Site Quest Selector -->
+    <div class="eyebrow" data-i18n="selectQuest">Select Heritage Expedition</div>
+    <div class="quest-selector" id="questCardList"></div>
+    
+    <div class="card">
+      <p id="questIntro1">Three hundred years ago, the royal seal of this fort vanished on the night of a coronation that never happened. No one who searched for it ever returned with an answer.</p>
+      <p id="questIntro2" style="margin-bottom:0;">Tonight, that changes. You have been given the court scribe's journal — guarded by riddles, carvings, and historical keepers.</p>
+    </div>
+
+    <p id="questIntro3">Four checkpoints stand between you and the truth. Find them all to decode the site's greatest mystery.</p>
+    
+    <div class="rule"></div>
+    
+    <div class="team-input-row">
+      <label data-i18n="teamLabel" style="display:block; font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Team / Player Name (optional)</label>
+      <input type="text" id="teamNameInput" placeholder="Explorer Guild / Team Name">
+    </div>
+    
+    <button class="btn" id="beginBtn" onclick="startGame()" data-i18n="beginBtn">Begin the Hunt</button>
+    <div style="height:10px"></div>
+    <div class="btn-row">
+      <button class="btn secondary" onclick="openGMPanel()" data-i18n="gmBtn">Game Master Studio</button>
+      <button class="btn secondary" onclick="openLeaderboard()" data-i18n="lbBtn">Leaderboard</button>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section class="screen" id="screen-leaderboard">
+    <div class="eyebrow torch" data-i18n="lbEyebrow">Hall of Explorers</div>
+    <h2 data-i18n="lbTitle">Leaderboard</h2>
+    <p data-i18n="lbSub">Top scores from this fort's mission. Complete the hunt to add your name.</p>
+    <div id="lbList"></div>
+    <div style="margin-top:14px;">
+      <button class="btn secondary" onclick="showScreen('screen-intro')" data-i18n="backBtn">Back</button>
+    </div>
+  </section>
+
+  <!-- DYNAMIC CHECKPOINT SCREENS -->
+  <div id="checkpointHost"></div>
+
+  <!-- FINAL RECONSTRUCTION -->
+  <section class="screen" id="screen-final">
+    <div class="eyebrow torch">Final Reconstruction</div>
+    <h2>Assemble the Truth</h2>
+    <p>Four fragments, recovered from four corners of the heritage site. Read them together — where was the secret really hidden?</p>
+    <ul class="frag-list" id="fragList"></ul>
+    <div id="finalOptions"></div>
+    <div class="feedback" id="finalFeedback"></div>
+    <button class="btn" id="finalSubmit" onclick="submitFinalDeduction()" style="margin-top:12px;">Reveal the Truth</button>
+  </section>
+
+  <!-- COMPLETE EXPEDITION -->
+  <section class="screen" id="screen-complete">
+    <div class="badge" id="completeTime">Solved</div>
+    <div class="seal-reveal" id="sealReveal"></div>
+    <h1 style="text-align:center;" id="completeTitle" data-i18n="completeTitle">The Seal is Found</h1>
+    <p style="text-align:center;" id="completeBody" data-i18n="completeBody">Behind the loose stone in the old armoury, exactly where the scribe's journal said it would be. You are the first to know the truth in three hundred years.</p>
+    
+    <div class="stat-summary" id="completeStats"></div>
+    <div class="rule"></div>
+    
+    <h2 style="text-align:center; font-size:16px;" data-i18n="badgesEarned">Badges Earned</h2>
+    <div class="badge-grid" id="badgeGrid"></div>
+    
+    <button class="btn" onclick="viewCertificate()" style="margin-bottom:10px;" data-i18n="certBtn">📜 View Discovery Certificate</button>
+    
+    <div class="btn-row">
+      <button class="btn secondary" onclick="restartGame()" data-i18n="playAgainBtn">Play again</button>
+      <button class="btn secondary" onclick="openLeaderboard()" data-i18n="lbBtn">Leaderboard</button>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE VIEWER -->
+  <section class="screen" id="screen-certificate">
+    <div class="eyebrow torch">Charter of Accomplishment</div>
+    <h2>Official Expedition Certificate</h2>
+    <p>A cryptographically signed certificate of discovery from the Archaeological & Heritage Exploration Guild.</p>
+    
+    <div class="cert-container">
+      <canvas id="certCanvas"></canvas>
+    </div>
+    
+    <div class="btn-row" style="margin-top:14px;">
+      <button class="btn" onclick="downloadCertPNG()" data-i18n="downloadCert">📥 Download PNG</button>
+      <button class="btn secondary" onclick="window.print()" data-i18n="printCert">🖨️ Print</button>
+    </div>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="showScreen('screen-complete')" data-i18n="backBtn">Back</button>
+  </section>
+
+  <!-- GAME MASTER PANEL -->
+  <section class="screen" id="screen-gm">
+    <div class="eyebrow torch">Game Master & Creator Studio</div>
+    <h2>Curate & Deploy Treasure Hunts</h2>
+    <p>Set up real-world heritage markers, print physical QR sheets, or create custom quests for your local monuments.</p>
+
+    <div class="toggle-row">
+      <div>
+        <div style="font-family:var(--mono); font-size:12px; letter-spacing:.05em;">DEMO MODE</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:2px;">Bypass physical GPS distance checks for indoor judging</div>
+      </div>
+      <div class="switch on" id="demoSwitch" onclick="toggleDemo()"></div>
+    </div>
+
+    <div class="rule"></div>
+    <div class="eyebrow torch">Printable QR Code Markers</div>
+    <p style="font-size:13px; color:var(--sandstone);">Print these markers and place them at physical stations. Explorers scan them with camera or tap fallback codes.</p>
+    <div id="qrList"></div>
+    <button class="btn secondary" onclick="window.print()" style="margin-bottom:18px;">🖨️ Print Marker Sheet</button>
+
+    <button class="btn secondary" onclick="showScreen('screen-intro')">Back to briefing</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="nav-foot">
+    <div class="link-row">
+      <span onclick="showScreen('screen-intro')" data-i18n="restartLink">Restart mission</span>
+      <span onclick="openGMPanel()">Game Master</span>
+    </div>
+  </footer>
+</div>
+
+<!-- LEAFLET GPS RADAR MAP MODAL -->
+<div class="map-modal" id="mapModal">
+  <div class="map-dialog">
+    <div class="map-header">
+      <div>🗺️ GPS Geofence Radar</div>
+      <button class="icon-btn" onclick="closeMapModal()">✕</button>
+    </div>
+    <div id="leafletMap"></div>
+    <div style="padding:10px 14px; background:var(--surface); border-top:1px solid var(--line); font-size:12px; color:var(--sandstone); display:flex; justify-content:space-between; align-items:center;">
+      <div><span class="radar-pulse"></span> GPS Live Tracking Active</div>
+      <div style="font-family:var(--mono); font-size:10.5px; color:var(--muted);">Click anywhere on map to simulate location (Demo Mode)</div>
+    </div>
+  </div>
+</div>
+
+<!-- QR PREVIEW MODAL -->
+<div class="map-modal" id="qrModal">
+  <div class="map-dialog" style="max-height: 490px; align-items:center; text-align:center; padding:18px;">
+    <div style="display:flex; justify-content:space-between; width:100%; align-items:center; margin-bottom:12px;">
+      <div style="font-family:var(--display); color:var(--sandstone); font-size:15px;">📷 Physical Monument QR Marker</div>
+      <button class="icon-btn" onclick="closeQRModal()">✕</button>
+    </div>
+    <div style="background:#ffffff; padding:12px; border-radius:6px; margin-bottom:10px;">
+      <canvas id="qrModalCanvas"></canvas>
+    </div>
+    <div style="font-family:var(--mono); font-size:16px; font-weight:bold; color:var(--torch);" id="qrModalCode">MASON-108</div>
+    <p style="font-size:12px; color:var(--muted); margin-top:6px;">Scan this marker from your screen with a phone camera!</p>
+    <button class="btn secondary" onclick="closeQRModal()" style="margin-top:8px;">Close Preview</button>
+  </div>
+</div>
+
+<!-- AI HERITAGE GUIDE FAB & BOTTOM SHEET -->
+<button class="ai-fab" onclick="AIAssistant.open()" title="Ask the Heritage Guide">🤖</button>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-sheet">
+    <div class="ai-head">
+      <div class="t" data-i18n="aiTitle">Ask the Heritage Guide</div>
+      <button class="ai-close" onclick="AIAssistant.close()">✕</button>
+    </div>
+    <div class="ai-msgs" id="aiMsgs"></div>
+    <div class="ai-suggest">
+      <div class="ai-chip" onclick="AIAssistant.ask('Who built this heritage site?')">Who built this site?</div>
+      <div class="ai-chip" onclick="AIAssistant.ask('What happened to the royal seal/vault?')">What happened to the treasure?</div>
+      <div class="ai-chip" onclick="AIAssistant.ask('Give me a hint for this checkpoint')">Give me a hint</div>
+    </div>
+    <div class="ai-input-row">
+      <input type="text" id="aiInput" placeholder="Ask about the fort, rulers, symbols, ciphers...">
+      <button class="btn" style="width:auto;" onclick="AIAssistant.send()">Ask</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/audio.js"></script>
+<script src="/js/map.js"></script>
+<script src="/js/qrScanner.js"></script>
+<script src="/js/certificate.js"></script>
+<script src="/js/questBuilder.js"></script>
+<script src="/js/aiAssistant.js"></script>
+<script src="/js/app.js"></script>
+
+</body>
+</html>

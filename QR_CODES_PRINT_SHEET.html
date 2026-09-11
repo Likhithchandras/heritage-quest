@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heritage Hunt — Official ASI/UNESCO Waypoint Placards</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  @page { size: A4 portrait; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f0ede6; color: #173F35; padding: 20px; }
+  .no-print-bar {
+    background: #173F35; color: #fff; padding: 14px 20px; border-radius: 12px; margin-bottom: 24px;
+    display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+  .print-btn {
+    background: #C89B3C; color: #1a1205; border: none; padding: 10px 22px; font-weight: 700;
+    border-radius: 20px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .placards-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .no-print-bar { display: none; }
+    .placard-card { page-break-inside: avoid; border: 2.5px solid #173F35 !important; }
+  }
+  .placard-card {
+    background: #FFF9ED; border: 2px solid #C89B3C; border-radius: 14px; padding: 18px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: relative;
+  }
+  .placard-header {
+    font-family: 'Space Mono', monospace; font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.14em; color: #756F64; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .placard-site {
+    font-family: 'Cinzel', serif; font-size: 15px; font-weight: 800; color: #173F35;
+    margin-bottom: 2px; line-height: 1.2;
+  }
+  .placard-station {
+    font-size: 13px; font-weight: 700; color: #B85C38; margin-bottom: 10px;
+  }
+  .qr-frame {
+    background: #fff; padding: 8px; border: 1.5px solid #C89B3C; border-radius: 10px;
+    margin-bottom: 10px; display: inline-block;
+  }
+  .qr-frame canvas { width: 140px; height: 140px; }
+  .placard-code {
+    font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700;
+    color: #173F35; background: rgba(200,155,60,0.18); padding: 3px 12px; border-radius: 12px;
+    margin-bottom: 6px;
+  }
+  .placard-coords {
+    font-family: 'Space Mono', monospace; font-size: 9.5px; color: #756F64; margin-bottom: 6px;
+  }
+  .placard-footer {
+    font-size: 10px; color: #756F64; border-top: 1px solid rgba(200,155,60,0.3);
+    padding-top: 6px; width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print-bar">
+  <div>
+    <h2 style="font-family:'Cinzel',serif;font-size:18px;">🏛️ Official Monument Waypoint Placards</h2>
+    <p style="font-size:12px;opacity:0.85;">Print this sheet to place physical QR markers on site trails or for classroom evaluation.</p>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ Print Placards (PDF)</button>
+</div>
+
+<div class="placards-grid">
+
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Hampi (Group of Monuments)</div>
+    <div class="placard-station">Station 01: Sasivekalu Ganesha</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_HAMPI_GANE_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: HAMPI-GANE-1</div>
+    <div class="placard-coords">GPS: 15.3318°N, 76.4597°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Hampi (Group of Monuments)</div>
+    <div class="placard-station">Station 02: Virupaksha Temple Eastern Gopuram</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_HAMPI_GOPUR_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: HAMPI-GOPUR-2</div>
+    <div class="placard-coords">GPS: 15.3355°N, 76.4596°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Hampi (Group of Monuments)</div>
+    <div class="placard-station">Station 03: The King’s Balance (Tulabhara)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_HAMPI_TULA_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: HAMPI-TULA-3</div>
+    <div class="placard-coords">GPS: 15.3392°N, 76.4719°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Hampi (Group of Monuments)</div>
+    <div class="placard-station">Station 04: The Pushkarani (Stepped Water Tank)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_HAMPI_PUSH_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: HAMPI-PUSH-4</div>
+    <div class="placard-coords">GPS: 15.3190°N, 76.4705°E (±40m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Hampi (Group of Monuments)</div>
+    <div class="placard-station">Station 05: Vittala Temple Stone Chariot</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_HAMPI_CHAR_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: HAMPI-CHAR-5</div>
+    <div class="placard-coords">GPS: 15.3421°N, 76.4789°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Mysore Palace (Amba Vilas)</div>
+    <div class="placard-station">Station 01: Gombe Thotti (Dolls’ Pavilion)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_MYS_GOMBE_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: MYS-GOMBE-1</div>
+    <div class="placard-coords">GPS: 12.3051°N, 76.6550°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Mysore Palace (Amba Vilas)</div>
+    <div class="placard-station">Station 02: Kalyana Mantapa (Marriage Pavilion)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_MYS_KALYAN_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: MYS-KALYAN-2</div>
+    <div class="placard-coords">GPS: 12.3053°N, 76.6552°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Mysore Palace (Amba Vilas)</div>
+    <div class="placard-station">Station 03: The Public Durbar Hall (Diwan-i-Aam)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_MYS_DURBAR_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: MYS-DURBAR-3</div>
+    <div class="placard-coords">GPS: 12.3055°N, 76.6554°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Mysore Palace (Amba Vilas)</div>
+    <div class="placard-station">Station 04: The Private Durbar Hall (Ambavilasa)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_MYS_AMBA_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: MYS-AMBA-4</div>
+    <div class="placard-coords">GPS: 12.3052°N, 76.6551°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Mysore Palace (Amba Vilas)</div>
+    <div class="placard-station">Station 05: The Outer Palace Illumination Perimeter</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_MYS_ILLUM_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: MYS-ILLUM-5</div>
+    <div class="placard-coords">GPS: 12.3060°N, 76.6558°E (±45m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Bengaluru Palace</div>
+    <div class="placard-station">Station 01: North Fortified Entrance & Turrets</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BLR_TURRET_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BLR-TURRET-1</div>
+    <div class="placard-coords">GPS: 12.9985°N, 77.5920°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Bengaluru Palace</div>
+    <div class="placard-station">Station 02: The Open Courtyard (Spanish Fountain)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BLR_FOUNT_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BLR-FOUNT-2</div>
+    <div class="placard-coords">GPS: 12.9988°N, 77.5922°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Bengaluru Palace</div>
+    <div class="placard-station">Station 03: The Grand Staircase & Trophy Hall</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BLR_STAIR_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BLR-STAIR-3</div>
+    <div class="placard-coords">GPS: 12.9989°N, 77.5921°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Bengaluru Palace</div>
+    <div class="placard-station">Station 04: The Durbar Hall (First Floor)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BLR_DURBAR_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BLR-DURBAR-4</div>
+    <div class="placard-coords">GPS: 12.9990°N, 77.5922°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Bengaluru Palace</div>
+    <div class="placard-station">Station 05: The Glass-Paned Verandah & Garden Turret</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BLR_GLASS_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BLR-GLASS-5</div>
+    <div class="placard-coords">GPS: 12.9987°N, 77.5919°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Chitradurga Fort</div>
+    <div class="placard-station">Station 01: Rangayyana Bagilu (Outer Gateway)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_CHITRA_GATE_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: CHITRA-GATE-1</div>
+    <div class="placard-coords">GPS: 14.2215°N, 76.4022°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Chitradurga Fort</div>
+    <div class="placard-station">Station 02: The Winding Chicanes & Archer Ports</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_CHITRA_RAMP_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: CHITRA-RAMP-2</div>
+    <div class="placard-coords">GPS: 14.2218°N, 76.4005°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Chitradurga Fort</div>
+    <div class="placard-station">Station 03: The Gunpowder Grinding Mill</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_CHITRA_GUN_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: CHITRA-GUN-3</div>
+    <div class="placard-coords">GPS: 14.2223°N, 76.3978°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Chitradurga Fort</div>
+    <div class="placard-station">Station 04: Onake Obavva’s Cleft (Obavvana Kindi)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_CHITRA_OBA_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: CHITRA-OBA-4</div>
+    <div class="placard-coords">GPS: 14.2230°N, 76.3956°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Chitradurga Fort</div>
+    <div class="placard-station">Station 05: The Rainwater Reservoirs (Santhe Honda)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_CHITRA_WATER_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: CHITRA-WATER-5</div>
+    <div class="placard-coords">GPS: 14.2225°N, 76.3940°E (±40m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Badami Cave Temples</div>
+    <div class="placard-station">Station 01: Cave 1 – The 18-Armed Dancing Nataraja</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BADAMI_NAT_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BADAMI-NAT-1</div>
+    <div class="placard-coords">GPS: 15.9192°N, 75.6763°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Badami Cave Temples</div>
+    <div class="placard-station">Station 02: Cave 2 – Trivikrama's Cosmic Stride</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BADAMI_TRIV_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BADAMI-TRIV-2</div>
+    <div class="placard-coords">GPS: 15.9189°N, 75.6769°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Badami Cave Temples</div>
+    <div class="placard-station">Station 03: Cave 3 – Colossal Vishnu on Adisesha</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BADAMI_VISH_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BADAMI-VISH-3</div>
+    <div class="placard-coords">GPS: 15.9185°N, 75.6775°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Badami Cave Temples</div>
+    <div class="placard-station">Station 04: Cave 4 – Bahubali & Jain Sanctuaries</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BADAMI_BAHU_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BADAMI-BAHU-4</div>
+    <div class="placard-coords">GPS: 15.9182°N, 75.6778°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Badami Cave Temples</div>
+    <div class="placard-station">Station 05: Agastya Lake Shore & Bhutanatha Complex</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BADAMI_LAKE_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BADAMI-LAKE-5</div>
+    <div class="placard-coords">GPS: 15.9205°N, 75.6860°E (±40m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Belur (Chennakeshava Temple)</div>
+    <div class="placard-station">Station 01: The Star-Shaped Platform (Jagati)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BELUR_STAR_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BELUR-STAR-1</div>
+    <div class="placard-coords">GPS: 13.1623°N, 75.8594°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Belur (Chennakeshava Temple)</div>
+    <div class="placard-station">Station 02: The Four Lower Animal Friezes</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BELUR_FRIEZE_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BELUR-FRIEZE-2</div>
+    <div class="placard-coords">GPS: 13.1625°N, 75.8597°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Belur (Chennakeshava Temple)</div>
+    <div class="placard-station">Station 03: The Madanika Bracket: Darpana Sundari</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BELUR_DARP_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BELUR-DARP-3</div>
+    <div class="placard-coords">GPS: 13.1626°N, 75.8596°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Belur (Chennakeshava Temple)</div>
+    <div class="placard-station">Station 04: The Perforated Stone Windows (Jaali)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BELUR_JAALI_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BELUR-JAALI-4</div>
+    <div class="placard-coords">GPS: 13.1624°N, 75.8598°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Belur (Chennakeshava Temple)</div>
+    <div class="placard-station">Station 05: The Navaranga Ceiling & Mohini Pillar</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BELUR_LOTUS_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BELUR-LOTUS-5</div>
+    <div class="placard-coords">GPS: 13.1625°N, 75.8596°E (±25m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Taj Mahal Complex</div>
+    <div class="placard-station">Station 01: Darwaza-i-Rauza (The Great Gate)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_TAJ_GATE_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: TAJ-GATE-1</div>
+    <div class="placard-coords">GPS: 27.1732°N, 78.0421°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Taj Mahal Complex</div>
+    <div class="placard-station">Station 02: The Charbagh Four-Fold Water Garden</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_TAJ_GARD_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: TAJ-GARD-2</div>
+    <div class="placard-coords">GPS: 27.1742°N, 78.0421°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Taj Mahal Complex</div>
+    <div class="placard-station">Station 03: The Four Corner Minarets</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_TAJ_MINAR_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: TAJ-MINAR-3</div>
+    <div class="placard-coords">GPS: 27.1750°N, 78.0415°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Taj Mahal Complex</div>
+    <div class="placard-station">Station 04: The Great Pishtaq & Parchin Kari Inlays</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_TAJ_PISHT_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: TAJ-PISHT-4</div>
+    <div class="placard-coords">GPS: 27.1748°N, 78.0421°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Taj Mahal Complex</div>
+    <div class="placard-station">Station 05: The Riverfront Terrace & Sandstone Mosque</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_TAJ_MOSQ_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: TAJ-MOSQ-5</div>
+    <div class="placard-coords">GPS: 27.1755°N, 78.0421°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Red Fort (Lal Qila)</div>
+    <div class="placard-station">Station 01: Lahori Gate & Chhatta Chowk</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RED_LAHORI_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RED-LAHORI-1</div>
+    <div class="placard-coords">GPS: 28.6558°N, 77.2385°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Red Fort (Lal Qila)</div>
+    <div class="placard-station">Station 02: The Naubat Khana (Drum House)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RED_NAUBAT_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RED-NAUBAT-2</div>
+    <div class="placard-coords">GPS: 28.6560°N, 77.2405°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Red Fort (Lal Qila)</div>
+    <div class="placard-station">Station 03: Diwan-i-Aam (Hall of Public Audience)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RED_AAM_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RED-AAM-3</div>
+    <div class="placard-coords">GPS: 28.6563°N, 77.2415°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Red Fort (Lal Qila)</div>
+    <div class="placard-station">Station 04: The Nahar-i-Bihisht (Stream of Paradise)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RED_NAHAR_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RED-NAHAR-4</div>
+    <div class="placard-coords">GPS: 28.6564°N, 77.2425°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Red Fort (Lal Qila)</div>
+    <div class="placard-station">Station 05: Diwan-i-Khas (Hall of Private Audience)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RED_KHAS_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RED-KHAS-5</div>
+    <div class="placard-coords">GPS: 28.6567°N, 77.2428°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Rani ki Vav (The Queen’s Stepwell)</div>
+    <div class="placard-station">Station 01: Ground Level Rim & Corridor Orientation</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RANI_RIM_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RANI-RIM-1</div>
+    <div class="placard-coords">GPS: 23.8587°N, 72.1015°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Rani ki Vav (The Queen’s Stepwell)</div>
+    <div class="placard-station">Station 02: The Stepped Pavilions & Structural Columns</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RANI_PAV_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RANI-PAV-2</div>
+    <div class="placard-coords">GPS: 23.8589°N, 72.1018°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Rani ki Vav (The Queen’s Stepwell)</div>
+    <div class="placard-station">Station 03: The Dashavatara Gallery (Varaha & Narasimha)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RANI_VARA_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RANI-VARA-3</div>
+    <div class="placard-coords">GPS: 23.8590°N, 72.1020°E (±25m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Rani ki Vav (The Queen’s Stepwell)</div>
+    <div class="placard-station">Station 04: The 16 Apsaras & Solanki Adornment</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RANI_APS_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RANI-APS-4</div>
+    <div class="placard-coords">GPS: 23.8591°N, 72.1022°E (±25m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Rani ki Vav (The Queen’s Stepwell)</div>
+    <div class="placard-station">Station 05: Sheshashayi Vishnu at the Deep Well Shaft</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_RANI_SHESH_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: RANI-SHESH-5</div>
+    <div class="placard-coords">GPS: 23.8592°N, 72.1025°E (±25m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Brihadeeswarar Temple (Peruvudayar Kovil)</div>
+    <div class="placard-station">Station 01: Keralanthakan & Rajarajan Gopurams</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BRIH_GATE_1"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BRIH-GATE-1</div>
+    <div class="placard-coords">GPS: 10.7825°N, 79.1335°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Brihadeeswarar Temple (Peruvudayar Kovil)</div>
+    <div class="placard-station">Station 02: The Colossal Monolithic Nandi Mandapa</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BRIH_NANDI_2"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BRIH-NANDI-2</div>
+    <div class="placard-coords">GPS: 10.7827°N, 79.1325°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Brihadeeswarar Temple (Peruvudayar Kovil)</div>
+    <div class="placard-station">Station 03: Northern Base Inscriptions (Rajaraja’s Public Ledger)</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BRIH_INSC_3"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BRIH-INSC-3</div>
+    <div class="placard-coords">GPS: 10.7830°N, 79.1318°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Brihadeeswarar Temple (Peruvudayar Kovil)</div>
+    <div class="placard-station">Station 04: The 216-Foot Vimana & 80-Ton Monolithic Kumbam</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BRIH_KUMB_4"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BRIH-KUMB-4</div>
+    <div class="placard-coords">GPS: 10.7828°N, 79.1318°E (±35m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+  <div class="placard-card">
+    <div class="placard-header">ASI ARCHAEOLOGICAL EXPLORATION POINT</div>
+    <div class="placard-site">Brihadeeswarar Temple (Peruvudayar Kovil)</div>
+    <div class="placard-station">Station 05: Outer Cloistered Corridor & Monolithic Lingams</div>
+    
+    <div class="qr-frame">
+      <canvas id="qr_BRIH_CLOIST_5"></canvas>
+    </div>
+    
+    <div class="placard-code">CODE: BRIH-CLOIST-5</div>
+    <div class="placard-coords">GPS: 10.7828°N, 79.1308°E (±30m)</div>
+    <div class="placard-footer">
+      <b>OBSERVE · DO NOT TOUCH MONUMENT</b> · Heritage Hunt Verified
+    </div>
+  </div>
+    
+</div>
+
+<script>
+window.onload = function() {
+  const codes = ["HAMPI-GANE-1","HAMPI-GOPUR-2","HAMPI-TULA-3","HAMPI-PUSH-4","HAMPI-CHAR-5","MYS-GOMBE-1","MYS-KALYAN-2","MYS-DURBAR-3","MYS-AMBA-4","MYS-ILLUM-5","BLR-TURRET-1","BLR-FOUNT-2","BLR-STAIR-3","BLR-DURBAR-4","BLR-GLASS-5","CHITRA-GATE-1","CHITRA-RAMP-2","CHITRA-GUN-3","CHITRA-OBA-4","CHITRA-WATER-5","BADAMI-NAT-1","BADAMI-TRIV-2","BADAMI-VISH-3","BADAMI-BAHU-4","BADAMI-LAKE-5","BELUR-STAR-1","BELUR-FRIEZE-2","BELUR-DARP-3","BELUR-JAALI-4","BELUR-LOTUS-5","TAJ-GATE-1","TAJ-GARD-2","TAJ-MINAR-3","TAJ-PISHT-4","TAJ-MOSQ-5","RED-LAHORI-1","RED-NAUBAT-2","RED-AAM-3","RED-NAHAR-4","RED-KHAS-5","RANI-RIM-1","RANI-PAV-2","RANI-VARA-3","RANI-APS-4","RANI-SHESH-5","BRIH-GATE-1","BRIH-NANDI-2","BRIH-INSC-3","BRIH-KUMB-4","BRIH-CLOIST-5"];
+
+  codes.forEach(code => {
+    const canvasId = 'qr_' + code.replace(/[^a-zA-Z0-9]/g, '_');
+    const canvas = document.getElementById(canvasId);
+    if (canvas && window.QRCode) {
+      QRCode.toCanvas(canvas, code, {
+        width: 140,
+        margin: 1,
+        color: { dark: '#173F35', light: '#ffffff' }
+      });
+    }
+  });
+};
+</script>
+</body>
+</html>

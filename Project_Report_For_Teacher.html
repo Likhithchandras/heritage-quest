@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Report — Heritage Quest Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Spectral:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+  body {
+    font-family: 'Spectral', Georgia, serif;
+    line-height: 1.6;
+    color: #1a1622;
+    background: #fdfaf6;
+    margin: 0;
+    padding: 40px 60px;
+  }
+  .container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 50px 60px;
+    border: 1px solid #e0d6c3;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border-radius: 6px;
+  }
+  h1, h2, h3 {
+    font-family: 'Cinzel', Georgia, serif;
+    color: #8b2635;
+    margin-top: 28px;
+  }
+  h1 { font-size: 28px; border-bottom: 2px solid #8b2635; padding-bottom: 12px; }
+  h2 { font-size: 20px; color: #a85a24; margin-top: 32px; border-bottom: 1px solid #e0d6c3; padding-bottom: 6px; }
+  .badge-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background: #ece4d3;
+    color: #6e5a40;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-right: 6px;
+  }
+  .highlight-box {
+    background: #fbf7ef;
+    border-left: 4px solid #c9a468;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14.5px;
+  }
+  th, td {
+    padding: 10px 14px;
+    border: 1px solid #e2d9ca;
+    text-align: left;
+  }
+  th {
+    background: #f4ede0;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #4a3e2d;
+  }
+  code {
+    font-family: 'Space Mono', monospace;
+    background: #f0eae1;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .print-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    background: #8b2635;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .container { border: none; box-shadow: none; padding: 0; }
+    .print-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+  <div style="font-family:'Space Mono', monospace; font-size:12px; color:#8f879c; letter-spacing:0.1em; text-transform:uppercase;">Academic Project & Hackathon Submission Report</div>
+  <h1>Heritage Quest</h1>
+  <p style="font-size:16px; color:#5c4830; font-style:italic;">Gamified Real-World Heritage Exploration Platform with GPS Geofencing, QR Ciphers & AI Historical Guide</p>
+
+  <div style="margin-bottom: 24px;">
+    <span class="badge-tag">Node.js / Express</span>
+    <span class="badge-tag">Native SQLite</span>
+    <span class="badge-tag">Leaflet GPS Radar</span>
+    <span class="badge-tag">Html5Qrcode</span>
+    <span class="badge-tag">Contextual AI RAG</span>
+    <span class="badge-tag">Web Audio & Speech API</span>
+  </div>
+
+  <h2>1. Problem Statement & Motivation</h2>
+  <div class="highlight-box">
+    <strong>Core Problem:</strong> Heritage sites are valuable sources of history and culture, but most visitors experience them passively — viewing static placards or reading generic brochures without discovering the deeper narrative. Traditional mobile guides offer simple multiple-choice quizzes that fail to engage explorers physically on the monument grounds.
+  </div>
+  <p><strong>Proposed Solution:</strong> <em>Heritage Quest</em> transforms ancient forts, palaces, and temples into interactive physical adventure grounds. Visitors become active field researchers who navigate the site using GPS proximity radar, scan real-world stonemason QR markers, complete geometric lintel puzzles, interrogate historical ghost NPCs, consult an AI Heritage Scribe, and earn cryptographically verified Discovery Certificates.</p>
+
+  <h2>2. System Architecture</h2>
+  <p>The platform follows a modular, client-server decoupled architecture designed for both online and offline operation inside thick monument walls:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Technologies</th>
+        <th>Role & Capabilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Backend API Server</strong></td>
+        <td>Node.js, Express.js</td>
+        <td>REST API for sessions, checkpoint logic verification, hints penalization, live leaderboards, and admin analytics.</td>
+      </tr>
+      <tr>
+        <td><strong>Database Engine</strong></td>
+        <td>Native SQLite (<code>node:sqlite</code>)</td>
+        <td>Persistent storage of historical quests, 40m geofence coordinates, player sessions, scores, and lore archives.</td>
+      </tr>
+      <tr>
+        <td><strong>GPS Geofencing Engine</strong></td>
+        <td>Leaflet.js, Haversine Distance Calc</td>
+        <td>Real-time proximity calculation between player coordinates and monument checkpoints with Demo Mode bypass.</td>
+      </tr>
+      <tr>
+        <td><strong>Vision & QR Subsystem</strong></td>
+        <td>Html5Qrcode, QRCode.js</td>
+        <td>Live camera QR scanner + Game Master 4-Up printable marker sheet generator.</td>
+      </tr>
+      <tr>
+        <td><strong>AI Heritage Guide</strong></td>
+        <td>Contextual RAG & Knowledge Base</td>
+        <td>Historical query processor answering questions about rulers, architecture, and clues.</td>
+      </tr>
+      <tr>
+        <td><strong>Audio & Accessibility</strong></td>
+        <td>Web Speech API, Web Audio API</td>
+        <td>Reads court scribe journals aloud with synthetic temple bells, drums, and seal pop sound effects.</td>
+      </tr>
+      <tr>
+        <td><strong>Discovery Certificate</strong></td>
+        <td>HTML5 Canvas 2D API</td>
+        <td>Renders high-resolution printable parchment certificates with royal wax seals and SHA-256 verification codes.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. Key Expeditions Included</h2>
+  <ul>
+    <li><strong>The Lost Royal Seal (Vijayanagara / Hampi)</strong> — Recover the vanished 16th-century royal seal by decoding the Durbar archway, Mason-108 cipher, alternating lintel pattern, and the Armoury Ghost.</li>
+    <li><strong>The Nizam's Secret Vault (Golconda Fort, Hyderabad)</strong> — Decode Fateh Darwaza acoustic whispering arches, granary grain chest markers, diamond facet geometry, and the Citadel Sapper.</li>
+    <li><strong>The Celestial Code of Konark (Sun Temple, Odisha)</strong> — Solve the 24 astronomical sundial wheels, lodestone calibration, and the legend of master builder Dharmapada.</li>
+    <li><strong>Community Custom Quests</strong> — Visual Game Master studio allows teachers and curators to create local treasure hunts and export printable QR markers.</li>
+  </ul>
+
+  <h2>4. How to Run & Present to the Teacher</h2>
+  <ol>
+    <li>Open the project folder and double-click <code>START_HERITAGE_QUEST.bat</code> (or run <code>npm start</code> in terminal).</li>
+    <li>Open browser at <code>http://localhost:3000</code>.</li>
+    <li><strong>Live Demo Steps:</strong>
+      <ul>
+        <li>Select <em>The Lost Royal Seal</em> and enter your team name.</li>
+        <li>Click <strong>🗺️ Map</strong> to showcase the Leaflet GPS Radar.</li>
+        <li>Demonstrate Checkpoint 1 (MCQ Inscription), Checkpoint 2 (QR Camera Scanner), and Checkpoint 3 (Symbol Pattern).</li>
+        <li>Click the 🤖 <strong>AI Guide</strong> button and ask a historical question.</li>
+        <li>Solve Checkpoint 4 and complete the <strong>Final Reconstruction</strong>.</li>
+        <li>Click <strong>📜 View Discovery Certificate</strong> to display and download the signed Certificate.</li>
+        <li>Open the <strong>Game Master Studio</strong> to show the Printable QR Marker Sheet and Custom Quest Creator.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>5. Academic Evaluation Checklist</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Criterion</th>
+        <th>Implementation Status</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Backend & Database Persistence</td>
+        <td>✅ Fully Implemented</td>
+        <td>Native SQLite tables for quests, checkpoints, sessions, and leaderboards.</td>
+      </tr>
+      <tr>
+        <td>Real-world Geolocation & QR</td>
+        <td>✅ Fully Implemented</td>
+        <td>Haversine distance calculation + HTML5 camera scanner + demo bypass.</td>
+      </tr>
+      <tr>
+        <td>Interactive Gameplay & NPC Dialogue</td>
+        <td>✅ Fully Implemented</td>
+        <td>4-checkpoint multi-gate engine with branching ghost dialogues.</td>
+      </tr>
+      <tr>
+        <td>AI Integration & RAG Lore</td>
+        <td>✅ Fully Implemented</td>
+        <td>Context-aware AI Heritage Guide answering lore and progressive hints.</td>
+      </tr>
+      <tr>
+        <td>Certificates & Gamification</td>
+        <td>✅ Fully Implemented</td>
+        <td>Dynamic canvas certificate with wax seal, badges, XP, and leaderboards.</td>
+      </tr>
+      <tr>
+        <td>Multi-language & Offline PWA</td>
+        <td>✅ Fully Implemented</td>
+        <td>English, Hindi, and Kannada support + Service Worker offline caching.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 40px; text-align: center; font-size: 13px; color: #8f879c; border-top: 1px solid #e0d6c3; padding-top: 16px;">
+    Heritage Quest — Gamified Cultural Tourism & Education Platform · Complete Hackathon Submission
+  </div>
+</div>
+</body>
+</html>
