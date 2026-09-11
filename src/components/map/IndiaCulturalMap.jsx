@@ -14,59 +14,73 @@ export const IndiaCulturalMap = ({ onSelectLocation, selectedLocationId }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!mapContainerRef.current) return;
-    if (mapInstanceRef.current) return; // initialize once
+    const container = mapContainerRef.current;
+    if (!container) return;
 
-    // Initialize Leaflet Map centered on India
-    const map = L.map(mapContainerRef.current, {
-      center: [20.5937, 78.9629],
-      zoom: 5,
-      minZoom: 4,
-      maxZoom: 10,
-      zoomControl: false,
-    });
+    // Reset container if previous instance left it attached
+    if (container._leaflet_id) {
+      container._leaflet_id = null;
+    }
 
-    // Elegant CartoDB Positron / Voyage light tiles matching our warm heritage theme
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19
-    }).addTo(map);
+    try {
+      // Initialize Leaflet Map centered on India
+      const map = L.map(container, {
+        center: [20.5937, 78.9629],
+        zoom: 5,
+        minZoom: 4,
+        maxZoom: 10,
+        zoomControl: false,
+      });
 
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(map);
 
-    mapInstanceRef.current = map;
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+      mapInstanceRef.current = map;
 
-    // Add Custom Marker Pins
-    MAP_LOCATIONS_DATA.forEach((loc) => {
-      const customIcon = L.divIcon({
-        className: 'custom-heritage-pin',
-        html: `
-          <div class="relative group cursor-pointer flex items-center justify-center">
-            <div class="w-8 h-8 rounded-full bg-[#1C1917] border-2 border-[#C5A059] shadow-lg flex items-center justify-center text-xs text-white transform transition-transform hover:scale-125 duration-200">
+      // Add Custom Marker Pins
+      MAP_LOCATIONS_DATA.forEach((loc) => {
+        const customIcon = L.divIcon({
+          className: 'custom-heritage-pin',
+          html: `
+            <div style="cursor:pointer; display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:#1C1917; border:2px solid #C5A059; border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,0.3); font-size:14px;">
               🏛️
             </div>
-            <span class="absolute -top-1 -right-1 w-3 h-3 bg-[#C86D51] rounded-full border border-white"></span>
-          </div>
-        `,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
+          `,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
+        });
+
+        const marker = L.marker(loc.coordinates, { icon: customIcon }).addTo(map);
+
+        marker.on('click', () => {
+          setActiveLocation(loc);
+          if (onSelectLocation) onSelectLocation(loc);
+          map.flyTo(loc.coordinates, 7, { duration: 1.2 });
+        });
+
+        markersRef.current[loc.id] = marker;
       });
 
-      const marker = L.marker(loc.coordinates, { icon: customIcon }).addTo(map);
-
-      marker.on('click', () => {
-        setActiveLocation(loc);
-        if (onSelectLocation) onSelectLocation(loc);
-        map.flyTo(loc.coordinates, 7, { duration: 1.2 });
-      });
-
-      markersRef.current[loc.id] = marker;
-    });
+    } catch (err) {
+      console.warn('Leaflet initialization caught:', err);
+    }
 
     return () => {
-      map.remove();
-      mapInstanceRef.current = null;
+      if (mapInstanceRef.current) {
+        try {
+          mapInstanceRef.current.remove();
+        } catch (e) {
+          // ignore
+        }
+        mapInstanceRef.current = null;
+      }
+      if (container && container._leaflet_id) {
+        container._leaflet_id = null;
+      }
     };
   }, [onSelectLocation]);
 
@@ -81,8 +95,7 @@ export const IndiaCulturalMap = ({ onSelectLocation, selectedLocationId }) => {
   }, [selectedLocationId]);
 
   return (
-    <div className="relative w-full h-[580px] rounded-3xl overflow-hidden border border-[#C5A059]/30 shadow-lg bg-[#FAF7F2]">
-      
+    <div className="relative w-full h-[540px] rounded-3xl overflow-hidden border border-[#C5A059]/30 shadow-lg bg-[#FAF7F2]">
       {/* Map Container */}
       <div ref={mapContainerRef} className="w-full h-full z-10" />
 
@@ -98,7 +111,6 @@ export const IndiaCulturalMap = ({ onSelectLocation, selectedLocationId }) => {
       {activeLocation && (
         <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-96 z-30 bg-[#FFFDF9]/95 backdrop-blur-md border border-[#C5A059]/40 rounded-3xl p-5 shadow-2xl transition-all duration-300">
           <div className="relative">
-            {/* Close button */}
             <button
               onClick={() => setActiveLocation(null)}
               className="absolute -top-2 -right-2 p-1 rounded-full bg-[#FAF7F2] text-[#57534E] hover:text-[#1C1917] border border-[#EADCC9]"

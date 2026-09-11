@@ -37,12 +37,14 @@ export const LandingPage = () => {
       {/* ========================================================
           1. HERO SECTION WITH 3D CANVAS
           ======================================================== */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-8 px-4 sm:px-6 lg:px-8">
-        {/* Background 3D Canvas */}
-        <FloatingArtifactCanvas />
+      <section className="relative min-h-[85vh] flex items-center justify-center pt-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background 3D Canvas with pointer-events-none so buttons are immediately clickable */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-80">
+          <FloatingArtifactCanvas />
+        </div>
 
         {/* Ambient Gradient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           {/* Eyebrow badge */}
@@ -50,7 +52,7 @@ export const LandingPage = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-[#FFFDF9]/80 backdrop-blur-md border border-[#C5A059]/40 rounded-full px-4 py-1.5 shadow-sm mb-6"
+            className="inline-flex items-center gap-2 bg-[#FFFDF9]/90 backdrop-blur-md border border-[#C5A059]/40 rounded-full px-4 py-1.5 shadow-sm mb-6"
           >
             <Sparkles className="w-4 h-4 text-[#C5A059]" />
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#1C1917]">
