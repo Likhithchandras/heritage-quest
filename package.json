@@ -2,54 +2,29 @@
   "name": "heritage-quest",
   "version": "1.0.0",
   "type": "module",
-  "description": "Gamified Heritage Exploration Platform with GPS, QR Codes, and AI Guide",
+  "description": "Heritage Treasure Hunt",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "server": "node server/server.js"
+    "preview": "vite preview"
   },
-  "keywords": [
-    "heritage",
-    "treasure-hunt",
-    "gamification",
-    "tourism",
-    "qr-code",
-    "gps",
-    "ai-guide",
-    "hackathon"
-  ],
-  "author": "Heritage Quest Team",
-  "license": "MIT",
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.5.6",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
     "framer-motion": "^13.2.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.45.0",
-    "qrcode": "^1.5.4",
+    "postcss": "^8.5.28",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router-dom": "^7.18.3",
     "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
     "three": "^0.186.0",
-    "@tailwindcss/postcss": "^4.3.3",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.1.1",
-    "autoprefixer": "^10.5.6",
-    "postcss": "^8.5.28",
-    "tailwindcss": "^4.3.3",
-    "vite": "^8.3.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.1.1",
-    "autoprefixer": "^10.5.6",
-    "postcss": "^8.5.28",
-    "tailwindcss": "^4.3.3",
     "vite": "^8.3.0"
   }
 }
