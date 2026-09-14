@@ -1,0 +1,1417 @@
+[
+  {
+    "id": "hampi",
+    "title": "The Lost Royal Seal",
+    "siteName": "Hampi",
+    "state": "Karnataka",
+    "category": "Imperial Capital",
+    "era": "14th - 16th Century CE (Vijayanagara)",
+    "heroImage": "https://images.unsplash.com/photo-1600100397608-f010f443b74d?auto=format&fit=crop&w=1200&q=80",
+    "desc": "A royal seal belonging to the Vijayanagara Empire has been lost. Explore Hampi, solve the clues and recover the seal.",
+    "badge": [
+      "Vijayanagara Royal Seal Bearer",
+      "\ud83d\udc51"
+    ],
+    "cps": [
+      [
+        "Virupaksha Temple",
+        15.335,
+        76.46,
+        "I am made of stone and reach toward the sky at the temple entrance. What am I?",
+        "Gopuram",
+        [
+          "tower",
+          "gopura"
+        ],
+        "Monumental entrance tower",
+        "What is a gopuram?",
+        [
+          "A temple entrance tower",
+          "A throne",
+          "A weapon",
+          "A marketplace"
+        ],
+        0
+      ],
+      [
+        "Hampi Bazaar",
+        15.334,
+        76.4635,
+        "Diamonds and rubies were once sold in open bowls along my 800m street. What am I?",
+        "Bazaar",
+        [
+          "market",
+          "marketplace"
+        ],
+        "Market street",
+        "What was famously traded at Hampi Bazaar?",
+        [
+          "Gemstones and diamonds",
+          "Plastic toys",
+          "Coins",
+          "Cars"
+        ],
+        0
+      ],
+      [
+        "Vittala Temple & Stone Chariot",
+        15.3389,
+        76.4789,
+        "I have four carved wheels of solid granite, but I never travel. What am I?",
+        "Stone Chariot",
+        [
+          "chariot",
+          "ratha"
+        ],
+        "Vehicle of Garuda",
+        "Which currency note shows the Hampi Chariot?",
+        [
+          "Rs 50 Note",
+          "Rs 10 Note",
+          "Rs 100 Note",
+          "Rs 500 Note"
+        ],
+        0
+      ],
+      [
+        "King's Balance (Tulabhara)",
+        15.3398,
+        76.482,
+        "On coronation days, the king weighed himself against gold here. What stone frame am I?",
+        "King's Balance",
+        [
+          "balance",
+          "scale"
+        ],
+        "Weighing scale frame",
+        "Why did the King weigh himself?",
+        [
+          "To donate gold to the people",
+          "To check weight",
+          "To train",
+          "To buy horses"
+        ],
+        0
+      ],
+      [
+        "Lotus Mahal",
+        15.3205,
+        76.471,
+        "My arches open gracefully like the petals of India's national flower. What palace am I?",
+        "Lotus Mahal",
+        [
+          "lotus palace",
+          "kamal mahal"
+        ],
+        "Pink water flower",
+        "How was Lotus Mahal naturally cooled in summer?",
+        [
+          "Water pipes in walls",
+          "Fans",
+          "Ice",
+          "Open roof"
+        ],
+        0
+      ],
+      [
+        "Elephant Stables",
+        15.3212,
+        76.4725,
+        "I have eleven grand domed rooms for giant royal animals with trunks. What am I?",
+        "Elephant Stables",
+        [
+          "elephant stable",
+          "gaja shala"
+        ],
+        "Trunk animal stables",
+        "How many domed chambers are there?",
+        [
+          "11 Chambers",
+          "5 Chambers",
+          "20 Chambers",
+          "50 Chambers"
+        ],
+        0
+      ],
+      [
+        "Mahanavami Dibba",
+        15.3182,
+        76.4688,
+        "I am a 12-meter high stepped platform where kings celebrated Dasara. What is my name?",
+        "Mahanavami Dibba",
+        [
+          "dasara platform",
+          "dibba"
+        ],
+        "9th day festival platform",
+        "Which 10-day festival was celebrated here?",
+        [
+          "Dasara / Navaratri",
+          "Holi",
+          "New Year",
+          "Kite Day"
+        ],
+        0
+      ],
+      [
+        "Royal Enclosure Secret Chamber",
+        15.3168,
+        76.4675,
+        "I am the sacred emblem of the Vijayanagara Empire with the boar, sun, and moon. What treasure have you found?",
+        "The Royal Seal",
+        [
+          "royal seal",
+          "seal"
+        ],
+        "Imperial seal",
+        "What symbols were carved on the Royal Seal?",
+        [
+          "Sun and Crescent Moon",
+          "Two Comets",
+          "Seven Stars",
+          "Lightning"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "mysore-palace",
+    "title": "The Maharaja's Missing Message",
+    "siteName": "Mysore Palace",
+    "state": "Karnataka",
+    "category": "Royal Palace",
+    "era": "Wadiyar Dynasty (1912 CE)",
+    "heroImage": "https://images.unsplash.com/photo-1580181651977-398f5f0c02c0?auto=format&fit=crop&w=1200&q=80",
+    "desc": "The Maharaja of Mysore left a coded royal proclamation hidden in the palace corridors. Decode the message of wisdom.",
+    "badge": [
+      "Wadiyar Royal Herald",
+      "\ud83d\udc8e"
+    ],
+    "cps": [
+      [
+        "Gombe Thotti (Doll's Pavilion)",
+        12.3051,
+        76.6552,
+        "I am a traditional wooden figurine showcased during Dasara. What pavilion am I?",
+        "Gombe Thotti",
+        [
+          "doll pavilion",
+          "gombe"
+        ],
+        "Kannada for doll",
+        "What does Gombe mean in Kannada?",
+        [
+          "Doll",
+          "Sword",
+          "Elephant",
+          "Crown"
+        ],
+        0
+      ],
+      [
+        "Kalyana Mantapa (Marriage Hall)",
+        12.3053,
+        76.6554,
+        "I have eight sides and stained-glass peacock tiles from Scotland. What hall am I?",
+        "Kalyana Mantapa",
+        [
+          "marriage hall",
+          "kalyan mantap"
+        ],
+        "Auspicious wedding hall",
+        "Which bird is depicted on the stained glass ceiling?",
+        [
+          "Peacock",
+          "Eagle",
+          "Parrot",
+          "Swan"
+        ],
+        0
+      ],
+      [
+        "Diwan-i-Khas (Private Durbar)",
+        12.3055,
+        76.6556,
+        "I am painted in sea-green turquoise with gilded arches for private royal meetings. What hall am I?",
+        "Diwan-i-Khas",
+        [
+          "private durbar",
+          "diwan khas"
+        ],
+        "Exclusive private hall",
+        "What was the purpose of Diwan-i-Khas?",
+        [
+          "Private meetings with ministers",
+          "Dining",
+          "Kitchen",
+          "Barracks"
+        ],
+        0
+      ],
+      [
+        "Ambavilasa (Public Durbar)",
+        12.3057,
+        76.6558,
+        "I am the grandest public court where the Maharaja sat upon the Golden Throne. What is my name?",
+        "Ambavilasa",
+        [
+          "durbar hall",
+          "amba vilasa"
+        ],
+        "Public Durbar Hall",
+        "What material covers the ceremonial doors?",
+        [
+          "Solid Carved Silver",
+          "Plastic",
+          "Clay",
+          "Tin"
+        ],
+        0
+      ],
+      [
+        "The Golden Howdah (Ambari)",
+        12.305,
+        76.655,
+        "I weigh 750 kilograms of pure gold and ride atop the royal tusker elephant. What am I?",
+        "Golden Howdah",
+        [
+          "howdah",
+          "ambari"
+        ],
+        "Elephant gold throne",
+        "How much does the Golden Howdah weigh?",
+        [
+          "750 Kilograms",
+          "50 Kilograms",
+          "100 Kilograms",
+          "2000 Kilograms"
+        ],
+        0
+      ],
+      [
+        "Palace Illumination & Royal Gate",
+        12.3045,
+        76.6545,
+        "100,000 of us light up the palace on Dasara nights like a glowing dream. What are we?",
+        "Light Bulbs",
+        [
+          "lights",
+          "bulbs",
+          "illumination"
+        ],
+        "Electric bulbs",
+        "How many bulbs light up Mysore Palace?",
+        [
+          "Nearly 100,000 bulbs",
+          "500 bulbs",
+          "2000 bulbs",
+          "10000 bulbs"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "chitradurga-fort",
+    "title": "The Seven Walls Mystery",
+    "siteName": "Chitradurga Fort",
+    "state": "Karnataka",
+    "category": "Hill Fortress",
+    "era": "Nayakas Dynasty",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Explore the impregnable stone fortress with seven concentric walls, secret rock crevices, and ancient rainwater tanks.",
+    "badge": [
+      "Fortress Defender of Chitradurga",
+      "\ud83d\udee1\ufe0f"
+    ],
+    "cps": [
+      [
+        "Rangayyana Bagilu (Outer Gate)",
+        14.2215,
+        76.398,
+        "I am built with winding curves so war elephants cannot charge straight into the fort. What entrance am I?",
+        "Rangayyana Bagilu",
+        [
+          "main gate",
+          "outer gate"
+        ],
+        "Main fort gate",
+        "Why were entrance paths built with zig-zag turns?",
+        [
+          "To stop charging war elephants",
+          "For hide and seek",
+          "For wind",
+          "For art"
+        ],
+        0
+      ],
+      [
+        "Obavvana Kindi (Heroine's Crevice)",
+        14.223,
+        76.3995,
+        "I defended this narrow rock hole armed only with a wooden rice pestle (Onake). Who am I?",
+        "Onake Obavva",
+        [
+          "obavva",
+          "heroine"
+        ],
+        "Brave female warrior",
+        "What tool did Onake Obavva use to defend the fort?",
+        [
+          "A wooden rice pestle (Onake)",
+          "A bronze spoon",
+          "A stone hammer",
+          "A shield"
+        ],
+        0
+      ],
+      [
+        "Ekanatheshwari Temple",
+        14.2245,
+        76.401,
+        "I am the patron goddess temple of the fortress nestled against huge granite boulders. What temple am I?",
+        "Ekanatheshwari Temple",
+        [
+          "ekanatheshwari",
+          "temple"
+        ],
+        "Patron shrine",
+        "How many temples were built inside the fort?",
+        [
+          "18 Temples",
+          "2 Temples",
+          "5 Temples",
+          "50 Temples"
+        ],
+        0
+      ],
+      [
+        "Hidimbeshwara Cave Temple",
+        14.2255,
+        76.402,
+        "Carved from a natural boulder, I am named after an epic Mahabharata hero. What cave temple am I?",
+        "Hidimbeshwara Temple",
+        [
+          "hidimbeshwara",
+          "cave"
+        ],
+        "Epic hero cave",
+        "From which epic does Hidimbeshwara originate?",
+        [
+          "Mahabharata",
+          "Ramayana",
+          "Panchatantra",
+          "Jataka"
+        ],
+        0
+      ],
+      [
+        "Gunpowder Mills (Maddu Bisuva Kallu)",
+        14.226,
+        76.4035,
+        "I have four giant round stones used to grind cannon powder. What am I?",
+        "Gunpowder Mill",
+        [
+          "gun powder mill",
+          "mill"
+        ],
+        "Ammunition mill",
+        "What was manufactured at these grinding mills?",
+        [
+          "Gunpowder for cannons",
+          "Flour for bread",
+          "Sugar",
+          "Spices"
+        ],
+        0
+      ],
+      [
+        "Rainwater Harvesting Tanks (Honda)",
+        14.227,
+        76.4045,
+        "I am a carved stone pond that captured every drop of rain so soldiers never went thirsty. What am I?",
+        "Rainwater Tank",
+        [
+          "honda",
+          "water tank"
+        ],
+        "Rain harvest pond",
+        "How many water tanks supplied the fort garrison?",
+        [
+          "Over 35 Reservoirs",
+          "Only 1 Tank",
+          "5 Tanks",
+          "None"
+        ],
+        0
+      ],
+      [
+        "The Summit Watch Tower (Gali Gopura)",
+        14.228,
+        76.406,
+        "Perched on the highest cliff, my name means Wind Tower. Sentinels watched for enemy flags. What tower am I?",
+        "Gali Gopura",
+        [
+          "wind tower",
+          "watch tower"
+        ],
+        "Wind tower",
+        "What does the Kannada word Gali mean?",
+        [
+          "Wind",
+          "Sun",
+          "Stone",
+          "Fire"
+        ],
+        0
+      ],
+      [
+        "The Seventh Citadel Wall",
+        14.229,
+        76.4075,
+        "I am the final, seventh circular wall enclosing the highest kingly citadel. What mystery have you solved?",
+        "The Seven Walls",
+        [
+          "seven walls",
+          "yelu suttina kote"
+        ],
+        "Seven defense rings",
+        "How were the fort stones held together?",
+        [
+          "Interlocking precision joints without cement",
+          "Mud glue",
+          "Wood nails",
+          "Tape"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "badami-caves",
+    "title": "The Cave Sculptor's Secret",
+    "siteName": "Badami Cave Temples",
+    "state": "Karnataka",
+    "category": "Rock-Cut Temples",
+    "era": "Early Chalukya Dynasty (6th-8th Century CE)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Carved into red sandstone cliffs overlooking Agastya Lake, discover the secrets of the Chalukya master cave sculptors.",
+    "badge": [
+      "Chalukya Master Carver",
+      "\u26cf\ufe0f"
+    ],
+    "cps": [
+      [
+        "Cave 1: Dancing Nataraja",
+        15.918,
+        75.6765,
+        "I am the cosmic dancer with eighteen carved stone arms depicting Bharatanatyam poses. Who am I?",
+        "Nataraja",
+        [
+          "shiva",
+          "dancing shiva"
+        ],
+        "Cosmic dancer",
+        "How many arms does Nataraja have in Cave 1?",
+        [
+          "18 Arms",
+          "4 Arms",
+          "8 Arms",
+          "100 Arms"
+        ],
+        0
+      ],
+      [
+        "Cave 2: Trivikrama Cosmic Strides",
+        15.9185,
+        75.6772,
+        "I stepped across the earth with one foot and the sky with my second foot. What avatar am I?",
+        "Trivikrama",
+        [
+          "vamana",
+          "vishnu"
+        ],
+        "Three cosmic strides",
+        "Which avatar of Vishnu measured the cosmos?",
+        [
+          "Trivikrama (Vamana)",
+          "Matsya",
+          "Kurma",
+          "Rama"
+        ],
+        0
+      ],
+      [
+        "Cave 3: Narasimha & Harihara",
+        15.919,
+        75.678,
+        "I am the largest and most grandly carved cave in Badami with an inscription from 578 CE. What cave am I?",
+        "Cave 3",
+        [
+          "cave three",
+          "3"
+        ],
+        "Third cave",
+        "In which century was Cave 3 dedicated?",
+        [
+          "6th Century CE (578 CE)",
+          "12th Century CE",
+          "1st Century BCE",
+          "20th Century"
+        ],
+        0
+      ],
+      [
+        "Cave 4: Mahavira & Jain Tirthankaras",
+        15.9195,
+        75.6788,
+        "I am the 24th Tirthankara seated serenely on a lion throne. Who am I?",
+        "Mahavira",
+        [
+          "lord mahavira"
+        ],
+        "Jain teacher",
+        "Whom is Cave 4 dedicated to?",
+        [
+          "Jain Tirthankaras (Mahavira)",
+          "Greek philosophers",
+          "Roman kings",
+          "Pharaohs"
+        ],
+        0
+      ],
+      [
+        "Agastya Lake",
+        15.92,
+        75.6795,
+        "I am the sacred lake nestled in the red sandstone canyon between the cave cliffs. What lake am I?",
+        "Agastya Lake",
+        [
+          "agastya lake",
+          "lake"
+        ],
+        "Sage water lake",
+        "Who was the lake at Badami named after?",
+        [
+          "Sage Agastya",
+          "Alexander",
+          "Marco Polo",
+          "Vasco da Gama"
+        ],
+        0
+      ],
+      [
+        "Bhootnath Temple at Water's Edge",
+        15.9208,
+        75.681,
+        "I sit right on the water edge of the lake with my reflection shimmering on the waves. What temple am I?",
+        "Bhootnath Temple",
+        [
+          "bhootnath",
+          "bhutanatha"
+        ],
+        "Water edge temple",
+        "Where is Bhootnath Temple located?",
+        [
+          "Directly at the water edge of Agastya Lake",
+          "Underground",
+          "On a plane",
+          "On a glacier"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "aihole",
+    "title": "The Ancient Architect",
+    "siteName": "Aihole",
+    "state": "Karnataka",
+    "category": "Temple Laboratory",
+    "era": "5th - 8th Century CE (Chalukyas)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Visit the laboratory of Indian temple architecture where master builders experimented with over 120 stone designs.",
+    "badge": [
+      "Master Architect Apprentice",
+      "\ud83d\udcd0"
+    ],
+    "cps": [
+      [
+        "Durga Temple (Apsidal Wonder)",
+        16.0195,
+        75.882,
+        "I have a rounded apsidal back like a horseshoe or Buddhist chaitya hall. What temple am I?",
+        "Durga Temple",
+        [
+          "durga",
+          "durga temple aihole"
+        ],
+        "Fortress temple",
+        "Why is it called the Durga Temple?",
+        [
+          "It was located near the fort (Durg) wall",
+          "It was green",
+          "It was a ship",
+          "It had 100 doors"
+        ],
+        0
+      ],
+      [
+        "Lad Khan Temple",
+        16.019,
+        75.8815,
+        "I resemble a village meeting hall with stone lattice windows and a roof shrine. What temple am I?",
+        "Lad Khan Temple",
+        [
+          "lad khan",
+          "ladkhan"
+        ],
+        "Oldest stone shrine",
+        "What architectural feature filters sunlight?",
+        [
+          "Carved stone lattice (Jali) windows",
+          "Glass",
+          "Mirrors",
+          "Curtains"
+        ],
+        0
+      ],
+      [
+        "Ravana Phadi Cave",
+        16.021,
+        75.8845,
+        "I am Aihole's oldest rock-cut cave, famous for my 10-armed Dancing Shiva relief. What cave am I?",
+        "Ravana Phadi",
+        [
+          "ravana phadi",
+          "ravanaphadi"
+        ],
+        "Rock-cut cave",
+        "Approximately when was Ravana Phadi carved?",
+        [
+          "550 CE (6th Century)",
+          "1800 CE",
+          "200 BCE",
+          "1950 CE"
+        ],
+        0
+      ],
+      [
+        "Meguti Jain Temple & Inscription",
+        16.0225,
+        75.886,
+        "My stone wall carries the famous 634 CE poem praising the victories of King Pulakeshin II. What temple am I?",
+        "Meguti Temple",
+        [
+          "meguti",
+          "meguti jain temple"
+        ],
+        "Hilltop temple",
+        "Which northern emperor was defeated by Pulakeshin II?",
+        [
+          "Emperor Harsha",
+          "Alexander",
+          "Caesar",
+          "Genghis Khan"
+        ],
+        0
+      ],
+      [
+        "Huchappayyagudi Temple",
+        16.018,
+        75.88,
+        "I feature exquisite ceiling carvings of Garuda and celestial deities soaring in flight. What temple am I?",
+        "Huchappayyagudi",
+        [
+          "huchappayya",
+          "huchappayyagudi temple"
+        ],
+        "Ceiling art temple",
+        "Where are the flying deity carvings located?",
+        [
+          "On the stone ceiling panels",
+          "In a well",
+          "On roof tiles",
+          "On grass"
+        ],
+        0
+      ],
+      [
+        "Konti Gudi Group",
+        16.0175,
+        75.879,
+        "We are a cluster of four ancient shrines representing the experimental cradle of temple architecture. What are we?",
+        "Konti Gudi",
+        [
+          "konti gudi",
+          "kontigudi"
+        ],
+        "Cradle cluster",
+        "What title is Aihole famously known by?",
+        [
+          "The Cradle of Indian Temple Architecture",
+          "Golden City",
+          "Desert Oasis",
+          "Mountain Peak"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "pattadakal",
+    "title": "The Master Builder's Blueprint",
+    "siteName": "Pattadakal",
+    "state": "Karnataka",
+    "category": "Coronation City",
+    "era": "7th - 8th Century CE (Chalukyas)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Explore the UNESCO World Heritage coronation city featuring a synthesis of North Indian Nagara and South Indian Dravida styles.",
+    "badge": [
+      "Royal Coronation Architect",
+      "\ud83c\udfdb\ufe0f"
+    ],
+    "cps": [
+      [
+        "Virupaksha Temple (Lokeshwara)",
+        15.949,
+        75.816,
+        "I was built by Queen Lokamahadevi in 740 CE and served as the model for Kailasa temple. What temple am I?",
+        "Virupaksha Temple",
+        [
+          "virupaksha",
+          "lokeshwara"
+        ],
+        "Queen masterpiece",
+        "Which Queen commissioned the Virupaksha Temple?",
+        [
+          "Queen Lokamahadevi",
+          "Queen Elizabeth",
+          "Cleopatra",
+          "Victoria"
+        ],
+        0
+      ],
+      [
+        "Mallikarjuna Temple (Sister Shrine)",
+        15.9493,
+        75.8164,
+        "I am the twin sister temple of Virupaksha, built with a circular dome roof. What is my name?",
+        "Mallikarjuna Temple",
+        [
+          "mallikarjuna",
+          "trailokyeshwara"
+        ],
+        "Sister shrine",
+        "What shape is the dome tower atop Mallikarjuna Temple?",
+        [
+          "Circular (Hemispherical)",
+          "Triangular",
+          "Star Shaped",
+          "Flat"
+        ],
+        0
+      ],
+      [
+        "Sangameshvara Temple",
+        15.9498,
+        75.817,
+        "Commissioned by King Vijayaditya, I am the oldest Dravida-style temple in Pattadakal. What temple am I?",
+        "Sangameshvara Temple",
+        [
+          "sangameshvara",
+          "sangameshwara"
+        ],
+        "Oldest Dravida shrine",
+        "Who was the King that commissioned Sangameshvara Temple?",
+        [
+          "King Vijayaditya",
+          "King Ashoka",
+          "King Babur",
+          "King Henry"
+        ],
+        0
+      ],
+      [
+        "Kadasiddheshwara Temple",
+        15.9502,
+        75.8175,
+        "I feature a North Indian beehive-curved tower (Rekha Nagara) with an Amalaka crest. What temple am I?",
+        "Kadasiddheshwara",
+        [
+          "kadasiddheshwara temple"
+        ],
+        "North Indian style",
+        "What distinct style is seen in the beehive-curved tower?",
+        [
+          "North Indian Nagara Style",
+          "Gothic Style",
+          "Art Deco",
+          "Egyptian"
+        ],
+        0
+      ],
+      [
+        "Jambulingeshwara Temple",
+        15.9505,
+        75.8178,
+        "My front tower arch prominently features Lord Surya riding across the sky on seven horses. What temple am I?",
+        "Jambulingeshwara",
+        [
+          "jambulingeshwara temple"
+        ],
+        "Sun chariot arch",
+        "How many horses draw the chariot of the Sun God Surya?",
+        [
+          "7 Horses",
+          "2 Horses",
+          "100 Horses",
+          "1 Horse"
+        ],
+        0
+      ],
+      [
+        "Papanatha Temple",
+        15.948,
+        75.815,
+        "I uniquely combine a North Indian curved tower with South Indian halls and Ramayana friezes. What temple am I?",
+        "Papanatha Temple",
+        [
+          "papanatha"
+        ],
+        "Fused style temple",
+        "What royal ceremony was celebrated at Pattadakal by kings?",
+        [
+          "Royal Coronation Ceremony",
+          "Boat Race",
+          "Snowboarding",
+          "Olympic Games"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "belur",
+    "title": "The Sculptor's Masterpiece",
+    "siteName": "Belur",
+    "state": "Karnataka",
+    "category": "Hoysala Star-Plan",
+    "era": "1117 CE (Hoysala Empire)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Explore the star-shaped Chennakeshava Temple carved from soft soapstone featuring the world-famous dancing Madanika bracket figures.",
+    "badge": [
+      "Hoysala Master Sculptor",
+      "\u2728"
+    ],
+    "cps": [
+      [
+        "Chennakeshava Temple (Star Platform)",
+        13.1625,
+        75.8595,
+        "I am an intricately carved star-shaped temple built by King Vishnuvardhana in 1117 CE. What temple am I?",
+        "Chennakeshava Temple",
+        [
+          "chennakeshava",
+          "belur temple"
+        ],
+        "Handsome Vishnu temple",
+        "What geometrical shape is the platform of Belur temple?",
+        [
+          "Star Shaped (Stellate)",
+          "Circle",
+          "Triangle",
+          "Hexagon"
+        ],
+        0
+      ],
+      [
+        "Darpana Sundari (The Mirror Maiden)",
+        13.1627,
+        75.8598,
+        "I am the world-famous bracket figure of a maiden gazing into a handheld stone mirror. What is my name?",
+        "Darpana Sundari",
+        [
+          "lady with mirror",
+          "darpana sundari"
+        ],
+        "Mirror maiden",
+        "What is the lady holding in the Darpana Sundari sculpture?",
+        [
+          "A handheld mirror",
+          "A sword",
+          "A smartphone",
+          "A book"
+        ],
+        0
+      ],
+      [
+        "Gravity Pillar (Mahasthambha)",
+        13.1622,
+        75.859,
+        "I am a 42-foot tall pillar that balances purely on my own center of gravity without foundation. What am I?",
+        "Gravity Pillar",
+        [
+          "gravity pillar",
+          "mahasthambha"
+        ],
+        "Center of gravity",
+        "What allows the Gravity Pillar to remain standing?",
+        [
+          "Perfect balance on its center of gravity",
+          "Iron glue",
+          "Steel chains",
+          "Balloons"
+        ],
+        0
+      ],
+      [
+        "Madanikas Gallery (Dancing Maidens)",
+        13.1628,
+        75.8594,
+        "We are 42 celestial maidens carved from soapstone under the temple roof playing music and dancing. What are we?",
+        "Madanikas",
+        [
+          "madanika figures",
+          "shilabalikas"
+        ],
+        "Celestial dancers",
+        "How many exterior Madanika figures adorn the temple?",
+        [
+          "42 Figures",
+          "2 Figures",
+          "10 Figures",
+          "500 Figures"
+        ],
+        0
+      ],
+      [
+        "Kappe Chennigraya Shrine",
+        13.163,
+        75.86,
+        "I am the secondary star-shaped shrine consecrated by the talented dancing Queen Shantala. What shrine am I?",
+        "Kappe Chennigraya",
+        [
+          "kappe chennigraya",
+          "kappe shrine"
+        ],
+        "Queen shrine",
+        "What art form was Queen Shantala a master of?",
+        [
+          "Classical Dance (Bharatanatyam)",
+          "Archery",
+          "Rowing",
+          "Painting"
+        ],
+        0
+      ],
+      [
+        "Temple Pushkarini (Stepped Tank)",
+        13.1618,
+        75.8585,
+        "I am the geometric stepped sacred pool where lotus flowers bloom and pilgrims cleanse. What am I?",
+        "Pushkarini",
+        [
+          "stepped tank",
+          "kalyani"
+        ],
+        "Sacred water tank",
+        "What is the traditional name for a sacred stepped temple tank?",
+        [
+          "Pushkarini (or Kalyani)",
+          "Swimming Pool",
+          "Aquarium",
+          "Fountain"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "halebidu",
+    "title": "The Stone Story",
+    "siteName": "Halebidu",
+    "state": "Karnataka",
+    "category": "Twin Hoysala Gem",
+    "era": "1121 CE (Hoysalas)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Explore the twin temples of Hoysaleshwara adorned with over 20,000 carved figures depicting epics in stone.",
+    "badge": [
+      "Epic Stone Chronicler",
+      "\ud83d\udcdc"
+    ],
+    "cps": [
+      [
+        "Hoysaleshwara Temple",
+        13.2165,
+        75.994,
+        "I am a monumental twin temple with two identical sanctums on a star-shaped terrace. What temple am I?",
+        "Hoysaleshwara Temple",
+        [
+          "hoysaleshwara",
+          "halebidu temple"
+        ],
+        "Twin temple",
+        "What animal forms the bottom-most carved frieze around the base?",
+        [
+          "Marching Elephants",
+          "Flying Birds",
+          "Swimming Fish",
+          "Sleeping Cats"
+        ],
+        0
+      ],
+      [
+        "Monolithic Nandi Mantapa",
+        13.2168,
+        75.9945,
+        "I am a colossal monolithic bull carved from dark soapstone, polished to shine like glass. What sacred animal am I?",
+        "Nandi",
+        [
+          "nandi bull",
+          "nandi"
+        ],
+        "Shiva's bull mount",
+        "What animal is the sacred Nandi that guards the Shiva temple?",
+        [
+          "A Sacred Bull",
+          "A Lion",
+          "An Elephant",
+          "A Peacock"
+        ],
+        0
+      ],
+      [
+        "Garuda Pillar (Loyal Bodyguards)",
+        13.216,
+        75.9935,
+        "I am the hero pillar celebrating the supreme devotion of the elite Garuda bodyguards. What pillar am I?",
+        "Garuda Pillar",
+        [
+          "garuda stambha"
+        ],
+        "Loyalty pillar",
+        "What elite title was given to the king's loyal bodyguard force?",
+        [
+          "The Garudas",
+          "The Ninjas",
+          "The Spartans",
+          "The Gladiators"
+        ],
+        0
+      ],
+      [
+        "Outer Wall Mythological Friezes",
+        13.2163,
+        75.9942,
+        "I am a continuous wall of stone carvings narrating the Mahabharata and Ramayana like an open comic book. What am I?",
+        "Mythological Friezes",
+        [
+          "friezes",
+          "stone reliefs"
+        ],
+        "Carved story panels",
+        "Which epic mountain is Ravana shown attempting to lift?",
+        [
+          "Mount Kailash",
+          "Mount Everest",
+          "Mount Fuji",
+          "Mount Kilimanjaro"
+        ],
+        0
+      ],
+      [
+        "Dancing Ganesha Relief",
+        13.2166,
+        75.9938,
+        "I am the elephant-headed god of wisdom shown dancing joyfully with a sweet in my trunk. Who am I?",
+        "Dancing Ganesha",
+        [
+          "ganesha",
+          "ganapati"
+        ],
+        "Elephant god",
+        "What sweet treat is Lord Ganesha fond of holding in his trunk?",
+        [
+          "Modak (Sweet Ladoo)",
+          "Pizza",
+          "Chocolate",
+          "Ice Cream"
+        ],
+        0
+      ],
+      [
+        "Kedareshwara Temple (Star Gem)",
+        13.215,
+        75.992,
+        "I am a graceful three-shrine star-shaped temple standing peacefully by the lake. What temple am I?",
+        "Kedareshwara Temple",
+        [
+          "kedareshwara"
+        ],
+        "Star plan gem",
+        "What was the original ancient name of Halebidu during the Hoysala era?",
+        [
+          "Dorasamudra",
+          "Bengaluru",
+          "Mumbai",
+          "Chennai"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "srirangapatna",
+    "title": "The Lost Messenger",
+    "siteName": "Srirangapatna",
+    "state": "Karnataka",
+    "category": "River Island Fort",
+    "era": "Tipu Sultan & Vijayanagara (18th Century CE)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Search for the coded missives of Tipu Sultan's royal messenger across the fortified river island surrounded by the Kaveri River.",
+    "badge": [
+      "Island Fortress Envoy",
+      "\ud83c\udfdd\ufe0f"
+    ],
+    "cps": [
+      [
+        "Ranganathaswamy Island Temple",
+        12.423,
+        76.6935,
+        "I am the ancient 9th-century temple dedicated to Lord Vishnu that gave this island its sacred name. What temple am I?",
+        "Ranganathaswamy Temple",
+        [
+          "ranganathaswamy",
+          "ranganatha"
+        ],
+        "Island shrine",
+        "Which holy South Indian river completely encircles the island?",
+        [
+          "Kaveri River",
+          "Ganga River",
+          "Yamuna River",
+          "Indus River"
+        ],
+        0
+      ],
+      [
+        "Dariya Daulat Bagh (Summer Palace)",
+        12.418,
+        76.696,
+        "Built almost entirely from seasoned teakwood, my name means Wealth of the Sea. What palace am I?",
+        "Dariya Daulat Bagh",
+        [
+          "dariya daulat",
+          "summer palace"
+        ],
+        "Teakwood palace",
+        "What natural wood material was primarily used to build this palace?",
+        [
+          "Seasoned Teakwood",
+          "Plastic",
+          "Concrete",
+          "Aluminum"
+        ],
+        0
+      ],
+      [
+        "The Obelisk & Breach Point",
+        12.426,
+        76.688,
+        "I am the stone monument marking where the fortress walls were breached during the historic 1799 battle. What am I?",
+        "The Obelisk",
+        [
+          "obelisk",
+          "breach point"
+        ],
+        "Four-sided pointed pillar",
+        "What fearsome animal moniker was Tipu Sultan known by?",
+        [
+          "The Tiger of Mysore",
+          "The Lion",
+          "The Eagle",
+          "The Shark"
+        ],
+        0
+      ],
+      [
+        "Bailey's Dungeon",
+        12.4255,
+        76.689,
+        "I am an underground brick dungeon below water level where captured officers were imprisoned. What is my name?",
+        "Bailey's Dungeon",
+        [
+          "baileys dungeon",
+          "dungeon"
+        ],
+        "Riverbank dungeon",
+        "Where is Bailey's Dungeon situated within the island fortress?",
+        [
+          "Underground near the river wall",
+          "Atop a mountain",
+          "In a submarine",
+          "In a treehouse"
+        ],
+        0
+      ],
+      [
+        "The Gumbaz Mausoleum",
+        12.411,
+        76.712,
+        "I am the grand domed tomb where Tipu Sultan and Hyder Ali rest in peace, with ivory-inlaid doors. What am I?",
+        "The Gumbaz",
+        [
+          "gumbaz",
+          "mausoleum"
+        ],
+        "Persian word for dome",
+        "What material is inlaid into the dark rosewood doors of the Gumbaz?",
+        [
+          "Carved Ivory",
+          "Gold wire",
+          "Plastic beads",
+          "Glass marbles"
+        ],
+        0
+      ],
+      [
+        "Sangama (Confluence of Rivers)",
+        12.415,
+        76.72,
+        "I am the sacred point where two split branches of the Kaveri River join back together. What am I called?",
+        "Sangama",
+        [
+          "sangam",
+          "confluence"
+        ],
+        "River confluence",
+        "What traditional round basket boat is used by locals on the Kaveri?",
+        [
+          "Coracle (Teppa)",
+          "Kayak",
+          "Gondola",
+          "Speedboat"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "shravanabelagola",
+    "title": "The Ancient Giant",
+    "siteName": "Shravanabelagola",
+    "state": "Karnataka",
+    "category": "Sacred Jain Center",
+    "era": "981 CE (Western Ganga Dynasty)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Climb the 650 rock-cut steps of Vindhyagiri Hill to discover the 57-foot Gommateshwara statue\u2014the world's largest freestanding monolith!",
+    "badge": [
+      "Monolithic Giant Climber",
+      "\u26f0\ufe0f"
+    ],
+    "cps": [
+      [
+        "Vindhyagiri Hill Steps",
+        12.853,
+        76.484,
+        "I am a colossal granite hill with over 650 rock-cut steps leading up to the great statue. What hill am I?",
+        "Vindhyagiri Hill",
+        [
+          "vindhyagiri",
+          "large hill"
+        ],
+        "Granite hill",
+        "How many rock-cut steps lead to the summit of Vindhyagiri Hill?",
+        [
+          "Over 650 Steps",
+          "50 Steps",
+          "10 Steps",
+          "10,000 Steps"
+        ],
+        0
+      ],
+      [
+        "Gommateshwara (Lord Bahubali) Monolith",
+        12.8535,
+        76.4845,
+        "I stand 57 feet tall, carved from a single granite cliff without any joints. What famous statue am I?",
+        "Gommateshwara",
+        [
+          "bahubali",
+          "lord bahubali"
+        ],
+        "57-foot giant statue",
+        "How tall is the monolithic Gommateshwara statue?",
+        [
+          "57 Feet (17.5 Metres)",
+          "10 Feet",
+          "200 Feet",
+          "1000 Feet"
+        ],
+        0
+      ],
+      [
+        "Chavundaraya Inscription at Feet",
+        12.8536,
+        76.4846,
+        "I am the ancient stone inscription identifying the Ganga general who commissioned the statue. What am I?",
+        "Chavundaraya Inscription",
+        [
+          "inscription",
+          "chavundaraya"
+        ],
+        "Rock inscription",
+        "Which language's earliest written literature is found on this rock?",
+        [
+          "Old Marathi Script",
+          "French",
+          "Russian",
+          "German"
+        ],
+        0
+      ],
+      [
+        "Chandragiri Hill & Bhadrabahu Cave",
+        12.858,
+        76.487,
+        "I am the northern hill where Emperor Chandragupta Maurya spent his final years in peace. What hill am I?",
+        "Chandragiri Hill",
+        [
+          "chandragiri",
+          "small hill"
+        ],
+        "Sister hill",
+        "Which famous emperor spent his final spiritual years on Chandragiri?",
+        [
+          "Emperor Chandragupta Maurya",
+          "Akbar",
+          "Alexander",
+          "Caesar"
+        ],
+        0
+      ],
+      [
+        "Kalyani Lake (The White Pond)",
+        12.855,
+        76.4855,
+        "My name translates to the White Pond of the Monks, giving this town its legendary name. What am I?",
+        "Kalyani Lake",
+        [
+          "belagola",
+          "white pond"
+        ],
+        "White pond in valley",
+        "What does the Kannada word Belagola literally mean?",
+        [
+          "White Pond",
+          "Red Mountain",
+          "Golden Tree",
+          "Blue Sky"
+        ],
+        0
+      ]
+    ]
+  }
+]

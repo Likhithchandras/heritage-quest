@@ -1,167 +1,320 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Sparkles, Lock, Mail, User, ArrowRight } from 'lucide-react';
-import Button from '@/components/common/Button';
-import { useAuth } from '@/context/AuthContext';
-import { useAudio } from '@/context/AudioContext';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useGameProgress } from '../context/GameProgressContext';
+import { useAccessibility, THEMES } from '../context/AccessibilityContext';
+import { soundEffects } from '../utils/soundEffects';
+import { User, Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle2, Shield, Palette, Compass, Award } from 'lucide-react';
 
-export const LoginPage = () => {
+export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState('arya.sharma@heritagequest.org');
-  const [password, setPassword] = useState('password123');
-  const [name, setName] = useState('Arya Sharma');
-  const { login, signup } = useAuth();
-  const { playBell } = useAudio();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const { login, signup, guestLogin } = useAuth();
+  const { setExplorerName, completedHunts } = useGameProgress();
+  const { currentTheme, setCurrentTheme } = useAccessibility();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    playBell(650);
-    if (isSignUp) {
-      signup(name, email, password);
-    } else {
-      login(email, password);
+    setErrorMessage('');
+
+    if (!email || !password) {
+      setErrorMessage('Please provide both your email address and password.');
+      soundEffects.playWrong();
+      return;
     }
-    navigate('/dashboard');
+
+    if (isSignUp && !name.trim()) {
+      setErrorMessage('Please enter your explorer name to register.');
+      soundEffects.playWrong();
+      return;
+    }
+
+    if (password.length < 4) {
+      setErrorMessage('Password should be at least 4 characters long.');
+      soundEffects.playWrong();
+      return;
+    }
+
+    if (isSignUp) {
+      const user = signup(name, email, password);
+      setExplorerName(user.name);
+      setSuccessMessage(`Explorer account registered for ${user.name}! Starting expedition...`);
+      setTimeout(() => navigate('/'), 1200);
+    } else {
+      const derivedName = name.trim() || email.split('@')[0];
+      const user = login(derivedName, email, password);
+      setExplorerName(user.name);
+      setSuccessMessage(`Signed in successfully as ${user.name}. Loading quest...`);
+      setTimeout(() => navigate('/'), 1000);
+    }
   };
 
-  const handleGuestLogin = () => {
-    playBell(600);
-    login('guest@heritagequest.org', 'guest');
-    navigate('/dashboard');
+  const handleGuest = () => {
+    const user = guestLogin();
+    setExplorerName(user.name);
+    navigate('/');
   };
+
+  // Theme palettes & background glow styles
+  const themeGradients = {
+    'lapis-gold': {
+      bgGlow: 'from-blue-950/40 via-stone-950 to-amber-950/30',
+      cardBorder: 'border-amber-500/40',
+      accentText: 'text-amber-400',
+      btnGradient: 'from-amber-500 via-amber-600 to-amber-700',
+      badgeBorder: 'border-amber-500/40 text-amber-300 bg-amber-500/20'
+    },
+    'patina-bronze': {
+      bgGlow: 'from-emerald-950/40 via-stone-950 to-stone-900',
+      cardBorder: 'border-emerald-500/40',
+      accentText: 'text-emerald-400',
+      btnGradient: 'from-emerald-500 via-teal-600 to-emerald-700',
+      badgeBorder: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/20'
+    },
+    'crimson-amber': {
+      bgGlow: 'from-red-950/50 via-stone-950 to-amber-950/40',
+      cardBorder: 'border-red-500/40',
+      accentText: 'text-amber-400',
+      btnGradient: 'from-red-600 via-amber-600 to-amber-700',
+      badgeBorder: 'border-red-500/40 text-amber-300 bg-red-500/20'
+    },
+    'forest-brass': {
+      bgGlow: 'from-emerald-950/50 via-stone-950 to-amber-950/30',
+      cardBorder: 'border-emerald-500/40',
+      accentText: 'text-amber-300',
+      btnGradient: 'from-amber-500 via-amber-600 to-emerald-700',
+      badgeBorder: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/20'
+    }
+  };
+
+  const activeThemeStyle = themeGradients[currentTheme] || themeGradients['lapis-gold'];
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
-      <div className="w-full max-w-4xl bg-[#FFFDF9] border border-[#C5A059]/30 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
+    <div className={`min-h-[88vh] flex items-center justify-center px-4 py-8 animate-fadeIn bg-gradient-to-br ${activeThemeStyle.bgGlow}`}>
+      <div className={`w-full max-w-5xl rounded-[32px] border-2 ${activeThemeStyle.cardBorder} bg-stone-950/90 backdrop-blur-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 transition-all duration-500`}>
         
-        {/* Left: Cinematic Historical Panel */}
-        <div className="bg-[#1C1917] p-8 sm:p-12 text-[#FAF7F2] flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#C5A059]/15 rounded-full blur-3xl" />
+        {/* Left 7 Columns: Storytelling Hero with Clean Aesthetic Medallion & 4 Stats */}
+        <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6 border-b lg:border-b-0 lg:border-r border-white/10 relative">
           
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <span className="text-2xl">🏛️</span>
-              <span className="font-serif-title font-bold text-lg tracking-wider text-[#FAF7F2]">
-                HERITAGE QUEST
-              </span>
+          <div className="space-y-4">
+            {/* Top Badge */}
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className={`inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border text-xs font-bold uppercase tracking-wider ${activeThemeStyle.badgeBorder}`}>
+                <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '8s' }} />
+                <span>Interactive Archaeological Expedition</span>
+              </div>
+
+              {/* Quick Theme Selector Pills */}
+              <div className="flex items-center space-x-1 bg-black/40 p-1 rounded-full border border-white/10">
+                <Palette className="w-3.5 h-3.5 text-stone-400 ml-1.5" />
+                {THEMES.map((theme) => {
+                  const isCurrent = currentTheme === theme.id;
+                  return (
+                    <button
+                      key={theme.id}
+                      type="button"
+                      onClick={() => {
+                        soundEffects.playClick();
+                        setCurrentTheme(theme.id);
+                      }}
+                      title={theme.name}
+                      className={`px-2.5 py-1 rounded-full text-[11px] font-bold transition-all ${
+                        isCurrent
+                          ? 'bg-amber-500 text-stone-950 shadow-md scale-105'
+                          : 'text-stone-400 hover:text-white'
+                      }`}
+                    >
+                      {theme.primaryPill}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            <blockquote className="font-serif-title text-lg sm:text-xl text-[#EADCC9] leading-relaxed mb-4">
-              "A people without the knowledge of their past history, origin and culture is like a tree without roots."
-            </blockquote>
-            <p className="text-xs text-[#C5A059] font-mono">
-              — Archaeological Heritage Preservation
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-amber-100 font-serif leading-tight">
+              Discover India’s Timeless Wonders Through <span className={`text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200`}>Riddles & Quests</span>
+            </h1>
+
+            <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-sans">
+              Step into the shoes of an ancient detective. Explore <strong>20 historic monuments</strong> and <strong>129 interactive checkpoints</strong> across India. Solve child-friendly riddles, observe stone secrets, and earn official explorer certificates!
             </p>
           </div>
 
-          <div className="pt-8 border-t border-[#FAF7F2]/10">
-            <div className="flex items-center gap-2 text-xs text-[#FAF7F2]/70">
-              <Sparkles className="w-4 h-4 text-[#C5A059]" />
-              <span>Unlock 3D artifacts, earn Scholar Badges, and track your expedition codex.</span>
+          {/* Aesthetic Medallion Banner with Ornate Frame */}
+          <div className="relative p-5 rounded-2xl bg-black/40 border border-white/10 flex items-center space-x-5 shadow-inner">
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden shrink-0 border-2 border-amber-400/60 shadow-[0_0_20px_rgba(245,158,11,0.3)] bg-gradient-to-br from-amber-500/20 to-amber-900/40 p-1 flex items-center justify-center">
+              <img
+                src="/assets/heritage_medallion.jpg"
+                alt="Bharat Heritage Seal"
+                className="w-full h-full object-cover rounded-full transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <div className="space-y-1.5 min-w-0">
+              <div className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                <Shield className="w-3.5 h-3.5 text-amber-400" />
+                <span>Bharat Heritage Seal</span>
+              </div>
+              <div className="font-serif font-bold text-sm sm:text-base text-stone-100">
+                Ministry of Junior Explorers
+              </div>
+              <p className="text-[11px] text-stone-400 leading-snug">
+                Official archaeological cipher verified across all 8 states of India.
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom 4-Column Stats Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-white/10 text-stone-200">
+            <div className="p-3 bg-black/40 rounded-xl border border-white/10 text-center">
+              <div className="text-xl font-black text-amber-400">20</div>
+              <div className="text-[10px] uppercase font-bold tracking-wider text-stone-400">HERITAGE SITES</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-xl border border-white/10 text-center">
+              <div className="text-xl font-black text-amber-400">129</div>
+              <div className="text-[10px] uppercase font-bold tracking-wider text-stone-400">CHECKPOINTS</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-xl border border-white/10 text-center">
+              <div className="text-xl font-black text-amber-400">8</div>
+              <div className="text-[10px] uppercase font-bold tracking-wider text-stone-400">STATES OF INDIA</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-xl border border-white/10 text-center">
+              <div className="text-xl font-black text-emerald-400">{completedHunts.length}/20</div>
+              <div className="text-[10px] uppercase font-bold tracking-wider text-stone-400">HUNTS SOLVED</div>
             </div>
           </div>
         </div>
 
-        {/* Right: Auth Form */}
-        <div className="p-8 sm:p-12 flex flex-col justify-center">
-          <div className="mb-6">
-            <h2 className="font-serif-title font-bold text-2xl text-[#1C1917]">
-              {isSignUp ? 'Join the Expedition' : 'Welcome Back'}
+        {/* Right 5 Columns: Authentication Form */}
+        <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-center space-y-5 bg-black/30">
+          <div className="text-center space-y-1">
+            <h2 className="text-2xl font-bold text-amber-100 font-serif">
+              {isSignUp ? 'Create Explorer Account' : 'Sign In To Quest'}
             </h2>
-            <p className="text-xs text-[#57534E] mt-1">
-              {isSignUp
-                ? 'Create your scholar profile to start discovering'
-                : 'Enter your credentials to access your Adventure HQ'}
+            <p className="text-xs text-stone-400">
+              {isSignUp ? 'Register to save your explorer progress & rank' : 'Enter your credentials to continue your expedition'}
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {isSignUp && (
-              <div>
-                <label className="block text-xs font-mono font-bold text-[#57534E] uppercase mb-1">
-                  Full Name
-                </label>
-                <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#57534E]" />
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Arya Sharma"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#FAF7F2] border border-[#EADCC9] text-xs text-[#1C1917] focus:outline-none focus:border-[#C5A059]"
-                  />
-                </div>
-              </div>
-            )}
+          {/* Alerts */}
+          {errorMessage && (
+            <div className="p-3 bg-red-500/20 border border-red-500/40 rounded-xl text-red-200 text-xs font-semibold animate-shake">
+              ⚠️ {errorMessage}
+            </div>
+          )}
 
+          {successMessage && (
+            <div className="p-3 bg-emerald-500/20 border border-emerald-500/40 rounded-xl text-emerald-200 text-xs font-semibold flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span>{successMessage}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-3.5">
+            {/* Name */}
             <div>
-              <label className="block text-xs font-mono font-bold text-[#57534E] uppercase mb-1">
-                Email Address
+              <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-1">
+                Explorer Name {isSignUp ? '*' : '(Optional)'}
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#57534E]" />
+                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
                 <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="arya.sharma@heritagequest.org"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#FAF7F2] border border-[#EADCC9] text-xs text-[#1C1917] focus:outline-none focus:border-[#C5A059]"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Arya Sharma"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-stone-900 border border-stone-700 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 text-sm"
                 />
               </div>
             </div>
 
+            {/* Email */}
             <div>
-              <label className="block text-xs font-mono font-bold text-[#57534E] uppercase mb-1">
-                Password
+              <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-1">
+                Email Address *
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#57534E]" />
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
                 <input
-                  type="password"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="explorer@heritagequest.org"
                   required
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-stone-900 border border-stone-700 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 text-sm"
+                />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div>
+              <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-1">
+                Password *
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#FAF7F2] border border-[#EADCC9] text-xs text-[#1C1917] focus:outline-none focus:border-[#C5A059]"
+                  required
+                  className="w-full pl-10 pr-11 py-3 rounded-xl bg-stone-900 border border-stone-700 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 text-sm"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
             </div>
 
-            <Button
+            {/* Submit Button */}
+            <button
               type="submit"
-              variant="primary"
-              size="md"
-              className="w-full mt-2"
-              icon={ArrowRight}
-              iconPosition="right"
+              className={`w-full py-3.5 px-6 bg-gradient-to-r ${activeThemeStyle.btnGradient} hover:brightness-110 active:scale-95 text-stone-950 font-black text-sm rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 mt-2`}
             >
-              {isSignUp ? 'Create Scholar Account' : 'Sign In to HQ'}
-            </Button>
+              <span>{isSignUp ? 'Register & Begin Quest' : 'Sign In To Quest'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </form>
 
-          <div className="mt-4 pt-4 border-t border-[#EADCC9] text-center space-y-3">
+          {/* Mode Switch & Guest Button */}
+          <div className="space-y-2.5 pt-1 text-center">
             <button
-              onClick={handleGuestLogin}
-              className="w-full py-2 rounded-xl bg-[#FAF7F2] hover:bg-[#EADCC9] text-xs font-bold text-[#1C1917] border border-[#EADCC9] transition-colors"
+              type="button"
+              onClick={() => {
+                soundEffects.playClick();
+                setIsSignUp(!isSignUp);
+                setErrorMessage('');
+              }}
+              className="text-xs text-amber-400 hover:text-amber-300 font-semibold"
             >
-              ⚡ Quick Guest Access (Instant Demo)
+              {isSignUp
+                ? 'Already registered? Sign In here'
+                : "New explorer? Create an account (+50 XP Bonus!)"}
             </button>
 
             <button
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-xs text-[#C86D51] hover:underline font-semibold"
+              type="button"
+              onClick={handleGuest}
+              className="w-full py-2.5 px-4 bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-amber-200 text-xs font-bold rounded-xl border border-stone-800 transition-colors"
             >
-              {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+              🚀 Continue as Guest Explorer (Instant Play)
             </button>
           </div>
         </div>
+
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}

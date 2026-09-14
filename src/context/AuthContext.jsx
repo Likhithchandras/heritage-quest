@@ -1,64 +1,95 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { authService } from '../services/authService';
-import { MOCK_USER_DATA } from '../data/mockUserData';
+import { soundEffects } from '../utils/soundEffects';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(MOCK_USER_DATA);
-  const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('heritage_user');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    // Default guest explorer
+    return {
+      name: localStorage.getItem('heritage_explorer_name') || 'Junior Explorer',
+      email: 'explorer@heritagequest.org',
+      isLoggedIn: true,
+      role: 'Junior Scout',
+      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+    };
+  });
 
   useEffect(() => {
-    const cur = authService.getCurrentUser();
-    if (cur) setUser(cur);
-  }, []);
-
-  const login = async (email, password) => {
-    setLoading(true);
-    try {
-      const res = await authService.login(email, password);
-      setUser(res.user);
-      return res;
-    } finally {
-      setLoading(false);
+    if (currentUser) {
+      localStorage.setItem('heritage_user', JSON.stringify(currentUser));
+      localStorage.setItem('heritage_explorer_name', currentUser.name);
+    } else {
+      localStorage.removeItem('heritage_user');
     }
+  }, [currentUser]);
+
+  const login = (name, email, password) => {
+    const userObj = {
+      name: name.trim() || 'Junior Explorer',
+      email: email.trim().toLowerCase(),
+      isLoggedIn: true,
+      role: 'Heritage Detective',
+      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+    };
+    setCurrentUser(userObj);
+    soundEffects.playCorrect();
+    return userObj;
   };
 
-  const loginWithGoogle = async () => {
-    setLoading(true);
-    try {
-      const res = await authService.loginWithGoogle();
-      setUser(res.user);
-      return res;
-    } finally {
-      setLoading(false);
-    }
+  const signup = (name, email, password) => {
+    const userObj = {
+      name: name.trim() || 'New Explorer',
+      email: email.trim().toLowerCase(),
+      isLoggedIn: true,
+      role: 'Apprentice Historian',
+      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+    };
+    setCurrentUser(userObj);
+    soundEffects.playFanfare();
+    return userObj;
+  };
+
+  const guestLogin = () => {
+    const userObj = {
+      name: 'Guest Scout',
+      email: 'guest@heritagequest.org',
+      isLoggedIn: true,
+      role: 'Guest Scout',
+      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+    };
+    setCurrentUser(userObj);
+    soundEffects.playClick();
+    return userObj;
   };
 
   const logout = () => {
-    authService.logout();
-    setUser(null);
-  };
-
-  const addXP = (amount) => {
-    setUser((prev) => {
-      if (!prev) return prev;
-      const updated = {
-        ...prev,
-        culturalXp: prev.culturalXp + amount
-      };
-      localStorage.setItem('hq_user_session', JSON.stringify(updated));
-      return updated;
-    });
+    soundEffects.playClick();
+    const guestObj = {
+      name: 'Junior Explorer',
+      email: 'explorer@heritagequest.org',
+      isLoggedIn: false,
+      role: 'Explorer',
+      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+    };
+    setCurrentUser(guestObj);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, loginWithGoogle, logout, addXP }}>
+    <AuthContext.Provider value={{ currentUser, login, signup, guestLogin, logout }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within AuthProvider');
+  }
+  return context;
 }

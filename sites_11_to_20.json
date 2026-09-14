@@ -1,0 +1,1482 @@
+[
+  {
+    "id": "amer-fort",
+    "title": "The King's Hidden Message",
+    "siteName": "Amer Fort",
+    "state": "Rajasthan",
+    "category": "Royal Hill Fortress",
+    "era": "1592 CE (Kachwaha Rajputs)",
+    "heroImage": "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Climb the royal ramparts of Amer Fort and decode the hidden royal message inside the mirror palace.",
+    "badge": [
+      "Amber Desert Sovereign",
+      "\ud83c\udff0"
+    ],
+    "cps": [
+      [
+        "Suraj Pol (Sun Gate)",
+        26.9855,
+        75.851,
+        "I am the grand eastern entrance where royal cavalry entered facing the morning sunrise. What gate am I?",
+        "Suraj Pol",
+        [
+          "sun gate",
+          "suraj pole"
+        ],
+        "Sun gate",
+        "Which direction does the Sun Gate face?",
+        [
+          "East towards the rising sun",
+          "West",
+          "North",
+          "South"
+        ],
+        0
+      ],
+      [
+        "Jaleb Chowk (Grand Courtyard)",
+        26.9858,
+        75.8515,
+        "I am the vast courtyard where victorious soldiers assembled and horse parades were held. What chowk am I?",
+        "Jaleb Chowk",
+        [
+          "jaleb chowk",
+          "courtyard"
+        ],
+        "Grand assembly square",
+        "What took place in Jaleb Chowk?",
+        [
+          "Parades and soldier assemblies",
+          "Cooking food",
+          "Boat races",
+          "Swimming"
+        ],
+        0
+      ],
+      [
+        "Diwan-i-Aam (Hall of Public Audience)",
+        26.9862,
+        75.8518,
+        "I have 27 pillars of red sandstone with marble elephant brackets where the King met subjects. What hall am I?",
+        "Diwan-i-Aam",
+        [
+          "hall of public audience",
+          "diwan aam"
+        ],
+        "Public audience hall",
+        "How many ornate pillars support Diwan-i-Aam?",
+        [
+          "27 Pillars",
+          "4 Pillars",
+          "100 Pillars",
+          "10 Pillars"
+        ],
+        0
+      ],
+      [
+        "Ganesh Pol Gateway",
+        26.9865,
+        75.852,
+        "I am the grand painted portal featuring delicate frescoes of Lord Ganesh leading to private palace suites. What gate am I?",
+        "Ganesh Pol",
+        [
+          "ganesh pol",
+          "ganesh gate"
+        ],
+        "Painted elephant god gate",
+        "Which deity is painted above the portal?",
+        [
+          "Lord Ganesh",
+          "Poseidon",
+          "Thor",
+          "Apollo"
+        ],
+        0
+      ],
+      [
+        "Sheesh Mahal (Hall of Mirrors)",
+        26.9868,
+        75.8524,
+        "A single candle flickers inside me and reflects like thousands of twinkling stars across mirrors. What palace am I?",
+        "Sheesh Mahal",
+        [
+          "hall of mirrors",
+          "glass palace"
+        ],
+        "Mirror palace",
+        "How many candles were needed to illuminate Sheesh Mahal?",
+        [
+          "A single candle",
+          "10,000 candles",
+          "500 candles",
+          "Electric lights"
+        ],
+        0
+      ],
+      [
+        "Sukh Niwas (Palace of Pleasure)",
+        26.987,
+        75.8528,
+        "Cool breezes blow over a cascading water channel inside my room to create natural air conditioning. What hall am I?",
+        "Sukh Niwas",
+        [
+          "sukh niwas",
+          "pleasure palace"
+        ],
+        "Natural cooling room",
+        "How was Sukh Niwas kept cool in summer?",
+        [
+          "Water flowing through marble channels",
+          "Air conditioners",
+          "Fans",
+          "Open doors"
+        ],
+        0
+      ],
+      [
+        "Kesar Kyari (Saffron Garden in Lake)",
+        26.984,
+        75.8495,
+        "I am a star-patterned floating garden in Maota Lake where kings planted fragrant saffron. What garden am I?",
+        "Kesar Kyari",
+        [
+          "kesar kyari",
+          "saffron garden"
+        ],
+        "Saffron garden in lake",
+        "What aromatic plant was cultivated in Kesar Kyari?",
+        [
+          "Saffron (Kesar)",
+          "Cactus",
+          "Pineapple",
+          "Watermelons"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "chittorgarh-fort",
+    "title": "The Rajput Defender",
+    "siteName": "Chittorgarh Fort",
+    "state": "Rajasthan",
+    "category": "Hill Citadel",
+    "era": "7th - 16th Century CE (Sisodias)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Discover the legendary fortress of Mewar and solve riddles across seven gates and majestic victory towers.",
+    "badge": [
+      "Defender of Mewar",
+      "\u2694\ufe0f"
+    ],
+    "cps": [
+      [
+        "Padan Pol (First Fort Gate)",
+        24.887,
+        74.625,
+        "I am the first of seven massive fortified iron-spiked gates ascending the rocky hill. What gate am I?",
+        "Padan Pol",
+        [
+          "first gate",
+          "padan pol"
+        ],
+        "First entrance gate",
+        "How many fortified gates must be crossed to enter Chittorgarh?",
+        [
+          "7 Gates",
+          "1 Gate",
+          "3 Gates",
+          "12 Gates"
+        ],
+        0
+      ],
+      [
+        "Vijay Stambh (Tower of Victory)",
+        24.8885,
+        74.6265,
+        "I am a 9-story, 122-foot high tower built by Rana Kumbha in 1448 to celebrate victory. What is my name?",
+        "Vijay Stambh",
+        [
+          "victory tower",
+          "tower of victory"
+        ],
+        "Victory tower",
+        "Who built the magnificent Tower of Victory?",
+        [
+          "Rana Kumbha",
+          "Alexander",
+          "Akbar",
+          "Shah Jahan"
+        ],
+        0
+      ],
+      [
+        "Kirti Stambh (Tower of Fame)",
+        24.891,
+        74.628,
+        "I am a 7-story Solanki-style tower built in the 12th century dedicated to Adinatha. What tower am I?",
+        "Kirti Stambh",
+        [
+          "tower of fame",
+          "kirti stambha"
+        ],
+        "Tower of fame",
+        "To whom is Kirti Stambh dedicated?",
+        [
+          "Rishabhanatha (Adinatha)",
+          "A king",
+          "A warrior",
+          "A merchant"
+        ],
+        0
+      ],
+      [
+        "Padmini Palace & Water Pavilion",
+        24.885,
+        74.624,
+        "I am a white three-story palace standing in the center of a lotus pool famous for the historic mirror story. What palace am I?",
+        "Padmini Palace",
+        [
+          "rani padmini palace",
+          "padmini mahal"
+        ],
+        "Water pool palace",
+        "Where does the pavilion of Rani Padmini stand?",
+        [
+          "In the center of a water reservoir",
+          "Underground",
+          "In a tree",
+          "On a cloud"
+        ],
+        0
+      ],
+      [
+        "Gaumukh Reservoir (Cow's Mouth Spring)",
+        24.8875,
+        74.6255,
+        "Pure spring water continuously pours from a carved rock shaped like a cow's mouth into a pool. What is my name?",
+        "Gaumukh Reservoir",
+        [
+          "gaumukh",
+          "gaumukh kund"
+        ],
+        "Cow's mouth spring",
+        "From what carved shape does the natural spring water flow?",
+        [
+          "A carved cow's mouth (Gau-mukh)",
+          "A dragon head",
+          "A pipe",
+          "A waterfall"
+        ],
+        0
+      ],
+      [
+        "Kumbha Palace Ruins",
+        24.889,
+        74.627,
+        "I am the ancient palace where Maharana Pratap was born with secret underground escape tunnels. What palace am I?",
+        "Kumbha Palace",
+        [
+          "rana kumbha palace",
+          "kumbha mahal"
+        ],
+        "Birthplace palace",
+        "Which legendary warrior king was born at Kumbha Palace?",
+        [
+          "Maharana Pratap",
+          "Rana Sanga",
+          "Rana Kumbha",
+          "Bappa Rawal"
+        ],
+        0
+      ],
+      [
+        "Meera Bai Temple",
+        24.888,
+        74.626,
+        "I am the beautiful stone temple where the royal poet saint sang devotional songs to Lord Krishna. What temple am I?",
+        "Meera Bai Temple",
+        [
+          "meera temple",
+          "meerabai temple"
+        ],
+        "Poet saint temple",
+        "Which deity did Saint Meera Bai sing devotional bhajans to?",
+        [
+          "Lord Krishna",
+          "Lord Shiva",
+          "Lord Brahma",
+          "Lord Indra"
+        ],
+        0
+      ],
+      [
+        "Suraj Gokhra (Sun Bastion View)",
+        24.892,
+        74.629,
+        "I am the highest eastern bastion overlooking the plains where royal heralds greeted the morning sun. What bastion am I?",
+        "Suraj Gokhra",
+        [
+          "sun bastion",
+          "suraj gokhra"
+        ],
+        "Eastern sun bastion",
+        "What title was Chittorgarh Fort proudly known by across India?",
+        [
+          "The Pride of Rajasthan",
+          "The Golden City",
+          "The Pink City",
+          "The Lake City"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "jaisalmer-fort",
+    "title": "The Desert Treasure",
+    "siteName": "Jaisalmer Fort",
+    "state": "Rajasthan",
+    "category": "Living Golden Fort",
+    "era": "1156 CE (Bhati Rajputs)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Venture inside the Sonar Qila (Golden Fort) rising like a sandcastle from the heart of the Thar Desert.",
+    "badge": [
+      "Sonar Qila Golden Knight",
+      "\ud83d\udc2a"
+    ],
+    "cps": [
+      [
+        "Akhai Pol (First Golden Gate)",
+        26.9125,
+        70.912,
+        "I am the outermost royal gate of the Golden Fort carved from yellow sandstone. What gate am I?",
+        "Akhai Pol",
+        [
+          "akhai pol",
+          "golden gate"
+        ],
+        "First golden gate",
+        "What glowing color does the sandstone fort turn at sunset?",
+        [
+          "Golden Yellow",
+          "Bright Purple",
+          "Emerald Green",
+          "Pitch Black"
+        ],
+        0
+      ],
+      [
+        "Dussehra Chowk (Palace Square)",
+        26.913,
+        70.9125,
+        "I am the central palace square where royal coronation ceremonies and Dasara celebrations take place. What square am I?",
+        "Dussehra Chowk",
+        [
+          "dussehra chowk",
+          "palace courtyard"
+        ],
+        "Central coronation square",
+        "What shape is the marble throne in Dussehra Chowk?",
+        [
+          "Circular marble seat",
+          "Square bed",
+          "Triangle chair",
+          "Couch"
+        ],
+        0
+      ],
+      [
+        "Raj Mahal (Maharawal Palace)",
+        26.9135,
+        70.913,
+        "I am a seven-story palace with delicate stone jharokhas rising above the fort ramparts. What palace am I?",
+        "Raj Mahal",
+        [
+          "maharawal palace",
+          "raj mahal"
+        ],
+        "King's palace",
+        "What are delicately carved stone overhanging balconies called?",
+        [
+          "Jharokhas",
+          "Windows",
+          "Chimneys",
+          "Shutters"
+        ],
+        0
+      ],
+      [
+        "Laxminath Temple",
+        26.914,
+        70.9135,
+        "I am the oldest Hindu temple inside the fort dedicated to Vishnu and Lakshmi with silver doors. What temple am I?",
+        "Laxminath Temple",
+        [
+          "laxminath",
+          "lakshminath temple"
+        ],
+        "Oldest fort temple",
+        "To which divine couple is Laxminath Temple dedicated?",
+        [
+          "Lord Vishnu and Goddess Lakshmi",
+          "Shiva and Parvati",
+          "Rama and Sita",
+          "Brahma and Saraswati"
+        ],
+        0
+      ],
+      [
+        "Parsvanatha Jain Temple",
+        26.9145,
+        70.914,
+        "I am carved with such delicate yellow sandstone filigree that my stone looks like carved lace. What temple am I?",
+        "Parsvanatha Temple",
+        [
+          "parsvanatha",
+          "jain temple jaisalmer"
+        ],
+        "Stone lace temple",
+        "What material was carved so delicately to resemble lace?",
+        [
+          "Yellow Sandstone",
+          "Wood",
+          "Plastic",
+          "Clay"
+        ],
+        0
+      ],
+      [
+        "Cannon Point Bastion",
+        26.915,
+        70.9145,
+        "I am the round bastion with ancient cannons offering a 360-degree view of the Thar Desert. What am I?",
+        "Cannon Point",
+        [
+          "cannon point",
+          "bastion"
+        ],
+        "Desert viewpoint",
+        "Which great desert surrounds the golden fort of Jaisalmer?",
+        [
+          "The Thar Desert",
+          "The Sahara Desert",
+          "The Gobi Desert",
+          "The Kalahari Desert"
+        ],
+        0
+      ],
+      [
+        "Desert Haveli Balcony",
+        26.9155,
+        70.915,
+        "I am a famous multi-story merchant mansion with 66 stone lattice jharokha balconies. What am I called?",
+        "Patwon Ki Haveli",
+        [
+          "patwa haveli",
+          "haveli"
+        ],
+        "Merchant mansion",
+        "What makes Jaisalmer Fort unique in India today?",
+        [
+          "It is a living fort with 4,000 residents living inside",
+          "It is underwater",
+          "It is made of gold metal",
+          "It flies in air"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ajanta-caves",
+    "title": "The Painter's Secret",
+    "siteName": "Ajanta Caves",
+    "state": "Maharashtra",
+    "category": "Rock-Cut Cave Paintings",
+    "era": "2nd Century BCE - 5th Century CE",
+    "heroImage": "https://images.unsplash.com/photo-1600100397608-f010f443b74d?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Discover ancient Buddhist fresco masterpieces painted with mineral pigments in horseshoe cliffside caves.",
+    "badge": [
+      "Master Fresco Painter",
+      "\ud83c\udfa8"
+    ],
+    "cps": [
+      [
+        "Cave 1: Bodhisattva Padmapani",
+        20.552,
+        75.703,
+        "I am the world-famous fresco painting of the Bodhisattva holding a blue lotus with gentle eyes. Who am I?",
+        "Padmapani",
+        [
+          "bodhisattva padmapani",
+          "padmapani"
+        ],
+        "Lotus holder",
+        "What sacred flower does Bodhisattva Padmapani hold?",
+        [
+          "A Blue Lotus (Padma)",
+          "A Rose",
+          "A Sunflower",
+          "A Tulip"
+        ],
+        0
+      ],
+      [
+        "Cave 2: Thousand Buddhas Ceiling",
+        20.5525,
+        75.7035,
+        "My ceiling is painted with concentric mandala designs and hundreds of miniature Buddha figures. What cave am I?",
+        "Cave 2",
+        [
+          "cave two",
+          "2"
+        ],
+        "Mandala ceiling cave",
+        "What geometric design decorates the ceiling of Cave 2?",
+        [
+          "Mandala floral panels",
+          "Stripes",
+          "Polka dots",
+          "Checkerboard"
+        ],
+        0
+      ],
+      [
+        "Cave 9: Chaitya Prayer Hall",
+        20.553,
+        75.704,
+        "I am an ancient horseshoe-arched prayer hall with a monolithic stupa carved in the 1st century BCE. What hall am I?",
+        "Chaitya Hall",
+        [
+          "chaitya",
+          "cave 9"
+        ],
+        "Horseshoe prayer hall",
+        "What is the purpose of a Buddhist Chaitya hall?",
+        [
+          "A prayer and meditation sanctuary",
+          "A dining room",
+          "A stable",
+          "A kitchen"
+        ],
+        0
+      ],
+      [
+        "Cave 10: 1819 Discovery Inscription",
+        20.5535,
+        75.7045,
+        "British officer John Smith carved his name on my pillar while tiger hunting in 1819, rediscovering Ajanta! What cave am I?",
+        "Cave 10",
+        [
+          "cave ten",
+          "10"
+        ],
+        "Discovery cave",
+        "In what year were the Ajanta Caves rediscovered by John Smith?",
+        [
+          "1819 CE",
+          "1999 CE",
+          "1492 CE",
+          "1776 CE"
+        ],
+        0
+      ],
+      [
+        "Cave 19: Sculptured Chaitya Facade",
+        20.554,
+        75.705,
+        "I have an elaborate stone facade carved with standing Buddha figures and a grand horseshoe sun-window. What cave am I?",
+        "Cave 19",
+        [
+          "cave nineteen",
+          "19"
+        ],
+        "Sculpted facade cave",
+        "What window shape illuminates the interior of Cave 19?",
+        [
+          "Horseshoe Sun Window (Chandrashala)",
+          "Triangle",
+          "Square",
+          "Hexagon"
+        ],
+        0
+      ],
+      [
+        "Cave 26: The Reclining Buddha",
+        20.5545,
+        75.7055,
+        "I feature a colossal 24-foot long rock-cut statue of the Buddha entering final Nirvana. What sculpture am I?",
+        "Reclining Buddha",
+        [
+          "reclining buddha",
+          "parinirvana"
+        ],
+        "24-foot serene statue",
+        "How long is the Reclining Buddha sculpture in Cave 26?",
+        [
+          "24 Feet (7.3 Metres)",
+          "5 Feet",
+          "100 Feet",
+          "500 Feet"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ellora-caves",
+    "title": "The Three Faiths Mystery",
+    "siteName": "Ellora Caves",
+    "state": "Maharashtra",
+    "category": "Monolithic Rock Architecture",
+    "era": "6th - 10th Century CE (Rashtrakutas)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Marvel at Kailasa Temple and 34 rock-cut sanctuaries uniting Hindu, Buddhist, and Jain traditions.",
+    "badge": [
+      "Kailasa Monolith Master",
+      "\u26a1"
+    ],
+    "cps": [
+      [
+        "Cave 10: Vishwakarma (Carpenter's Cave)",
+        20.026,
+        75.178,
+        "My rock ceiling is carved with stone ribs to look like wooden carpentry beams. What cave am I?",
+        "Vishwakarma Cave",
+        [
+          "carpenters cave",
+          "cave 10"
+        ],
+        "Architect cave",
+        "Why is Cave 10 called the Carpenter's Cave?",
+        [
+          "The stone ceiling looks like wooden beams",
+          "Carpenters lived here",
+          "It made tables",
+          "It had trees"
+        ],
+        0
+      ],
+      [
+        "Cave 15: Dashavatara Cave",
+        20.0265,
+        75.1785,
+        "I am a two-story cave temple depicting the ten avatars of Lord Vishnu bursting from stone pillars. What cave am I?",
+        "Dashavatara Cave",
+        [
+          "dashavatara",
+          "cave 15"
+        ],
+        "Ten avatars cave",
+        "How many avatars of Lord Vishnu are celebrated here?",
+        [
+          "10 Avatars",
+          "4 Avatars",
+          "100 Avatars",
+          "2 Avatars"
+        ],
+        0
+      ],
+      [
+        "Cave 16: Kailasa Temple (The Monolith)",
+        20.027,
+        75.179,
+        "I am the world's largest single rock-cut monument, carved top-to-bottom from a single mountain cliff! What temple am I?",
+        "Kailasa Temple",
+        [
+          "kailash temple",
+          "cave 16"
+        ],
+        "Single rock mountain temple",
+        "How was the monumental Kailasa Temple carved?",
+        [
+          "Top-to-bottom out of a single rock mountain",
+          "Assembled with bricks",
+          "Built with cement",
+          "Imported from Rome"
+        ],
+        0
+      ],
+      [
+        "Cave 16: Elephant Courtyard",
+        20.0272,
+        75.1792,
+        "Two life-sized monolithic elephants and 100-foot victory pillars stand in my open courtyard. What are we?",
+        "Monolithic Elephants",
+        [
+          "kailasa elephants",
+          "courtyard elephants"
+        ],
+        "Life-sized rock elephants",
+        "What sentinel animal statues guard the court of Kailasa Temple?",
+        [
+          "Life-sized monolithic elephants",
+          "Giraffes",
+          "Kangaroos",
+          "Penguins"
+        ],
+        0
+      ],
+      [
+        "Cave 21: Rameshwara Cave",
+        20.0278,
+        75.1798,
+        "I feature graceful sculptures of river goddesses Ganga on a crocodile and Yamuna on a tortoise. What cave am I?",
+        "Rameshwara Cave",
+        [
+          "rameshwara",
+          "cave 21"
+        ],
+        "River goddess cave",
+        "Which sacred river goddess is depicted standing on a crocodile?",
+        [
+          "Goddess Ganga",
+          "Goddess Nile",
+          "Goddess Amazon",
+          "Goddess Thames"
+        ],
+        0
+      ],
+      [
+        "Cave 29: Dhumar Lena (Waterfall Cave)",
+        20.0285,
+        75.1805,
+        "I am a colossal cave carved beside a natural cascading waterfall with 26 massive pillars. What cave am I?",
+        "Dhumar Lena",
+        [
+          "dhumar lena",
+          "cave 29"
+        ],
+        "Waterfall cave",
+        "What natural scenic feature cascades right beside Cave 29 in monsoon?",
+        [
+          "A natural waterfall",
+          "A volcano",
+          "A glacier",
+          "A sand dune"
+        ],
+        0
+      ],
+      [
+        "Cave 32: Indra Sabha (Jain Hall)",
+        20.0295,
+        75.1815,
+        "I am a two-story Jain rock temple adorned with intricate lotus ceiling carvings and a monolithic shrine. What cave am I?",
+        "Indra Sabha",
+        [
+          "indra sabha",
+          "cave 32"
+        ],
+        "Two-story Jain court",
+        "What three great faiths coexist side-by-side at Ellora?",
+        [
+          "Buddhism, Hinduism, and Jainism",
+          "Greek, Roman, and Norse",
+          "Egyptian, Aztec, and Incan",
+          "None"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "mahabalipuram",
+    "title": "The Stone Carver's Challenge",
+    "siteName": "Mahabalipuram",
+    "state": "Tamil Nadu",
+    "category": "Pallava Shore Monuments",
+    "era": "7th - 8th Century CE (Pallavas)",
+    "heroImage": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Explore UNESCO seaside monolithic temples, balancing rock wonders, and open-air bas-relief carvings by the Bay of Bengal.",
+    "badge": [
+      "Pallava Ocean Carver",
+      "\ud83c\udf0a"
+    ],
+    "cps": [
+      [
+        "Shore Temple (Facing the Bay)",
+        12.6165,
+        80.198,
+        "I am an 8th-century granite temple standing right on the beach where ocean waves lap against my base. What temple am I?",
+        "Shore Temple",
+        [
+          "shore temple",
+          "sea temple"
+        ],
+        "Seaside granite temple",
+        "Which body of water does Shore Temple overlook?",
+        [
+          "The Bay of Bengal",
+          "The Arctic Ocean",
+          "The Red Sea",
+          "The Pacific Ocean"
+        ],
+        0
+      ],
+      [
+        "Arjuna's Penance / Descent of the Ganges",
+        12.6175,
+        80.193,
+        "I am the world's largest open-air rock relief, carved on two giant boulders showing elephants and gods. What am I?",
+        "Arjuna's Penance",
+        [
+          "descent of the ganges",
+          "arjuna penance"
+        ],
+        "Open air rock relief",
+        "What is Arjuna's Penance famous for?",
+        [
+          "World's largest open-air rock relief carving",
+          "Tallest skyscraper",
+          "Deepest ocean well",
+          "Longest railway"
+        ],
+        0
+      ],
+      [
+        "Krishna's Butterball",
+        12.6185,
+        80.1925,
+        "I am a 250-ton giant granite boulder resting precariously balanced on a 45-degree smooth rock slope! What am I called?",
+        "Krishna's Butterball",
+        [
+          "butterball",
+          "krishna butterball"
+        ],
+        "Balancing boulder",
+        "How much does the giant balancing boulder weigh?",
+        [
+          "Approximately 250 Tons",
+          "5 Kilograms",
+          "10 Pounds",
+          "50 Grams"
+        ],
+        0
+      ],
+      [
+        "Pancha Rathas (Five Chariots)",
+        12.613,
+        80.1915,
+        "We are five monolithic stone temples carved from single granite outcrops named after the Pandavas. What are we?",
+        "Pancha Rathas",
+        [
+          "five rathas",
+          "pancha ratha"
+        ],
+        "Five monolithic chariots",
+        "How many monolithic chariots make up Pancha Rathas?",
+        [
+          "5 Monolithic Rathas",
+          "2 Rathas",
+          "20 Rathas",
+          "100 Rathas"
+        ],
+        0
+      ],
+      [
+        "Varaha Cave Temple",
+        12.617,
+        80.192,
+        "I feature a dramatic rock-cut panel showing Lord Vishnu as the giant boar Varaha rescuing Mother Earth. What cave am I?",
+        "Varaha Cave",
+        [
+          "varaha cave temple",
+          "varaha"
+        ],
+        "Boar avatar cave",
+        "Which avatar of Vishnu is shown lifting Mother Earth?",
+        [
+          "Varaha (The Boar)",
+          "Matsya (The Fish)",
+          "Kurma (The Turtle)",
+          "Kalki"
+        ],
+        0
+      ],
+      [
+        "Mahishamardini Cave",
+        12.616,
+        80.191,
+        "I feature the dynamic masterpiece relief of Goddess Durga riding her lion to defeat the buffalo demon. What cave am I?",
+        "Mahishamardini Cave",
+        [
+          "mahishamardini",
+          "durga cave"
+        ],
+        "Goddess victory cave",
+        "Which animal does Goddess Durga ride into battle?",
+        [
+          "A Royal Lion",
+          "A Horse",
+          "A Camel",
+          "An Elephant"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "konark-sun-temple",
+    "title": "The Mystery of the Stone Chariot",
+    "siteName": "Konark Sun Temple",
+    "state": "Odisha",
+    "category": "Black Pagoda Sun Temple",
+    "era": "1250 CE (Eastern Ganga Dynasty)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Discover the monumental Sun Chariot temple adorned with 24 giant stone sundials and dance halls by the Odisha coast.",
+    "badge": [
+      "Sun Chariot Helmsman",
+      "\u2600\ufe0f"
+    ],
+    "cps": [
+      [
+        "Natya Mandap (Dance Hall)",
+        19.8875,
+        86.0945,
+        "I am the open dancing hall where 128 classical Odissi dance postures are carved into stone pillars. What hall am I?",
+        "Natya Mandap",
+        [
+          "dance hall",
+          "natya mandir"
+        ],
+        "Classical dance hall",
+        "What classical Indian dance tradition is carved here?",
+        [
+          "Odissi Dance",
+          "Flamenco",
+          "Ballet",
+          "Salsa"
+        ],
+        0
+      ],
+      [
+        "Jagamohana (Great Assembly Hall)",
+        19.8878,
+        86.095,
+        "I am the massive pyramidal sandstone assembly hall crowned with stepping tiers that still stands tall today. What hall am I?",
+        "Jagamohana",
+        [
+          "assembly hall",
+          "jagamohan"
+        ],
+        "Pyramidal main hall",
+        "What material was primarily used to build the Sun Temple?",
+        [
+          "Khondalite and Chlorite Sandstone",
+          "Plastic",
+          "Glass",
+          "Wood"
+        ],
+        0
+      ],
+      [
+        "The 24 Sun Wheels (Sundials)",
+        19.888,
+        86.0955,
+        "We are 24 carved stone wheels that function as precise scientific sundials calculating time to the minute! What are we?",
+        "Sun Wheels",
+        [
+          "konark wheels",
+          "sundials"
+        ],
+        "24 stone sundials",
+        "How many stone wheels surround the base of Konark?",
+        [
+          "24 Wheels (12 pairs)",
+          "4 Wheels",
+          "8 Wheels",
+          "100 Wheels"
+        ],
+        0
+      ],
+      [
+        "Colossal War Horses & Elephants",
+        19.8885,
+        86.096,
+        "We are giant monolithic stone sculptures of rearing war horses trampling enemy soldiers at the gates. What are we?",
+        "War Horses",
+        [
+          "konark horses",
+          "sculptures"
+        ],
+        "Rearing war stallions",
+        "What do the two colossal war horse sculptures symbolize?",
+        [
+          "Military valor and dynamic energy",
+          "Speed of cars",
+          "Peaceful farming",
+          "Racing"
+        ],
+        0
+      ],
+      [
+        "Chlorite Surya Deva Statues",
+        19.889,
+        86.0965,
+        "I am carved from smooth green chlorite stone depicting the Sun God Surya wearing western boots. Who am I?",
+        "Surya Deva",
+        [
+          "sun god",
+          "surya"
+        ],
+        "The Sun Deity",
+        "What direction do the three Surya statues face?",
+        [
+          "East, South, and West",
+          "North only",
+          "Downwards",
+          "Inside floor"
+        ],
+        0
+      ],
+      [
+        "Chhaya Devi Temple & Ocean Coast",
+        19.8895,
+        86.097,
+        "I am the sanctuary dedicated to the wife of the Sun God standing amidst coastal casuarina groves. What temple am I?",
+        "Chhaya Devi Temple",
+        [
+          "chhaya temple",
+          "maya devi"
+        ],
+        "Consort temple",
+        "What nickname did European sailors give to Konark Sun Temple?",
+        [
+          "The Black Pagoda",
+          "The White Castle",
+          "The Golden Tower",
+          "The Green Dome"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "agra-fort",
+    "title": "The Mughal Messenger",
+    "siteName": "Agra Fort",
+    "state": "Uttar Pradesh",
+    "category": "Red Sandstone Imperial City",
+    "era": "1565 - 1638 CE (Mughal Empire)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Enter the imperial walled city of red sandstone and white marble palaces overlooking the Taj Mahal along the Yamuna River.",
+    "badge": [
+      "Mughal Imperial Courier",
+      "\ud83d\udc51"
+    ],
+    "cps": [
+      [
+        "Amar Singh Gate",
+        27.178,
+        78.0215,
+        "I am the grand red sandstone entrance fortified with a drawbridge and crooked passage to thwart attackers. What gate am I?",
+        "Amar Singh Gate",
+        [
+          "amar singh gate",
+          "main gate"
+        ],
+        "Red sandstone gate",
+        "What stone gives Agra Fort its dramatic fiery red color?",
+        [
+          "Red Sandstone from Rajasthan",
+          "Red paint",
+          "Red bricks",
+          "Clay"
+        ],
+        0
+      ],
+      [
+        "Jahangiri Mahal",
+        27.1785,
+        78.022,
+        "Built by Emperor Akbar for his son, I blend Hindu Gujarati carved brackets with Islamic archways. What palace am I?",
+        "Jahangiri Mahal",
+        [
+          "jahangir palace",
+          "jahangiri mahal"
+        ],
+        "Akbar's son palace",
+        "Which Mughal Emperor constructed the Jahangiri Mahal?",
+        [
+          "Emperor Akbar",
+          "Emperor Babur",
+          "Emperor Humayun",
+          "Emperor Aurangzeb"
+        ],
+        0
+      ],
+      [
+        "Khas Mahal (White Marble Pavilion)",
+        27.179,
+        78.023,
+        "I am an elegant white marble palace overlooking the Anguri Bagh grape garden with brass-roofed pavilions. What palace am I?",
+        "Khas Mahal",
+        [
+          "khas mahal",
+          "marble pavilion"
+        ],
+        "Private white marble palace",
+        "What type of royal garden stretches in front of Khas Mahal?",
+        [
+          "Anguri Bagh (Grape Garden)",
+          "Cactus garden",
+          "Corn field",
+          "Tea estate"
+        ],
+        0
+      ],
+      [
+        "Musamman Burj (Octagonal Tower)",
+        27.1795,
+        78.0235,
+        "I am the octagonal marble tower with delicate jali screens where Emperor Shah Jahan gazed at the Taj Mahal. What tower am I?",
+        "Musamman Burj",
+        [
+          "musamman burj",
+          "octagonal tower"
+        ],
+        "Shah Jahan's view tower",
+        "Which world-famous monument can be viewed from Musamman Burj?",
+        [
+          "The Taj Mahal",
+          "The Eiffel Tower",
+          "The Colosseum",
+          "Big Ben"
+        ],
+        0
+      ],
+      [
+        "Diwan-i-Khas & Black Marble Throne",
+        27.18,
+        78.024,
+        "I am the private council hall featuring Emperor Jahangir's sleek black onyx marble throne on the terrace. What hall am I?",
+        "Diwan-i-Khas",
+        [
+          "diwan i khas",
+          "private hall"
+        ],
+        "Hall with black throne",
+        "What rare dark stone was used to craft Jahangir's throne?",
+        [
+          "Black Onyx Marble",
+          "Black plastic",
+          "Charcoal",
+          "Obsidian glass"
+        ],
+        0
+      ],
+      [
+        "Sheesh Mahal (Glass Dressing Palace)",
+        27.1805,
+        78.0245,
+        "I am an opulent dressing chamber inlaid with thousands of convex mirror pieces from Aleppo, Syria. What palace am I?",
+        "Sheesh Mahal",
+        [
+          "sheesh mahal",
+          "mirror palace"
+        ],
+        "Glass mirror chamber",
+        "Which famous river flows right beneath the eastern walls of Agra Fort?",
+        [
+          "Yamuna River",
+          "Ganga River",
+          "Kaveri River",
+          "Narmada River"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "rani-ki-vav",
+    "title": "The Queen's Hidden Stepwell",
+    "siteName": "Rani ki Vav",
+    "state": "Gujarat",
+    "category": "Inverted Stepwell Temple",
+    "era": "1063 CE (Solanki Dynasty)",
+    "heroImage": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Descend seven stories underground into the UNESCO Queen's stepwell, designed as an inverted subterranean temple to water.",
+    "badge": [
+      "Patan Stepwell Guardian",
+      "\ud83d\udca7"
+    ],
+    "cps": [
+      [
+        "First Tier Stepped Pavilion",
+        23.8585,
+        72.1015,
+        "I am a 7-story subterranean stepwell built upside down into the earth as an inverted temple to water. What am I?",
+        "Rani ki Vav",
+        [
+          "stepwell",
+          "rani ki vav"
+        ],
+        "Queen's stepwell",
+        "Who commissioned this stepwell in memory of King Bhima I?",
+        [
+          "Queen Udayamati",
+          "Queen Victoria",
+          "Queen Noor Jahan",
+          "Queen Lakshmi"
+        ],
+        0
+      ],
+      [
+        "Sheshashayi Vishnu on Serpent",
+        23.8588,
+        72.1018,
+        "I am a majestic carving on the lowest water level showing Lord Vishnu reclining on the thousand-headed serpent. Who am I?",
+        "Sheshashayi Vishnu",
+        [
+          "vishnu on serpent",
+          "sheshashayi"
+        ],
+        "Serpent couch sculpture",
+        "Which sacred serpent forms the couch for Lord Vishnu?",
+        [
+          "Sheshanaga (Adisesha)",
+          "Cobra",
+          "Python",
+          "Anaconda"
+        ],
+        0
+      ],
+      [
+        "Dashavatara Sculptural Gallery",
+        23.859,
+        72.102,
+        "We are stone panels along the stepped walls showing all ten incarnations of Vishnu including Rama and Krishna. What are we?",
+        "Dashavatara Gallery",
+        [
+          "dashavatara",
+          "ten avatars"
+        ],
+        "Ten incarnations gallery",
+        "Which Indian currency note features Rani ki Vav on its reverse side?",
+        [
+          "\u20b9100 Note",
+          "\u20b910 Note",
+          "\u20b950 Note",
+          "\u20b9500 Note"
+        ],
+        0
+      ],
+      [
+        "Apsaras & Nagkanyas Pillars",
+        23.8592,
+        72.1022,
+        "Over 500 principal sculptures of celestial maidens putting on makeup and styling hair adorn my pillars. What are we?",
+        "Apsaras",
+        [
+          "apsara sculptures",
+          "nagkanyas"
+        ],
+        "Celestial maidens",
+        "Approximately how many major sculptures are carved in Rani ki Vav?",
+        [
+          "Over 500 major sculptures",
+          "50 sculptures",
+          "20 sculptures",
+          "None"
+        ],
+        0
+      ],
+      [
+        "The Circular Water Shaft",
+        23.8595,
+        72.1025,
+        "I am the deep circular well shaft at the western end where subterranean water gathered from the Saraswati river. What am I?",
+        "The Well Shaft",
+        [
+          "water well",
+          "well shaft"
+        ],
+        "Circular deep well",
+        "Which sacred river supplied clean underground water to Rani ki Vav?",
+        [
+          "Saraswati River",
+          "Amazon River",
+          "Nile River",
+          "Mississippi River"
+        ],
+        0
+      ],
+      [
+        "The Queen's Secret Crypt",
+        23.8598,
+        72.1028,
+        "At the lowest level beneath the steps lies a 30-km escape tunnel leading to the ancient town of Sidhpur. What have you solved?",
+        "The Queen's Secret",
+        [
+          "secret chamber",
+          "escape tunnel"
+        ],
+        "30 km escape tunnel",
+        "In which year was Rani ki Vav inscribed as a UNESCO World Heritage Site?",
+        [
+          "2014 CE",
+          "1950 CE",
+          "1800 CE",
+          "2025 CE"
+        ],
+        0
+      ]
+    ]
+  },
+  {
+    "id": "golconda-fort",
+    "title": "The Sultan's Secret",
+    "siteName": "Golconda Fort",
+    "state": "Telangana",
+    "category": "Acoustic Diamond Citadel",
+    "era": "13th - 17th Century CE (Qutb Shahis)",
+    "heroImage": "https://images.unsplash.com/photo-1600100397608-f010f443b74d?auto=format&fit=crop&w=1200&q=80",
+    "desc": "Scale the acoustic citadel of Golconda where clapping whispers travel to mountain summits and diamonds were once stored.",
+    "badge": [
+      "Golconda Acoustic Sentinel",
+      "\ud83d\udc8e"
+    ],
+    "cps": [
+      [
+        "Fateh Darwaza (Victory Gate)",
+        17.3825,
+        78.401,
+        "I am the victory gate with iron spikes where a single clap at the entrance can be heard 1 km away at the top! What gate am I?",
+        "Fateh Darwaza",
+        [
+          "victory gate",
+          "fateh darwaza"
+        ],
+        "Acoustic victory gate",
+        "What happens when someone claps hands under Fateh Darwaza dome?",
+        [
+          "The clap echoes clearly to the hilltop 1 km away",
+          "The lights turn on",
+          "A bell rings",
+          "Nothing"
+        ],
+        0
+      ],
+      [
+        "Grand Portico Clapping Point",
+        17.383,
+        78.4015,
+        "Stand beneath the acoustic dome point. Clap hands to send sound waves traveling up the hillside! What is this called?",
+        "Acoustic Warning System",
+        [
+          "acoustics",
+          "sound system"
+        ],
+        "Sound signaling dome",
+        "Why was the acoustic clapping dome engineered into the fort?",
+        [
+          "To instantly warn guards at the hilltop of approaching invaders",
+          "For concerts",
+          "For rainmaking",
+          "For fun"
+        ],
+        0
+      ],
+      [
+        "Balahisar Stone Steps",
+        17.3835,
+        78.402,
+        "Climb the 360 rock-cut steps ascending past ancient arsenals, granaries, and boulders. How many steps lead to the top?",
+        "360 Steps",
+        [
+          "360",
+          "balahisar steps"
+        ],
+        "360 stone stairs",
+        "Approximately how many stone steps must you climb to reach the summit?",
+        [
+          "360 Steps",
+          "50 Steps",
+          "10 Steps",
+          "5,000 Steps"
+        ],
+        0
+      ],
+      [
+        "Nagina Bagh (Royal Garden)",
+        17.384,
+        78.4025,
+        "I am the geometric pleasure garden located on an elevated terrace adorned with fountains. What garden am I?",
+        "Nagina Bagh",
+        [
+          "jewel garden",
+          "naginabagh"
+        ],
+        "Jewel garden",
+        "What does the Persian word Nagina mean in Nagina Bagh?",
+        [
+          "Jewel / Gem",
+          "Flower",
+          "River",
+          "Bird"
+        ],
+        0
+      ],
+      [
+        "Ibrahim Mosque",
+        17.3845,
+        78.403,
+        "I am a graceful two-minaret mosque perched on a high granite boulder overlooking the twin cities. What mosque am I?",
+        "Ibrahim Mosque",
+        [
+          "ibrahim qutb shahi mosque",
+          "mosque"
+        ],
+        "High altitude mosque",
+        "Which Qutb Shahi Sultan built the mosque on the upper citadel?",
+        [
+          "Ibrahim Qutb Shah",
+          "Alexander",
+          "Babur",
+          "Akbar"
+        ],
+        0
+      ],
+      [
+        "The Baradari (Summit Pavilion)",
+        17.385,
+        78.4035,
+        "I am the open-air pavilion at the highest point of Golconda with a 360-degree view of Hyderabad. What am I called?",
+        "Baradari",
+        [
+          "darbar hall",
+          "summit pavilion"
+        ],
+        "12-door pavilion",
+        "What does the architectural term Baradari literally mean?",
+        [
+          "A pavilion with 12 doors (Bara-Dari)",
+          "A tall tower",
+          "A deep well",
+          "A stone bridge"
+        ],
+        0
+      ],
+      [
+        "Royal Diamond Vault (Koh-i-Noor)",
+        17.3855,
+        78.404,
+        "Deep in my reinforced stone vaults, legendary diamonds like the Koh-i-Noor were once stored! What treasure vault am I?",
+        "Diamond Vault",
+        [
+          "royal treasury",
+          "diamond vault"
+        ],
+        "World diamond capital",
+        "Which world-famous legendary diamond was stored at Golconda?",
+        [
+          "The Koh-i-Noor Diamond",
+          "The Pink Panther",
+          "The Black Opal",
+          "The Golden Ring"
+        ],
+        0
+      ]
+    ]
+  }
+]
