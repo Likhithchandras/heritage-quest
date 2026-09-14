@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Gamified Heritage Exploration Platform with GPS, QR Codes, and AI Guide",
-  "main": "server/server.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
