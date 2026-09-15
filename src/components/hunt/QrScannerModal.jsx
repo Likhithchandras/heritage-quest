@@ -17,18 +17,27 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
       return;
     }
 
-    // Initialize Camera list
+    // Auto-detect cameras and immediately start scanning
     Html5Qrcode.getCameras()
       .then((devices) => {
-        if (devices && devices.length) {
+        if (devices && devices.length > 0) {
           setCameras(devices);
-          // Prefer back camera on mobile
-          const backCam = devices.find(d => d.label.toLowerCase().includes('back') || d.label.toLowerCase().includes('rear'));
-          setSelectedCameraId(backCam ? backCam.id : devices[0].id);
+          const backCam = devices.find(d => 
+            d.label.toLowerCase().includes('back') || 
+            d.label.toLowerCase().includes('rear') ||
+            d.label.toLowerCase().includes('environment')
+          );
+          const chosenId = backCam ? backCam.id : devices[0].id;
+          setSelectedCameraId(chosenId);
+          startScanner(chosenId);
+        } else {
+          // Fallback to environment facing mode
+          startScanner(null);
         }
       })
       .catch((err) => {
-        console.warn('Camera permission not granted or available:', err);
+        console.warn('Camera lookup failed, trying facingMode environment:', err);
+        startScanner(null);
       });
 
     return () => {
@@ -43,30 +52,44 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
         await stopScanner();
       }
 
-      const qrScanner = new Html5Qrcode('qr-reader-container');
+      // Small delay to ensure DOM container is mounted
+      await new Promise(r => setTimeout(r, 100));
+
+      const container = document.getElementById('qr-reader-container');
+      if (!container) return;
+
+      const qrScanner = new Html5Qrcode('qr-reader-container', {
+        experimentalFeatures: {
+          useBarCodeDetectorIfSupported: true
+        }
+      });
       html5QrCodeRef.current = qrScanner;
 
+      const cameraConfig = cameraId ? { deviceId: { exact: cameraId } } : { facingMode: 'environment' };
       const config = {
-        fps: 10,
-        qrbox: { width: 250, height: 250 },
+        fps: 15,
+        qrbox: (viewfinderWidth, viewfinderHeight) => {
+          const edge = Math.floor(Math.min(viewfinderWidth, viewfinderHeight) * 0.75);
+          return { width: Math.max(200, edge), height: Math.max(200, edge) };
+        },
         aspectRatio: 1.0
       };
 
       await qrScanner.start(
-        cameraId || { facingMode: 'environment' },
+        cameraConfig,
         config,
         (decodedText) => {
           handleDetectedCode(decodedText);
         },
         (errorMessage) => {
-          // ignore minor frame drop errors
+          // Ignore individual frame read misses
         }
       );
 
       setIsScanning(true);
     } catch (err) {
-      console.error('Failed to start camera scanner:', err);
-      setScanError('Could not access camera. Please allow camera permissions or use the Instant Test Scan button.');
+      console.warn('Camera start issue:', err);
+      setScanError('Camera permission needed or camera in use. You can allow camera or use Instant Verification below.');
       setIsScanning(false);
     }
   };
@@ -79,7 +102,7 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
         }
         await html5QrCodeRef.current.clear();
       } catch (e) {
-        console.log('Stop scanner cleanup', e);
+        // cleanup error silent catch
       }
       html5QrCodeRef.current = null;
     }

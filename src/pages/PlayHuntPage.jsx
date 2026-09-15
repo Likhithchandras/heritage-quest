@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { heritageHunts } from '../data/heritageHuntsData';
 import { useGameProgress } from '../context/GameProgressContext';
@@ -11,6 +11,7 @@ import { ArrowLeft, Award, Sparkles, MapPin, RefreshCw, Volume2, Shield } from '
 
 export default function PlayHuntPage() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { huntProgress, saveCheckpointProgress, completeHunt, totalScore, badges } = useGameProgress();
 
@@ -22,10 +23,18 @@ export default function PlayHuntPage() {
 
   useEffect(() => {
     if (hunt) {
+      const paramCp = searchParams.get('checkpoint') || searchParams.get('cp');
+      if (paramCp) {
+        const parsed = parseInt(paramCp, 10);
+        if (!isNaN(parsed) && parsed >= 1 && parsed <= hunt.checkpoints.length) {
+          setCurrentIdx(parsed - 1);
+          return;
+        }
+      }
       const savedIdx = huntProgress[hunt.id] || 0;
       setCurrentIdx(savedIdx);
     }
-  }, [hunt, huntProgress]);
+  }, [hunt, huntProgress, searchParams]);
 
   if (!hunt) {
     return (
