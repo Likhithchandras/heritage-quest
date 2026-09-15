@@ -41,28 +41,6 @@ An interactive, child-friendly, web-based treasure hunt application designed to 
 
 ---
 
-## 🚀 How to Run in VS Code
-
-### Step 1: Open the Project in VS Code
-Open VS Code, go to **File -> Open Folder**, and select:
-```
-C:\Users\Windows\.gemini\antigravity\scratch\heritage-treasure-hunt
-```
-
-### Step 2: Open VS Code Integrated Terminal
-Press `Ctrl + `` (or go to **Terminal -> New Terminal**).
-
-### Step 3: Start the Development Server
-Run:
-```bash
-npm run dev
-```
-
-### Step 4: Open in Browser
-Navigate to **`http://localhost:5173/`**.
-
----
-
 ## 🛠️ Tech Stack
 - **Framework**: React 19 with Vite
 - **Routing**: React Router v7
