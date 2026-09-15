@@ -38,7 +38,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-stone-300 text-base md:text-lg leading-relaxed font-sans">
-            Step into the shoes of an ancient detective. Explore <strong>20 historic monuments</strong> and <strong>129 interactive checkpoints</strong> across India. Solve child-friendly riddles, observe stone secrets, and earn official explorer certificates!
+            Step into the shoes of an ancient detective. Explore <strong>20 historic monuments</strong> and <strong>129 interactive checkpoints</strong> across India. Solve archaeological riddles, observe stone secrets, and earn official explorer certificates!
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -88,9 +88,9 @@ export default function HomePage() {
           <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
             <Volume2 className="w-5 h-5" />
           </div>
-          <h3 className="text-lg font-bold text-amber-100 font-serif">Voice Narrator for Kids</h3>
+          <h3 className="text-lg font-bold text-amber-100 font-serif">Voice Narrator</h3>
           <p className="text-stone-400 text-sm leading-relaxed">
-            Listen to ancient legends and riddles read aloud with a warm, encouraging voice guide powered by Web Speech synthesis.
+            Listen to ancient legends and riddles read aloud with an encouraging voice guide powered by Web Speech synthesis.
           </p>
         </div>
 
