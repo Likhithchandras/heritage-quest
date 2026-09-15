@@ -7,20 +7,17 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
       const saved = localStorage.getItem('heritage_user');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.isLoggedIn) return parsed;
+      }
     } catch (e) {}
-    // Default guest explorer
-    return {
-      name: localStorage.getItem('heritage_explorer_name') || 'Junior Explorer',
-      email: 'explorer@heritagequest.org',
-      isLoggedIn: true,
-      role: 'Junior Scout',
-      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
-    };
+    // Unauthenticated initial state
+    return null;
   });
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && currentUser.isLoggedIn) {
       localStorage.setItem('heritage_user', JSON.stringify(currentUser));
       localStorage.setItem('heritage_explorer_name', currentUser.name);
     } else {
@@ -69,18 +66,12 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     soundEffects.playClick();
-    const guestObj = {
-      name: 'Junior Explorer',
-      email: 'explorer@heritagequest.org',
-      isLoggedIn: false,
-      role: 'Explorer',
-      joinedDate: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
-    };
-    setCurrentUser(guestObj);
+    setCurrentUser(null);
+    localStorage.removeItem('heritage_user');
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, signup, guestLogin, logout }}>
+    <AuthContext.Provider value={{ currentUser, isAuthenticated: !!(currentUser && currentUser.isLoggedIn), login, signup, guestLogin, logout }}>
       {children}
     </AuthContext.Provider>
   );

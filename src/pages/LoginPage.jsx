@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useGameProgress } from '../context/GameProgressContext';
 import { useAccessibility, THEMES } from '../context/AccessibilityContext';
 import { soundEffects } from '../utils/soundEffects';
-import { User, Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle2, Shield, Palette, Compass, Award } from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle2, Shield, Palette } from 'lucide-react';
 
 export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -46,23 +46,22 @@ export default function LoginPage() {
       const user = signup(name, email, password);
       setExplorerName(user.name);
       setSuccessMessage(`Explorer account registered for ${user.name}! Starting expedition...`);
-      setTimeout(() => navigate('/'), 1200);
+      setTimeout(() => navigate('/home'), 1000);
     } else {
       const derivedName = name.trim() || email.split('@')[0];
       const user = login(derivedName, email, password);
       setExplorerName(user.name);
       setSuccessMessage(`Signed in successfully as ${user.name}. Loading quest...`);
-      setTimeout(() => navigate('/'), 1000);
+      setTimeout(() => navigate('/home'), 800);
     }
   };
 
   const handleGuest = () => {
     const user = guestLogin();
     setExplorerName(user.name);
-    navigate('/');
+    navigate('/home');
   };
 
-  // Theme palettes & background glow styles
   const themeGradients = {
     'lapis-gold': {
       bgGlow: 'from-blue-950/40 via-stone-950 to-amber-950/30',
@@ -104,7 +103,7 @@ export default function LoginPage() {
         <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6 border-b lg:border-b-0 lg:border-r border-white/10 relative">
           
           <div className="space-y-4">
-            {/* Top Badge */}
+            {/* Top Badge & Theme Selector */}
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className={`inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border text-xs font-bold uppercase tracking-wider ${activeThemeStyle.badgeBorder}`}>
                 <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '8s' }} />
@@ -140,7 +139,7 @@ export default function LoginPage() {
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl font-extrabold text-amber-100 font-serif leading-tight">
-              Discover India’s Timeless Wonders Through <span className={`text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200`}>Riddles & Quests</span>
+              Discover India’s Timeless Wonders Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200">Riddles & Quests</span>
             </h1>
 
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-sans">

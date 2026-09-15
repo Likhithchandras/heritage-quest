@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { GameProgressProvider } from './context/GameProgressContext';
 import { AccessibilityProvider } from './context/AccessibilityContext';
 import Navbar from './components/common/Navbar';
@@ -14,6 +14,24 @@ import MapPage from './pages/MapPage';
 import LoginPage from './pages/LoginPage';
 import LeaderboardPage from './pages/LeaderboardPage';
 
+// Protected Gate Component
+function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth();
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+}
+
+// Initial Landing Gate: If not authenticated, show LoginPage. If authenticated, show HomePage
+function InitialGateway() {
+  const { isAuthenticated } = useAuth();
+  if (!isAuthenticated) {
+    return <LoginPage />;
+  }
+  return <HomePage />;
+}
+
 export default function App() {
   return (
     <AccessibilityProvider>
@@ -25,14 +43,20 @@ export default function App() {
               <Navbar />
               <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/hunt/:id" element={<HuntDetailPage />} />
-                  <Route path="/play/:id" element={<PlayHuntPage />} />
-                  <Route path="/passport" element={<PassportPage />} />
-                  <Route path="/map" element={<MapPage />} />
+                  {/* First Gate: Login Page */}
+                  <Route path="/" element={<InitialGateway />} />
                   <Route path="/login" element={<LoginPage />} />
-                  <Route path="/leaderboard" element={<LeaderboardPage />} />
-                  <Route path="*" element={<HomePage />} />
+
+                  {/* Main Explorer Experience (Unlocked after Login) */}
+                  <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+                  <Route path="/hunt/:id" element={<ProtectedRoute><HuntDetailPage /></ProtectedRoute>} />
+                  <Route path="/play/:id" element={<ProtectedRoute><PlayHuntPage /></ProtectedRoute>} />
+                  <Route path="/passport" element={<ProtectedRoute><PassportPage /></ProtectedRoute>} />
+                  <Route path="/map" element={<ProtectedRoute><MapPage /></ProtectedRoute>} />
+                  <Route path="/leaderboard" element={<ProtectedRoute><LeaderboardPage /></ProtectedRoute>} />
+
+                  {/* Fallback */}
+                  <Route path="*" element={<InitialGateway />} />
                 </Routes>
               </main>
               <Footer />
