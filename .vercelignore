@@ -1,0 +1,13 @@
+﻿server
+supabase
+*.py
+*.bat
+*.ps1
+*.db
+test*
+Project_Report*
+QR_CODES*
+generate*
+make_*
+build_*
+sites_*
