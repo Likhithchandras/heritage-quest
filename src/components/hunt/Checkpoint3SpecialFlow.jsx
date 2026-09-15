@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { QrCode, Camera, HelpCircle, Crown, Lightbulb, Volume2, CheckCircle2, Award, ArrowRight, Sparkles, BookOpen, Shield } from 'lucide-react';
+import { HelpCircle, Crown, Lightbulb, Volume2, CheckCircle2, Award, ArrowRight, Sparkles, BookOpen, Shield } from 'lucide-react';
 import { CHECKPOINT_THREE_DATA } from '../../data/checkpointThreeData';
-import QrScannerModal from './QrScannerModal';
 import { soundEffects } from '../../utils/soundEffects';
 import { speechNarrator } from '../../utils/speechNarrator';
 
@@ -14,14 +13,10 @@ export default function Checkpoint3SpecialFlow({
   const data = CHECKPOINT_THREE_DATA[huntId] || CHECKPOINT_THREE_DATA['hampi'];
 
   // Stages:
-  // 1: QR_SCAN (Requires scanning the QR code)
-  // 2: RIDDLE (Solving Question 1: Archaeological Riddle)
-  // 3: POV_QUESTION (Solving Question 2: King / Architect Roleplay Decision)
-  // 4: POV_OUTCOME (Viewing the Historical Consequence & Analysis)
-  // 5: COMPLETED (Celebration & XP Reward)
+  // 1: RIDDLE (Solving Question 1: Archaeological Riddle)
+  // 2: POV_QUESTION (Solving Question 2: King / Architect Roleplay Decision)
+  // 3: POV_OUTCOME (Viewing the Historical Consequence & Analysis)
   const [currentStep, setCurrentStep] = useState(1);
-  const [isScannerOpen, setIsScannerOpen] = useState(false);
-  const [qrVerified, setQrVerified] = useState(false);
 
   // Riddle state
   const [riddleHintsUnlocked, setRiddleHintsUnlocked] = useState(0);
@@ -35,20 +30,11 @@ export default function Checkpoint3SpecialFlow({
 
   // Total XP earned in this checkpoint
   const [earnedPoints, setEarnedPoints] = useState({
-    qr: 20,
-    riddle: 50,
-    pov: 60
+    riddle: 60,
+    pov: 70
   });
 
-  // 1. QR Scan handler
-  const handleScanSuccess = (decodedText) => {
-    setIsScannerOpen(false);
-    setQrVerified(true);
-    try { soundEffects.playArrival(); } catch(e) {}
-    setCurrentStep(2);
-  };
-
-  // 2. Riddle Answer submit
+  // 1. Riddle Answer submit
   const handleRiddleAnswer = (idx) => {
     if (isRiddleSolved) return;
     setSelectedRiddleOption(idx);
@@ -58,25 +44,25 @@ export default function Checkpoint3SpecialFlow({
       setRiddleFeedback('correct');
       soundEffects.playCorrect();
       setTimeout(() => {
-        setCurrentStep(3); // Advance to POV Question
-      }, 1000);
+        setCurrentStep(2); // Advance directly to POV Question
+      }, 900);
     } else {
       setRiddleFeedback('wrong');
       soundEffects.playWrong();
     }
   };
 
-  // 3. POV Decision submit
+  // 2. POV Decision submit
   const handlePovChoice = (idx) => {
     setSelectedPovOption(idx);
     setIsPovSolved(true);
     soundEffects.playFanfare();
-    setCurrentStep(4); // Show Historical Consequence
+    setCurrentStep(3); // Show Historical Consequence
   };
 
-  // 4. Finish Checkpoint
+  // 3. Finish Checkpoint
   const handleFinishCheckpoint = () => {
-    const totalAwarded = earnedPoints.qr + earnedPoints.riddle + earnedPoints.pov;
+    const totalAwarded = earnedPoints.riddle + earnedPoints.pov;
     onCompleteCheckpoint(totalAwarded);
   };
 
@@ -91,7 +77,7 @@ export default function Checkpoint3SpecialFlow({
           </div>
           <div>
             <div className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400">
-              Checkpoint #3 • Royal Secret & Archaeological QR
+              Checkpoint #3 • Royal Archaeological Secret
             </div>
             <h2 className="text-base sm:text-lg font-bold text-amber-100 font-serif">
               {data.checkpointName}
@@ -105,49 +91,8 @@ export default function Checkpoint3SpecialFlow({
         </div>
       </div>
 
-      {/* STEP 1: SCAN ON-SITE QR CODE */}
+      {/* STEP 1: QUESTION 1 — ARCHAEOLOGICAL RIDDLE */}
       {currentStep === 1 && (
-        <div className="bg-stone-900/90 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl text-center animate-fadeIn">
-          <div className="w-20 h-20 mx-auto rounded-3xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
-            <QrCode className="w-10 h-10 animate-pulse" />
-          </div>
-
-          <div className="space-y-2 max-w-md mx-auto">
-            <h3 className="text-2xl font-extrabold text-amber-100 font-serif">
-              Scan Monument QR Code
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
-              Find the official archaeological checkpoint QR marker at <strong>{data.checkpointName}</strong> or scan the physical QR badge to decrypt the King's ancient cipher.
-            </p>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 max-w-md mx-auto">
-            <button
-              onClick={() => setIsScannerOpen(true)}
-              className="w-full py-3.5 px-6 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:brightness-110 text-stone-950 font-black text-sm rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2"
-            >
-              <Camera className="w-4 h-4" />
-              <span>📷 Open Camera Scanner</span>
-            </button>
-
-            <button
-              onClick={() => handleScanSuccess(data.qrCodeString)}
-              className="w-full py-3.5 px-6 bg-stone-800 hover:bg-stone-700 text-amber-200 border border-amber-500/30 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center space-x-2"
-            >
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>⚡ Test Scan (Demo Mode)</span>
-            </button>
-          </div>
-
-          <div className="p-3 bg-black/40 rounded-xl border border-stone-800 text-[11px] text-stone-400 max-w-md mx-auto">
-            📌 <em>Presenting to Judges?</em> You can use the <strong>Test Scan</strong> button or show the printable QR card from the <strong>QR Cards</strong> tab!
-          </div>
-        </div>
-      )}
-
-      {/* STEP 2: QUESTION 1 — ARCHAEOLOGICAL RIDDLE */}
-      {currentStep === 2 && (
         <div className="bg-stone-900/90 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-fadeIn">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center space-x-2">
@@ -155,7 +100,7 @@ export default function Checkpoint3SpecialFlow({
                 <HelpCircle className="w-4 h-4" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Question 1 of 2: The Archaeological Riddle
+                Question 1 of 2: The Archaeological Riddle (+60 XP)
               </span>
             </div>
             <button
@@ -235,8 +180,8 @@ export default function Checkpoint3SpecialFlow({
         </div>
       )}
 
-      {/* STEP 3: QUESTION 2 — LOGICAL THINKING / ROLEPLAY POV QUESTION */}
-      {currentStep === 3 && (
+      {/* STEP 2: QUESTION 2 — LOGICAL THINKING / ROLEPLAY POV QUESTION */}
+      {currentStep === 2 && (
         <div className="bg-stone-900/90 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-fadeIn">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center space-x-2">
@@ -244,7 +189,7 @@ export default function Checkpoint3SpecialFlow({
                 <Crown className="w-4 h-4" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Question 2 of 2: Logical Thinking & King's POV Decision
+                Question 2 of 2: Logical Thinking & King's POV Decision (+70 XP)
               </span>
             </div>
             <button
@@ -287,8 +232,8 @@ export default function Checkpoint3SpecialFlow({
         </div>
       )}
 
-      {/* STEP 4: HISTORICAL CONSEQUENCE & ANALYSIS */}
-      {currentStep === 4 && selectedPovOption !== null && (
+      {/* STEP 3: HISTORICAL CONSEQUENCE & ANALYSIS */}
+      {currentStep === 3 && selectedPovOption !== null && (
         <div className="bg-gradient-to-br from-stone-900 to-amber-950/90 border-2 border-amber-500/50 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-scaleIn">
           <div className="flex items-center space-x-3 border-b border-white/10 pb-4">
             <div className="p-2.5 bg-amber-500/20 text-amber-400 rounded-xl border border-amber-500/40">
@@ -338,15 +283,7 @@ export default function Checkpoint3SpecialFlow({
         </div>
       )}
 
-      {/* QR Scanner Modal */}
-      <QrScannerModal
-        isOpen={isScannerOpen}
-        onClose={() => setIsScannerOpen(false)}
-        onScanSuccess={handleScanSuccess}
-        expectedCode={data.qrCodeString}
-        monumentName={monumentName}
-      />
-
     </div>
   );
 }
+

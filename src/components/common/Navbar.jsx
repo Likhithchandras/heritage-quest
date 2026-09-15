@@ -14,7 +14,6 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Monuments', path: '/home', icon: Compass },
     { name: 'India Map', path: '/map', icon: Map },
-    { name: 'QR Cards', path: '/qr-codes', icon: QrCode },
     { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
     { name: 'Passport', path: '/passport', icon: Shield },
   ];
