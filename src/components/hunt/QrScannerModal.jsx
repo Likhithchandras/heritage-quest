@@ -17,9 +17,9 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
 
   useEffect(() => {
     if (!isOpen) {
-      stopScanner();
       if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
       if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+      stopScanner();
       return;
     }
 
@@ -27,14 +27,16 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
     setCountdown(3);
     setScanSuccess(false);
 
-    // Auto-advance timer: after 3 seconds, automatically resolve and move to question
-    autoAdvanceTimerRef.current = setTimeout(() => {
-      handleDetectedCode(expectedCode || 'HERITAGE-QUEST-VERIFIED-CP3');
-    }, 3000);
-
-    // Countdown tick
+    let remaining = 3;
     countdownIntervalRef.current = setInterval(() => {
-      setCountdown((prev) => (prev > 1 ? prev - 1 : 1));
+      remaining -= 1;
+      if (remaining > 0) {
+        setCountdown(remaining);
+      } else {
+        clearInterval(countdownIntervalRef.current);
+        setCountdown(0);
+        handleDetectedCode(expectedCode || 'HERITAGE-QUEST-VERIFIED-CP3');
+      }
     }, 1000);
 
     // Auto-detect cameras and immediately start scanning
@@ -60,9 +62,9 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
       });
 
     return () => {
-      stopScanner();
       if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
       if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+      stopScanner();
     };
   }, [isOpen]);
 
@@ -156,13 +158,33 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
   const handleDetectedCode = (code) => {
     if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
     if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
-    soundEffects.playSuccess();
+    
+    try {
+      soundEffects.playSuccess();
+    } catch (e) {}
+
     setScanSuccess(true);
-    stopScanner();
+    
+    // Stop camera in background safely without blocking
+    if (html5QrCodeRef.current) {
+      try {
+        html5QrCodeRef.current.stop()
+          .catch(() => {})
+          .finally(() => {
+            try { html5QrCodeRef.current?.clear(); } catch(e) {}
+            html5QrCodeRef.current = null;
+            setIsScanning(false);
+          });
+      } catch (e) {
+        html5QrCodeRef.current = null;
+        setIsScanning(false);
+      }
+    }
+
     setTimeout(() => {
-      onScanSuccess(code);
+      onScanSuccess(code || expectedCode || 'HERITAGE-QUEST-VERIFIED-CP3');
       onClose();
-    }, 600);
+    }, 400);
   };
 
   const handleSimulateScan = () => {

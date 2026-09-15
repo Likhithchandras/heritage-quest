@@ -42,8 +42,9 @@ export default function Checkpoint3SpecialFlow({
 
   // 1. QR Scan handler
   const handleScanSuccess = (decodedText) => {
+    setIsScannerOpen(false);
     setQrVerified(true);
-    soundEffects.playArrival();
+    try { soundEffects.playArrival(); } catch(e) {}
     setCurrentStep(2);
   };
 
