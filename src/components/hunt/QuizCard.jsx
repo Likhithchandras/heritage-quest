@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, HelpCircle, CheckCircle, AlertCircle, Volume2, Sparkles } from 'lucide-react';
+import { BookOpen, HelpCircle, CheckCircle, AlertCircle, Volume2, Sparkles, MinusCircle } from 'lucide-react';
 import { soundEffects } from '../../utils/soundEffects';
 import { speechNarrator } from '../../utils/speechNarrator';
 
@@ -7,6 +7,10 @@ export default function QuizCard({ fact, quiz, checkpointName, onComplete }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [answered, setAnswered] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+
+  // Base 20 XP, reduced by 5 XP for each wrong attempt (minimum 5 XP)
+  const currentPointsAvailable = Math.max(5, 20 - (wrongAttempts * 5));
 
   const handleReadFact = () => {
     soundEffects.playClick();
@@ -15,7 +19,8 @@ export default function QuizCard({ fact, quiz, checkpointName, onComplete }) {
 
   const handleReadQuestion = () => {
     soundEffects.playClick();
-    speechNarrator.speak(`Question: ${quiz.question}. Option 1: ${quiz.options[0]}. Option 2: ${quiz.options[1]}. Option 3: ${quiz.options[2]}.`);
+    const optionsText = quiz.options.map((opt, i) => `Option ${i + 1}: ${opt}`).join('. ');
+    speechNarrator.speak(`Question: ${quiz.question}. ${optionsText}`);
   };
 
   const handleSelectOption = (idx) => {
@@ -28,9 +33,10 @@ export default function QuizCard({ fact, quiz, checkpointName, onComplete }) {
       setFeedback('correct');
       soundEffects.playCorrect();
       setTimeout(() => {
-        onComplete(20); // +20 points
+        onComplete(currentPointsAvailable);
       }, 1200);
     } else {
+      setWrongAttempts(prev => prev + 1);
       setFeedback('wrong');
       soundEffects.playWrong();
     }
@@ -64,15 +70,25 @@ export default function QuizCard({ fact, quiz, checkpointName, onComplete }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 text-amber-400">
             <HelpCircle className="w-5 h-5" />
-            <h3 className="font-bold text-sm uppercase tracking-wider">Step 5: Explorer Trivia Challenge (+20 XP)</h3>
+            <h3 className="font-bold text-sm uppercase tracking-wider">Step 5: Explorer Trivia Challenge</h3>
           </div>
-          <button
-            onClick={handleReadQuestion}
-            className="p-2 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full transition-colors"
-            title="Read Question Aloud"
-          >
-            <Volume2 className="w-4 h-4" />
-          </button>
+          
+          <div className="flex items-center space-x-2">
+            <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border transition-colors ${
+              wrongAttempts > 0 
+                ? 'bg-red-500/20 text-red-300 border-red-500/40' 
+                : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+            }`}>
+              ⭐ +{currentPointsAvailable} XP
+            </span>
+            <button
+              onClick={handleReadQuestion}
+              className="p-1.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-full transition-colors"
+              title="Read Question Aloud"
+            >
+              <Volume2 className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         <div className="text-stone-100 font-serif font-bold text-lg md:text-xl">
@@ -90,7 +106,7 @@ export default function QuizCard({ fact, quiz, checkpointName, onComplete }) {
             if (answered && isCorrect) {
               btnClass += "bg-emerald-950/80 border-emerald-500 text-emerald-200 shadow-md";
             } else if (feedback === 'wrong' && isChosen) {
-              btnClass += "bg-amber-950/60 border-amber-500 text-amber-200";
+              btnClass += "bg-red-950/60 border-red-500 text-red-200";
             } else {
               btnClass += "bg-stone-950/60 border-stone-800 hover:border-amber-500/40 text-stone-200 hover:bg-stone-900";
             }
@@ -117,21 +133,27 @@ export default function QuizCard({ fact, quiz, checkpointName, onComplete }) {
           })}
         </div>
 
-        {/* Friendly feedback banner */}
+        {/* Wrong attempt feedback banner with -5 XP reduction notice */}
         {feedback === 'wrong' && !answered && (
-          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-300 text-xs font-semibold flex items-center space-x-2 animate-shake">
-            <AlertCircle className="w-4 h-4 shrink-0 text-amber-400" />
-            <span>Almost there! Read the discovery fact above carefully and try again.</span>
+          <div className="p-3 bg-red-500/20 border border-red-500/40 rounded-xl text-red-200 text-xs font-semibold flex items-center justify-between animate-shake">
+            <div className="flex items-center space-x-2">
+              <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+              <span>Incorrect choice! Read the discovery fact above and try again.</span>
+            </div>
+            <span className="px-2 py-0.5 bg-red-500/30 text-red-300 font-extrabold rounded text-[11px] shrink-0">
+              -5 XP Penalty
+            </span>
           </div>
         )}
 
         {feedback === 'correct' && (
           <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs font-bold flex items-center space-x-2">
             <CheckCircle className="w-4 h-4 shrink-0 text-emerald-400" />
-            <span>Brilliant! Correct answer (+20 XP)!</span>
+            <span>Brilliant! Correct answer (+{currentPointsAvailable} XP Awarded)!</span>
           </div>
         )}
       </div>
     </div>
   );
 }
+

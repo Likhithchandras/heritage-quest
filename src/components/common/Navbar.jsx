@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Compass, Map, Shield, Trophy, User, LogIn, LogOut, Sparkles } from 'lucide-react';
+import { Compass, Map, Shield, Trophy, User, LogIn, LogOut, Sparkles, QrCode } from 'lucide-react';
 import { useGameProgress } from '../../context/GameProgressContext';
 import { useAuth } from '../../context/AuthContext';
 import { soundEffects } from '../../utils/soundEffects';
@@ -14,6 +14,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Monuments', path: '/home', icon: Compass },
     { name: 'India Map', path: '/map', icon: Map },
+    { name: 'QR Cards', path: '/qr-codes', icon: QrCode },
     { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
     { name: 'Passport', path: '/passport', icon: Shield },
   ];

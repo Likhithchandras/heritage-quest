@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
-import { Compass, Eye, HelpCircle, BookOpen, CheckCircle, Award, ArrowRight, Sparkles, AlertCircle } from 'lucide-react';
+import { Compass, Eye, HelpCircle, BookOpen, CheckCircle, Award, ArrowRight, Sparkles, AlertCircle, QrCode } from 'lucide-react';
 import GpsCompass from './GpsCompass';
 import ObservationTask from './ObservationTask';
 import RiddleBox from './RiddleBox';
 import QuizCard from './QuizCard';
+import Checkpoint3SpecialFlow from './Checkpoint3SpecialFlow';
 import { soundEffects } from '../../utils/soundEffects';
 
 export default function CheckpointFlow({
+  huntId,
+  monumentName,
   checkpoint,
   checkpointNumber,
   totalCheckpoints,
   onCompleteCheckpoint,
   isLastCheckpoint
 }) {
-  // Stages: 1: REACH (GPS), 2: OBSERVE, 3: RIDDLE, 4: LEARN & QUIZ, 5: COMPLETED
+  // If this is Checkpoint #3, render the Special QR Scan + Riddle + Roleplay Decision Flow!
+  if (checkpointNumber === 3) {
+    return (
+      <Checkpoint3SpecialFlow
+        huntId={huntId}
+        monumentName={monumentName || checkpoint.name}
+        onCompleteCheckpoint={onCompleteCheckpoint}
+        isLastCheckpoint={isLastCheckpoint}
+      />
+    );
+  }
+
+  // Standard Stages for other checkpoints: 1: REACH (GPS), 2: OBSERVE, 3: RIDDLE, 4: LEARN & QUIZ, 5: COMPLETED
   const [currentStage, setCurrentStage] = useState(1);
   const [checkpointPoints, setCheckpointPoints] = useState({
     observation: 0,

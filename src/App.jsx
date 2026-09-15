@@ -14,6 +14,8 @@ import MapPage from './pages/MapPage';
 import LoginPage from './pages/LoginPage';
 import LeaderboardPage from './pages/LeaderboardPage';
 
+import PrintableQRCodesPage from './pages/PrintableQRCodesPage';
+
 // Protected Gate Component
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
@@ -54,6 +56,7 @@ export default function App() {
                   <Route path="/passport" element={<ProtectedRoute><PassportPage /></ProtectedRoute>} />
                   <Route path="/map" element={<ProtectedRoute><MapPage /></ProtectedRoute>} />
                   <Route path="/leaderboard" element={<ProtectedRoute><LeaderboardPage /></ProtectedRoute>} />
+                  <Route path="/qr-codes" element={<ProtectedRoute><PrintableQRCodesPage /></ProtectedRoute>} />
 
                   {/* Fallback */}
                   <Route path="*" element={<InitialGateway />} />

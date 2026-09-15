@@ -96,6 +96,8 @@ export default function PlayHuntPage() {
       {!huntFinishedCelebration && currentCheckpoint ? (
         <CheckpointFlow
           key={currentCheckpoint.id}
+          huntId={hunt.id}
+          monumentName={hunt.name}
           checkpoint={currentCheckpoint}
           checkpointNumber={currentIdx + 1}
           totalCheckpoints={totalCheckpoints}
