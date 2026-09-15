@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import QRCode from 'qrcode';
+import React, { useState } from 'react';
 import { Printer, Search, Sparkles, Shield, Download, ArrowLeft, QrCode, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { CHECKPOINT_THREE_DATA } from '../data/checkpointThreeData';
@@ -8,28 +7,8 @@ import { soundEffects } from '../utils/soundEffects';
 export default function PrintableQRCodesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedState, setSelectedState] = useState('ALL');
-  const [qrImages, setQrImages] = useState({});
 
   const monumentsList = Object.values(CHECKPOINT_THREE_DATA);
-
-  // Generate QR images on load
-  useEffect(() => {
-    monumentsList.forEach((item) => {
-      QRCode.toDataURL(item.qrCodeString, {
-        width: 300,
-        margin: 1,
-        color: {
-          dark: '#0f172a',
-          light: '#ffffff'
-        }
-      }).then((url) => {
-        setQrImages((prev) => ({ ...prev, [item.id]: url }));
-      }).catch((err) => {
-        console.error('Error generating QR:', err);
-      });
-    });
-  }, []);
-
   const states = ['ALL', ...new Set(monumentsList.map(m => m.state))];
 
   const filteredMonuments = monumentsList.filter((m) => {
@@ -143,18 +122,13 @@ export default function PrintableQRCodesPage() {
 
             {/* Center QR Code Image */}
             <div className="flex flex-col items-center justify-center p-3 bg-stone-50 rounded-2xl border-2 border-stone-300">
-              {qrImages[item.id] ? (
-                <img
-                  src={qrImages[item.id]}
-                  alt={`QR Code for ${item.monumentName}`}
-                  className="w-44 h-44 object-contain"
-                />
-              ) : (
-                <div className="w-44 h-44 flex items-center justify-center text-xs text-stone-400">
-                  Generating QR...
-                </div>
-              )}
-              <code className="text-[10px] font-mono text-stone-600 mt-1">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=0f172a&bgcolor=ffffff&data=${encodeURIComponent(item.qrCodeString)}`}
+                alt={`QR Code for ${item.monumentName}`}
+                className="w-44 h-44 object-contain shadow-sm"
+                loading="lazy"
+              />
+              <code className="text-[10px] font-mono font-bold text-stone-600 mt-2 bg-stone-200/80 px-2 py-0.5 rounded">
                 {item.qrCodeString}
               </code>
             </div>
