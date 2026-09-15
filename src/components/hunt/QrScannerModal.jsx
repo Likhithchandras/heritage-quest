@@ -11,11 +11,31 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
   const [selectedCameraId, setSelectedCameraId] = useState(null);
   const html5QrCodeRef = useRef(null);
 
+  const [countdown, setCountdown] = useState(3);
+  const autoAdvanceTimerRef = useRef(null);
+  const countdownIntervalRef = useRef(null);
+
   useEffect(() => {
     if (!isOpen) {
       stopScanner();
+      if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+      if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
       return;
     }
+
+    // Reset countdown to 3 seconds
+    setCountdown(3);
+    setScanSuccess(false);
+
+    // Auto-advance timer: after 3 seconds, automatically resolve and move to question
+    autoAdvanceTimerRef.current = setTimeout(() => {
+      handleDetectedCode(expectedCode || 'HERITAGE-QUEST-VERIFIED-CP3');
+    }, 3000);
+
+    // Countdown tick
+    countdownIntervalRef.current = setInterval(() => {
+      setCountdown((prev) => (prev > 1 ? prev - 1 : 1));
+    }, 1000);
 
     // Auto-detect cameras and immediately start scanning
     Html5Qrcode.getCameras()
@@ -31,7 +51,6 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
           setSelectedCameraId(chosenId);
           startScanner(chosenId);
         } else {
-          // Fallback to environment facing mode
           startScanner(null);
         }
       })
@@ -42,6 +61,8 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
 
     return () => {
       stopScanner();
+      if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+      if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
     };
   }, [isOpen]);
 
@@ -133,6 +154,8 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
   };
 
   const handleDetectedCode = (code) => {
+    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+    if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
     soundEffects.playSuccess();
     setScanSuccess(true);
     stopScanner();
@@ -169,6 +192,8 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
           </div>
           <button
             onClick={() => {
+              if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+              if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
               stopScanner();
               onClose();
             }}
@@ -179,50 +204,61 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
         </div>
 
         {/* Video Viewfinder Container */}
-        <div className="relative w-full aspect-square max-w-xs mx-auto bg-black rounded-2xl overflow-hidden border-2 border-dashed border-amber-500/40 flex flex-col items-center justify-center">
+        <div className="relative w-full aspect-square max-w-xs mx-auto bg-black rounded-2xl overflow-hidden border-2 border-amber-500/40 flex flex-col items-center justify-center shadow-inner">
           
           <div id="qr-reader-container" className="w-full h-full" />
 
+          {/* Active Scanning Laser Line & Corner Reticles */}
+          {!scanSuccess && (
+            <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-4 z-10">
+              <div className="flex justify-between">
+                <div className="w-6 h-6 border-t-2 border-l-2 border-amber-400" />
+                <div className="w-6 h-6 border-t-2 border-r-2 border-amber-400" />
+              </div>
+              
+              {/* Pulsing Scanning Line */}
+              <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-[0_0_12px_rgba(245,158,11,1)] animate-bounce" />
+
+              <div className="flex justify-between">
+                <div className="w-6 h-6 border-b-2 border-l-2 border-amber-400" />
+                <div className="w-6 h-6 border-b-2 border-r-2 border-amber-400" />
+              </div>
+            </div>
+          )}
+
+          {/* Floating Auto-Advance Countdown Badge */}
+          {!scanSuccess && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 bg-stone-950/90 border border-amber-500/60 px-3.5 py-1.5 rounded-full shadow-lg flex items-center space-x-2 text-[11px] font-bold text-amber-300">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>Scanning... Auto-verifying in {countdown}s</span>
+            </div>
+          )}
+
           {/* Success Overlay */}
           {scanSuccess && (
-            <div className="absolute inset-0 bg-emerald-950/90 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 space-y-2 animate-scaleIn z-20">
+            <div className="absolute inset-0 bg-emerald-950/95 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 space-y-2 animate-scaleIn z-30">
               <CheckCircle2 className="w-16 h-16 text-emerald-400 animate-bounce" />
-              <div className="text-lg font-bold text-emerald-200 font-serif">
+              <div className="text-xl font-black text-emerald-200 font-serif">
                 QR Verified!
               </div>
               <p className="text-xs text-emerald-300">
-                Unlocking ancient archaeological riddle & King's decision...
+                Decoding ancient archaeological mystery & King's decision...
               </p>
             </div>
           )}
 
           {/* Camera Fallback Placeholder */}
           {!isScanning && !scanSuccess && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-3 bg-stone-900/90">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-3 bg-stone-900/90 z-0">
               <Camera className="w-12 h-12 text-amber-400/80" />
               <p className="text-xs text-stone-300">
-                Camera scanner ready. You can scan with camera, upload an image, or click Instant Verify.
+                Point at QR card or wait {countdown}s for auto-verification.
               </p>
-              <button
-                onClick={() => startScanner(selectedCameraId)}
-                className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center space-x-2"
-              >
-                <Camera className="w-4 h-4" />
-                <span>Retry Camera Activation</span>
-              </button>
             </div>
           )}
         </div>
 
-        {/* Error Notice */}
-        {scanError && (
-          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-200 text-xs flex items-start space-x-2">
-            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-            <span>{scanError}</span>
-          </div>
-        )}
-
-        {/* Action Buttons: Instant Verification + Upload Image */}
+        {/* Action Buttons */}
         <div className="space-y-2.5 pt-1">
           <button
             type="button"
@@ -230,18 +266,8 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
             className="w-full py-3.5 px-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2"
           >
             <Zap className="w-4 h-4 text-yellow-300 animate-bounce" />
-            <span>⚡ Instant On-Site QR Verification (1-Click)</span>
+            <span>⚡ Verify Instantly (Skip Waiting)</span>
           </button>
-          
-          <label className="w-full py-2.5 px-4 bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white border border-stone-800 rounded-xl font-semibold text-xs flex items-center justify-center space-x-2 cursor-pointer transition-colors">
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileUpload}
-            />
-            <span>📁 Or Upload QR Image / Screenshot</span>
-          </label>
         </div>
 
       </div>
