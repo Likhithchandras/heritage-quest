@@ -52,8 +52,7 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
         await stopScanner();
       }
 
-      // Small delay to ensure DOM container is mounted
-      await new Promise(r => setTimeout(r, 100));
+      await new Promise(r => setTimeout(r, 150));
 
       const container = document.getElementById('qr-reader-container');
       if (!container) return;
@@ -65,31 +64,40 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess, expecte
       });
       html5QrCodeRef.current = qrScanner;
 
-      const cameraConfig = cameraId ? { deviceId: { exact: cameraId } } : { facingMode: 'environment' };
       const config = {
-        fps: 15,
+        fps: 20,
         qrbox: (viewfinderWidth, viewfinderHeight) => {
-          const edge = Math.floor(Math.min(viewfinderWidth, viewfinderHeight) * 0.75);
-          return { width: Math.max(200, edge), height: Math.max(200, edge) };
+          const edge = Math.floor(Math.min(viewfinderWidth, viewfinderHeight) * 0.8);
+          return { width: Math.max(220, edge), height: Math.max(220, edge) };
         },
         aspectRatio: 1.0
       };
 
-      await qrScanner.start(
-        cameraConfig,
-        config,
-        (decodedText) => {
-          handleDetectedCode(decodedText);
-        },
-        (errorMessage) => {
-          // Ignore individual frame read misses
+      const onScan = (decodedText) => {
+        handleDetectedCode(decodedText);
+      };
+
+      const onError = () => {};
+
+      // Tier 1: Try specific cameraId or environment rear camera
+      try {
+        const primaryCam = cameraId ? { deviceId: { exact: cameraId } } : { facingMode: 'environment' };
+        await qrScanner.start(primaryCam, config, onScan, onError);
+      } catch (err1) {
+        console.warn('Environment camera unavailable, falling back to any camera:', err1);
+        // Tier 2: Try front user camera
+        try {
+          await qrScanner.start({ facingMode: 'user' }, config, onScan, onError);
+        } catch (err2) {
+          // Tier 3: Try standard unconstrained video
+          await qrScanner.start(true, config, onScan, onError);
         }
-      );
+      }
 
       setIsScanning(true);
     } catch (err) {
-      console.warn('Camera start issue:', err);
-      setScanError('Camera permission needed or camera in use. You can allow camera or use Instant Verification below.');
+      console.warn('All camera start attempts failed:', err);
+      setScanError('Camera permission not granted or camera in use. You can use the instant 1-Click Verification below.');
       setIsScanning(false);
     }
   };

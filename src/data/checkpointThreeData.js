@@ -5,7 +5,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "hampi",
     monumentName: "Hampi (Vijayanagara)",
     state: "Karnataka",
-    qrCodeString: "HERITAGE-QUEST-HAMPI-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/hampi/play?checkpoint=3",
     checkpointName: "Vittala Temple & Stone Chariot",
     landmarkTitle: "The Musical Pillars & Sacred Ratha",
     
@@ -63,7 +63,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "taj-mahal",
     monumentName: "Taj Mahal",
     state: "Uttar Pradesh",
-    qrCodeString: "HERITAGE-QUEST-TAJ-MAHAL-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/taj-mahal/play?checkpoint=3",
     checkpointName: "The Main Marble Plinth & Four Outward Minarets",
     landmarkTitle: "Symmetry of the Yamuna Riverfront",
 
@@ -121,7 +121,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "konark-sun-temple",
     monumentName: "Sun Temple, Konark",
     state: "Odisha",
-    qrCodeString: "HERITAGE-QUEST-KONARK-SUN-TEMPLE-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/konark-sun-temple/play?checkpoint=3",
     checkpointName: "The 24 Cosmic Sundial Wheels",
     landmarkTitle: "The Grand Chariot of Surya",
 
@@ -179,7 +179,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "ajanta-caves",
     monumentName: "Ajanta Caves",
     state: "Maharashtra",
-    qrCodeString: "HERITAGE-QUEST-AJANTA-CAVES-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/ajanta-caves/play?checkpoint=3",
     checkpointName: "Cave 1: Padmapani & Bodhisattva Frescoes",
     landmarkTitle: "The Dark Gorge Lighting Secret",
 
@@ -237,7 +237,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "qutub-minar",
     monumentName: "Qutub Minar Complex",
     state: "Delhi",
-    qrCodeString: "HERITAGE-QUEST-QUTUB-MINAR-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/qutub-minar/play?checkpoint=3",
     checkpointName: "The Rust-Resistant Iron Pillar of Chandragupta",
     landmarkTitle: "The Metallurgical Marvel of Ancient Delhi",
 
@@ -295,7 +295,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "brihadisvara-temple",
     monumentName: "Brihadisvara Temple, Thanjavur",
     state: "Tamil Nadu",
-    qrCodeString: "HERITAGE-QUEST-BRIHADISVARA-TEMPLE-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/brihadisvara-temple/play?checkpoint=3",
     checkpointName: "The 80-Ton Granite Kumbam Capstone",
     landmarkTitle: "The Great Chola Tower (Vimana)",
 
@@ -353,7 +353,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "fatehpur-sikri",
     monumentName: "Fatehpur Sikri",
     state: "Uttar Pradesh",
-    qrCodeString: "HERITAGE-QUEST-FATEHPUR-SIKRI-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/fatehpur-sikri/play?checkpoint=3",
     checkpointName: "Diwan-i-Khas & The Central Pillar of Religions",
     landmarkTitle: "The Hall of Private Audience & Debates",
 
@@ -411,7 +411,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "sanchi-stupa",
     monumentName: "Great Stupa at Sanchi",
     state: "Madhya Pradesh",
-    qrCodeString: "HERITAGE-QUEST-SANCHI-STUPA-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/sanchi-stupa/play?checkpoint=3",
     checkpointName: "The Four Ornate Carved Toranas (Gateways)",
     landmarkTitle: "The Stone Storybooks of Ashoka",
 
@@ -469,7 +469,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "khajuraho-temples",
     monumentName: "Khajuraho Group of Monuments",
     state: "Madhya Pradesh",
-    qrCodeString: "HERITAGE-QUEST-KHAJURAHO-TEMPLES-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/khajuraho-temples/play?checkpoint=3",
     checkpointName: "Kandariya Mahadeva Temple",
     landmarkTitle: "The Cosmic Mountain of Mount Meru",
 
@@ -527,7 +527,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "ellora-caves",
     monumentName: "Ellora Caves",
     state: "Maharashtra",
-    qrCodeString: "HERITAGE-QUEST-ELLORA-CAVES-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/ellora-caves/play?checkpoint=3",
     checkpointName: "Cave 16: The Kailasa Monolithic Temple",
     landmarkTitle: "The World's Greatest Top-Down Monolithic Excavation",
 
@@ -585,7 +585,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "red-fort",
     monumentName: "Red Fort (Lal Qila), Delhi",
     state: "Delhi",
-    qrCodeString: "HERITAGE-QUEST-RED-FORT-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/red-fort/play?checkpoint=3",
     checkpointName: "Nahr-i-Bihisht (The Stream of Paradise)",
     landmarkTitle: "The Ancient Cooling Canal of the Mughal Court",
 
@@ -643,7 +643,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "charminar",
     monumentName: "Charminar, Hyderabad",
     state: "Telangana",
-    qrCodeString: "HERITAGE-QUEST-CHARMINAR-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/charminar/play?checkpoint=3",
     checkpointName: "The Four Grand Arches & Upper Mosque",
     landmarkTitle: "The Arch of the Four Minarets",
 
@@ -701,7 +701,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "golconda-fort",
     monumentName: "Golconda Fort",
     state: "Telangana",
-    qrCodeString: "HERITAGE-QUEST-GOLCONDA-FORT-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/golconda-fort/play?checkpoint=3",
     checkpointName: "The Acoustic Clapping Arch of Balahissar",
     landmarkTitle: "The Sound Radar of Ancient Defense",
 
@@ -759,7 +759,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "amer-fort",
     monumentName: "Amer Fort, Jaipur",
     state: "Rajasthan",
-    qrCodeString: "HERITAGE-QUEST-AMER-FORT-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/amer-fort/play?checkpoint=3",
     checkpointName: "Sheesh Mahal (The Hall of Mirrors)",
     landmarkTitle: "The Palace of a Thousand Stars",
 
@@ -817,7 +817,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "hawa-mahal",
     monumentName: "Hawa Mahal (Palace of Winds)",
     state: "Rajasthan",
-    qrCodeString: "HERITAGE-QUEST-HAWA-MAHAL-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/hawa-mahal/play?checkpoint=3",
     checkpointName: "The 953 Jharokhas & Venturi Cooling",
     landmarkTitle: "The Natural Air-Conditioned Honeycomb",
 
@@ -875,7 +875,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "meenakshi-temple",
     monumentName: "Meenakshi Amman Temple, Madurai",
     state: "Tamil Nadu",
-    qrCodeString: "HERITAGE-QUEST-MEENAKSHI-TEMPLE-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/meenakshi-temple/play?checkpoint=3",
     checkpointName: "The 1000-Pillar Hall & Musical Granite Columns",
     landmarkTitle: "The Hall of Divine Rhythm",
 
@@ -933,7 +933,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "rani-ki-vav",
     monumentName: "Rani ki Vav (The Queen's Stepwell)",
     state: "Gujarat",
-    qrCodeString: "HERITAGE-QUEST-RANI-KI-VAV-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/rani-ki-vav/play?checkpoint=3",
     checkpointName: "The 7 Terraced Levels of the Underground Temple",
     landmarkTitle: "The Inverted Temple of Water",
 
@@ -991,7 +991,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "chhatrapati-shivaji-terminus",
     monumentName: "Chhatrapati Shivaji Maharaj Terminus (CST)",
     state: "Maharashtra",
-    qrCodeString: "HERITAGE-QUEST-CHHATRAPATI-SHIVAJI-TERMINUS-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/chhatrapati-shivaji-terminus/play?checkpoint=3",
     checkpointName: "The Grand Octagonal Masonry Dome & Stained Glass",
     landmarkTitle: "The Victorian Gothic-Indian Fusion Dome",
 
@@ -1049,7 +1049,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "mysore-palace",
     monumentName: "Mysore Palace (Amba Vilas)",
     state: "Karnataka",
-    qrCodeString: "HERITAGE-QUEST-MYSORE-PALACE-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/mysore-palace/play?checkpoint=3",
     checkpointName: "The Durbar Hall & Peacock Stained Glass Ceiling",
     landmarkTitle: "The Hall of 100,000 Golden Lights",
 
@@ -1107,7 +1107,7 @@ export const CHECKPOINT_THREE_DATA = {
     id: "victoria-memorial",
     monumentName: "Victoria Memorial, Kolkata",
     state: "West Bengal",
-    qrCodeString: "HERITAGE-QUEST-VICTORIA-MEMORIAL-CP3",
+    qrCodeString: "https://heritage-final.vercel.app/hunt/victoria-memorial/play?checkpoint=3",
     checkpointName: "The Angel of Victory & Makrana Marble Dome",
     landmarkTitle: "The White Marble Icon of the Hooghly",
 
