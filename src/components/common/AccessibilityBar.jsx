@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAccessibility, THEMES, FONT_SIZES } from '../../context/AccessibilityContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { soundEffects } from '../../utils/soundEffects';
-import { Palette, Type, Volume2, VolumeX, Mic, MicOff, Plus, Minus, Sparkles, Globe, ChevronDown } from 'lucide-react';
+import { Palette, Type, Volume2, VolumeX, Mic, MicOff, Plus, Minus, Globe } from 'lucide-react';
 
 export default function AccessibilityBar() {
   const {
@@ -18,69 +18,33 @@ export default function AccessibilityBar() {
   } = useAccessibility();
 
   const { currentLang, languages, changeLanguage, t } = useLanguage();
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   const activeFontObj = FONT_SIZES.find(f => f.id === fontSize) || FONT_SIZES[0];
-  const activeLangObj = languages.find(l => l.code === currentLang) || languages[0];
 
   return (
     <div className="bg-stone-950/95 backdrop-blur-md border-b border-amber-500/25 px-3 py-1.5 z-50 sticky top-0 transition-all text-stone-300">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
         
         {/* Left: Language Selector & Theme Pills */}
-        <div className="flex items-center space-x-2 overflow-x-auto py-0.5 scrollbar-none">
-          {/* Language Selector Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => {
+        <div className="flex items-center space-x-2 py-0.5">
+          {/* Robust Stylized Language Select */}
+          <div className="relative inline-flex items-center bg-stone-900 border border-amber-500/40 rounded-xl px-2.5 py-1 text-amber-300 hover:border-amber-400 transition-all shadow-sm">
+            <Globe className="w-3.5 h-3.5 text-amber-400 mr-1.5 shrink-0 pointer-events-none" />
+            <select
+              value={currentLang}
+              onChange={(e) => {
                 soundEffects.playClick();
-                setLangDropdownOpen(!langDropdownOpen);
+                changeLanguage(e.target.value);
               }}
-              className="px-2.5 py-1 rounded-xl text-[11px] font-bold transition-all flex items-center space-x-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 shadow-sm"
-              title="Change Language / भाषा बदलें"
+              className="bg-transparent text-[11px] font-bold text-amber-300 focus:outline-none cursor-pointer pr-1"
+              aria-label="Select Language"
             >
-              <Globe className="w-3.5 h-3.5 text-amber-400" />
-              <span>{activeLangObj.nativeName}</span>
-              <ChevronDown className="w-3 h-3 text-amber-400/80" />
-            </button>
-
-            {langDropdownOpen && (
-              <>
-                <div 
-                  className="fixed inset-0 z-40" 
-                  onClick={() => setLangDropdownOpen(false)}
-                />
-                <div className="absolute left-0 mt-1.5 w-40 bg-stone-900 border border-amber-500/30 rounded-xl shadow-2xl z-50 py-1.5 overflow-hidden animate-fadeIn">
-                  <div className="px-3 py-1 text-[10px] uppercase font-bold text-amber-400 border-b border-stone-800 flex items-center gap-1">
-                    <Globe className="w-3 h-3" />
-                    <span>Select Language</span>
-                  </div>
-                  {languages.map((l) => {
-                    const isSelected = currentLang === l.code;
-                    return (
-                      <button
-                        key={l.code}
-                        onClick={() => {
-                          soundEffects.playClick();
-                          changeLanguage(l.code);
-                          setLangDropdownOpen(false);
-                        }}
-                        className={`w-full px-3 py-1.5 text-left text-xs font-semibold flex items-center justify-between transition-colors ${
-                          isSelected
-                            ? 'bg-amber-500 text-stone-950 font-bold'
-                            : 'text-stone-300 hover:bg-stone-800 hover:text-amber-200'
-                        }`}
-                      >
-                        <span className="font-medium">{l.nativeName}</span>
-                        <span className={`text-[10px] ${isSelected ? 'text-stone-900 font-bold' : 'text-stone-500'}`}>
-                          {l.name}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </>
-            )}
+              {languages.map((l) => (
+                <option key={l.code} value={l.code} className="bg-stone-900 text-stone-100 font-semibold py-1">
+                  {l.nativeName} ({l.name})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="h-4 w-px bg-stone-800 hidden sm:block"></div>
@@ -90,26 +54,28 @@ export default function AccessibilityBar() {
             <Palette className="w-3.5 h-3.5" />
             <span>{t('theme_label')}:</span>
           </span>
-          {THEMES.map((tItem) => {
-            const isSelected = currentTheme === tItem.id;
-            return (
-              <button
-                key={tItem.id}
-                onClick={() => {
-                  soundEffects.playClick();
-                  setCurrentTheme(tItem.id);
-                }}
-                className={`px-2 py-1 rounded-xl text-[11px] font-bold transition-all flex items-center space-x-1 whitespace-nowrap ${
-                  isSelected
-                    ? 'bg-amber-500 text-stone-950 shadow-md scale-105'
-                    : 'bg-stone-900/80 hover:bg-stone-800 text-stone-300 border border-stone-800'
-                }`}
-              >
-                <span>{tItem.icon}</span>
-                <span className="hidden sm:inline">{tItem.name}</span>
-              </button>
-            );
-          })}
+          <div className="flex items-center space-x-1 overflow-x-auto scrollbar-none">
+            {THEMES.map((tItem) => {
+              const isSelected = currentTheme === tItem.id;
+              return (
+                <button
+                  key={tItem.id}
+                  onClick={() => {
+                    soundEffects.playClick();
+                    setCurrentTheme(tItem.id);
+                  }}
+                  className={`px-2 py-1 rounded-xl text-[11px] font-bold transition-all flex items-center space-x-1 whitespace-nowrap ${
+                    isSelected
+                      ? 'bg-amber-500 text-stone-950 shadow-md scale-105'
+                      : 'bg-stone-900/80 hover:bg-stone-800 text-stone-300 border border-stone-800'
+                  }`}
+                >
+                  <span>{tItem.icon}</span>
+                  <span className="hidden sm:inline">{tItem.name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Right: Font Size Controls & Audio */}

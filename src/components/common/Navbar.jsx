@@ -11,7 +11,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { totalScore, currentRank } = useGameProgress();
   const { currentUser, isAuthenticated, logout } = useAuth();
-  const { t } = useLanguage();
+  const { currentLang, languages, changeLanguage, t } = useLanguage();
 
   const navLinks = [
     { name: t('nav_monuments'), path: '/home', icon: Compass },
@@ -73,8 +73,27 @@ export default function Navbar() {
           </nav>
         )}
 
-        {/* User Status / Logout */}
+        {/* User Status / Language Selector / Logout */}
         <div className="flex items-center space-x-2 sm:space-x-3">
+          {/* Direct Navbar Language Selector */}
+          <div className="hidden sm:inline-flex items-center bg-stone-900/90 border border-amber-500/30 rounded-xl px-2 py-1 text-xs">
+            <span className="text-amber-400 mr-1 text-xs">🌐</span>
+            <select
+              value={currentLang}
+              onChange={(e) => {
+                soundEffects.playClick();
+                changeLanguage(e.target.value);
+              }}
+              className="bg-transparent text-xs font-bold text-amber-300 focus:outline-none cursor-pointer"
+              aria-label="Select platform language"
+            >
+              {languages.map((l) => (
+                <option key={l.code} value={l.code} className="bg-stone-900 text-stone-100 font-medium">
+                  {l.nativeName}
+                </option>
+              ))}
+            </select>
+          </div>
           {isAuthenticated && (
             <Link
               to="/passport"

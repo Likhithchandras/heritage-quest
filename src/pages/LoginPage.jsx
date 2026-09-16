@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useGameProgress } from '../context/GameProgressContext';
 import { useAccessibility, THEMES } from '../context/AccessibilityContext';
+import { useLanguage } from '../context/LanguageContext';
 import { soundEffects } from '../utils/soundEffects';
-import { User, Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle2, Palette } from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight, CheckCircle2, Palette, Globe } from 'lucide-react';
 
 export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -18,6 +19,7 @@ export default function LoginPage() {
   const { login, signup, guestLogin } = useAuth();
   const { setExplorerName } = useGameProgress();
   const { currentTheme, setCurrentTheme } = useAccessibility();
+  const { currentLang, languages, changeLanguage, t } = useLanguage();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -25,19 +27,19 @@ export default function LoginPage() {
     setErrorMessage('');
 
     if (!email || !password) {
-      setErrorMessage('Please enter both email and password.');
+      setErrorMessage(t('alert_fill_fields') || 'Please enter both email and password.');
       soundEffects.playWrong();
       return;
     }
 
     if (isSignUp && !name.trim()) {
-      setErrorMessage('Please enter your explorer name.');
+      setErrorMessage(t('alert_enter_name') || 'Please enter your explorer name.');
       soundEffects.playWrong();
       return;
     }
 
     if (password.length < 4) {
-      setErrorMessage('Password must be at least 4 characters.');
+      setErrorMessage(t('alert_pwd_len') || 'Password must be at least 4 characters.');
       soundEffects.playWrong();
       return;
     }
@@ -45,14 +47,14 @@ export default function LoginPage() {
     if (isSignUp) {
       const user = signup(name, email, password);
       setExplorerName(user.name);
-      setSuccessMessage(`Account created for ${user.name}! Entering quest...`);
+      setSuccessMessage(`${t('msg_acc_created') || 'Account created!'} (${user.name})`);
       soundEffects.playSuccess();
       setTimeout(() => navigate('/home'), 800);
     } else {
       const derivedName = name.trim() || email.split('@')[0];
       const user = login(derivedName, email, password);
       setExplorerName(user.name);
-      setSuccessMessage(`Welcome back, ${user.name}!`);
+      setSuccessMessage(`${t('msg_welcome') || 'Welcome back!'} (${user.name})`);
       soundEffects.playSuccess();
       setTimeout(() => navigate('/home'), 600);
     }
@@ -116,11 +118,25 @@ export default function LoginPage() {
       {/* Main Clean Centered Login Card */}
       <div className={`relative z-10 w-full max-w-md rounded-3xl border ${activeThemeStyle.cardBorder} bg-stone-950/85 backdrop-blur-2xl p-7 sm:p-9 shadow-[0_20px_60px_rgba(0,0,0,0.9)] transition-all duration-500 space-y-6`}>
         
-        {/* Top Header & Theme Selector */}
-        <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
-          <div className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider ${activeThemeStyle.badgeBorder}`}>
-            <Sparkles className="w-3 h-3 text-amber-400" />
-            <span>India Heritage Quest</span>
+        {/* Top Header with Language Selector & Theme Selector */}
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
+          <div className="inline-flex items-center space-x-1.5 bg-stone-900 border border-amber-500/40 rounded-full px-2.5 py-1 text-xs text-amber-300">
+            <Globe className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <select
+              value={currentLang}
+              onChange={(e) => {
+                soundEffects.playClick();
+                changeLanguage(e.target.value);
+              }}
+              className="bg-transparent text-xs font-bold text-amber-300 focus:outline-none cursor-pointer"
+              aria-label="Choose Language"
+            >
+              {languages.map((l) => (
+                <option key={l.code} value={l.code} className="bg-stone-900 text-stone-100 font-semibold">
+                  {l.nativeName} ({l.name})
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Theme Switcher */}
@@ -153,10 +169,10 @@ export default function LoginPage() {
         {/* Title */}
         <div className="text-center space-y-1.5">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-amber-100 font-serif tracking-tight">
-            {isSignUp ? 'Explorer Registration' : 'Explorer Sign In'}
+            {isSignUp ? t('signup_title') : t('login_title')}
           </h1>
           <p className="text-xs text-stone-400">
-            {isSignUp ? 'Create your profile to start your journey' : 'Sign in to access your quests and passport'}
+            {isSignUp ? t('signup_sub') : t('login_sub')}
           </p>
         </div>
 
@@ -180,7 +196,7 @@ export default function LoginPage() {
           {isSignUp && (
             <div>
               <label className="block text-[11px] font-bold text-stone-300 uppercase tracking-wider mb-1.5">
-                Explorer Name *
+                {t('name_label')}
               </label>
               <div className="relative">
                 <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
@@ -188,7 +204,7 @@ export default function LoginPage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Aryan"
+                  placeholder={t('name_placeholder')}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stone-900/90 border border-stone-700/80 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 text-sm transition-colors"
                 />
               </div>
@@ -198,7 +214,7 @@ export default function LoginPage() {
           {/* Email */}
           <div>
             <label className="block text-[11px] font-bold text-stone-300 uppercase tracking-wider mb-1.5">
-              Email Address *
+              {t('email_label')}
             </label>
             <div className="relative">
               <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
@@ -206,7 +222,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="explorer@heritagequest.org"
+                placeholder={t('email_placeholder')}
                 required
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stone-900/90 border border-stone-700/80 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 text-sm transition-colors"
               />
@@ -216,7 +232,7 @@ export default function LoginPage() {
           {/* Password */}
           <div>
             <label className="block text-[11px] font-bold text-stone-300 uppercase tracking-wider mb-1.5">
-              Password *
+              {t('password_label')}
             </label>
             <div className="relative">
               <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
@@ -243,7 +259,7 @@ export default function LoginPage() {
             type="submit"
             className={`w-full py-3 px-5 bg-gradient-to-r ${activeThemeStyle.btnGradient} hover:brightness-110 active:scale-[0.98] text-stone-950 font-black text-sm rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2`}
           >
-            <span>{isSignUp ? 'Create Account' : 'Sign In'}</span>
+            <span>{isSignUp ? t('btn_signup') : t('btn_signin')}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
@@ -259,9 +275,7 @@ export default function LoginPage() {
             }}
             className="text-xs text-amber-400 hover:text-amber-300 font-semibold transition-colors"
           >
-            {isSignUp
-              ? 'Already have an account? Sign In'
-              : "Don't have an account? Create one"}
+            {isSignUp ? t('switch_to_login') : t('switch_to_signup')}
           </button>
 
           <button
@@ -269,7 +283,7 @@ export default function LoginPage() {
             onClick={handleGuest}
             className="w-full py-2.5 px-4 bg-stone-900/90 hover:bg-stone-800 text-stone-300 hover:text-amber-200 text-xs font-bold rounded-xl border border-stone-700/60 transition-all shadow-sm"
           >
-            ⚡ Continue as Guest (Instant Play)
+            {t('guest_btn')}
           </button>
         </div>
 

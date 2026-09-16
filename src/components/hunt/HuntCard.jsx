@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Compass, Clock, CheckCircle2, Award, ChevronRight } from 'lucide-react';
 import { useGameProgress } from '../../context/GameProgressContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { soundEffects } from '../../utils/soundEffects';
 
 export default function HuntCard({ hunt }) {
   const { huntProgress, completedHunts } = useGameProgress();
+  const { t } = useLanguage();
   const currentStep = huntProgress[hunt.id] || 0;
   const isCompleted = completedHunts && completedHunts.includes(hunt.id);
   const totalCheckpoints = hunt.checkpoints.length;
@@ -22,7 +24,7 @@ export default function HuntCard({ hunt }) {
           {isCompleted ? (
             <span className="inline-flex items-center space-x-1 text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/40">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Mastered</span>
+              <span>{t('card_mastered')}</span>
             </span>
           ) : (
             <span className="text-xs font-semibold text-stone-400 bg-stone-900 px-2.5 py-1 rounded-full border border-stone-800">
@@ -37,7 +39,7 @@ export default function HuntCard({ hunt }) {
             {hunt.name}
           </h3>
           <p className="text-sm font-semibold text-amber-400 font-serif">
-            Quest: {hunt.huntIdea}
+            {t('quest_label')} {hunt.huntIdea}
           </p>
         </div>
 
@@ -50,7 +52,7 @@ export default function HuntCard({ hunt }) {
         <div className="grid grid-cols-2 gap-2 text-stone-300 text-xs pt-1 border-t border-stone-800/80">
           <div className="flex items-center space-x-1.5">
             <Compass className="w-3.5 h-3.5 text-amber-400" />
-            <span>{totalCheckpoints} Checkpoints</span>
+            <span>{totalCheckpoints} {t('card_checkpoints')}</span>
           </div>
           <div className="flex items-center space-x-1.5">
             <Clock className="w-3.5 h-3.5 text-amber-400" />
@@ -61,8 +63,8 @@ export default function HuntCard({ hunt }) {
         {/* Progress Bar */}
         <div className="space-y-1">
           <div className="flex justify-between text-[11px] font-bold text-stone-400">
-            <span>Progress</span>
-            <span>{isCompleted ? '100%' : `${currentStep}/${totalCheckpoints} Done`}</span>
+            <span>{t('card_progress')}</span>
+            <span>{isCompleted ? '100%' : `${currentStep}/${totalCheckpoints} ${t('card_done')}`}</span>
           </div>
           <div className="w-full bg-stone-900 rounded-full h-2 overflow-hidden border border-stone-800">
             <div
@@ -82,7 +84,7 @@ export default function HuntCard({ hunt }) {
           onClick={() => soundEffects.playClick()}
           className="w-full py-2.5 px-4 rounded-xl bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-stone-950 border border-amber-500/30 font-bold text-xs transition-all duration-200 flex items-center justify-center space-x-2 active:scale-95"
         >
-          <span>{isCompleted ? 'Review Secrets & Certificate' : currentStep > 0 ? 'Continue Quest' : 'Inspect Monument'}</span>
+          <span>{isCompleted ? t('card_review') : currentStep > 0 ? t('card_continue') : t('card_inspect')}</span>
           <ChevronRight className="w-4 h-4" />
         </Link>
       </div>
