@@ -4535,7 +4535,7 @@ export const heritageHunts = HERITAGE_HUNTS.map(h => {
     storyline: h.description,
     lat: firstCp.latitude,
     lng: firstCp.longitude,
-    checkpoints: (h.checkpoints || []).map((cp) => {
+    checkpoints: (h.checkpoints || []).map((cp, cpIdx) => {
       // Build 3 or 4 kid-friendly options for riddle
       const distractors = ['Carved Pillar', 'Temple Bell', 'Secret Inscription', 'Royal Seal', 'Stone Chariot', 'Sun Wheel'];
       const altOpts = (cp.acceptableAnswers || []).filter(a => a.toLowerCase() !== (cp.riddleAnswer || '').toLowerCase());
@@ -4548,6 +4548,14 @@ export const heritageHunts = HERITAGE_HUNTS.map(h => {
       while (uniqueOpts.length < 3) {
         uniqueOpts.push(distractors[uniqueOpts.length]);
       }
+
+      // Distribute the correct answer index across 0, 1, 2, 3 deterministically
+      const seed = (cp.id ? String(cp.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) : cpIdx + 1);
+      const targetIndex = seed % uniqueOpts.length;
+      const shuffledOpts = [...uniqueOpts];
+      const correctAns = shuffledOpts[0];
+      shuffledOpts[0] = shuffledOpts[targetIndex];
+      shuffledOpts[targetIndex] = correctAns;
 
       return {
         ...cp,
@@ -4562,8 +4570,8 @@ export const heritageHunts = HERITAGE_HUNTS.map(h => {
             cp.hint1 || 'Look closely at the unique shape of this monument.',
             cp.hint2 || `The answer is related to ${cp.riddleAnswer || 'this monument'}.`
           ],
-          options: uniqueOpts,
-          correctOption: 0
+          options: shuffledOpts,
+          correctOption: targetIndex
         },
         quiz: {
           question: cp.quizQuestion || `What makes ${cp.landmark} special in Indian history?`,
