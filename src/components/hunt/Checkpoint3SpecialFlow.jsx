@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HelpCircle, Crown, Lightbulb, Volume2, CheckCircle2, Award, ArrowRight, Sparkles, BookOpen, Shield } from 'lucide-react';
 import { CHECKPOINT_THREE_DATA } from '../../data/checkpointThreeData';
+import { useLanguage } from '../../context/LanguageContext';
 import { soundEffects } from '../../utils/soundEffects';
 import { speechNarrator } from '../../utils/speechNarrator';
 
@@ -10,6 +11,7 @@ export default function Checkpoint3SpecialFlow({
   onCompleteCheckpoint,
   isLastCheckpoint
 }) {
+  const { t } = useLanguage();
   const data = CHECKPOINT_THREE_DATA[huntId] || CHECKPOINT_THREE_DATA['hampi'];
 
   // Stages:
@@ -77,7 +79,7 @@ export default function Checkpoint3SpecialFlow({
           </div>
           <div>
             <div className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400">
-              Checkpoint #3 • Royal Archaeological Secret
+              {t('cp3_header_badge')}
             </div>
             <h2 className="text-base sm:text-lg font-bold text-amber-100 font-serif">
               {data.checkpointName}
@@ -100,7 +102,7 @@ export default function Checkpoint3SpecialFlow({
                 <HelpCircle className="w-4 h-4" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Question 1 of 2: The Archaeological Riddle (+60 XP)
+                {t('cp3_q1_title')}
               </span>
             </div>
             <button
@@ -108,7 +110,7 @@ export default function Checkpoint3SpecialFlow({
               className="p-1.5 bg-stone-800 hover:bg-stone-700 text-amber-300 rounded-lg text-xs flex items-center space-x-1"
             >
               <Volume2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Listen</span>
+              <span className="hidden sm:inline">{t('listen_btn')}</span>
             </button>
           </div>
 
@@ -124,14 +126,14 @@ export default function Checkpoint3SpecialFlow({
 
           {/* Progressive Hint */}
           <div className="flex justify-between items-center text-xs">
-            <span className="text-stone-400">Need a detective clue?</span>
+            <span className="text-stone-400">{t('clue_need')}</span>
             {riddleHintsUnlocked < data.riddle.hints.length && !isRiddleSolved && (
               <button
                 onClick={() => setRiddleHintsUnlocked(prev => prev + 1)}
                 className="text-amber-400 hover:text-amber-300 font-bold inline-flex items-center space-x-1"
               >
                 <Lightbulb className="w-3.5 h-3.5" />
-                <span>Reveal Clue ({riddleHintsUnlocked + 1}/{data.riddle.hints.length})</span>
+                <span>{t('reveal_clue')} ({riddleHintsUnlocked + 1}/{data.riddle.hints.length})</span>
               </button>
             )}
           </div>
@@ -147,7 +149,7 @@ export default function Checkpoint3SpecialFlow({
           {/* Riddle Options */}
           <div className="space-y-2.5">
             <div className="text-xs font-bold uppercase tracking-wider text-stone-400">
-              Select Your Answer:
+              {t('select_answer')}
             </div>
             <div className="grid grid-cols-1 gap-2.5">
               {data.riddle.options.map((opt, idx) => {
@@ -189,7 +191,7 @@ export default function Checkpoint3SpecialFlow({
                 <Crown className="w-4 h-4" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Question 2 of 2: Logical Thinking & King's POV Decision (+70 XP)
+                {t('cp3_q2_title')}
               </span>
             </div>
             <button
@@ -197,7 +199,7 @@ export default function Checkpoint3SpecialFlow({
               className="p-1.5 bg-stone-800 hover:bg-stone-700 text-amber-300 rounded-lg text-xs flex items-center space-x-1"
             >
               <Volume2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Listen</span>
+              <span className="hidden sm:inline">{t('listen_btn')}</span>
             </button>
           </div>
 
@@ -241,10 +243,10 @@ export default function Checkpoint3SpecialFlow({
             </div>
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Historical Consequence & Strategic Analysis
+                {t('cp3_consequence_title')}
               </div>
               <h3 className="font-serif font-bold text-amber-100 text-lg">
-                Your Strategic Decision:
+                {t('cp3_your_decision')}
               </h3>
             </div>
           </div>
@@ -252,13 +254,13 @@ export default function Checkpoint3SpecialFlow({
           {/* Selected Option & Historical Feedback */}
           <div className="p-5 bg-black/40 rounded-2xl border border-amber-500/30 space-y-3">
             <div className="text-xs text-stone-400 font-semibold uppercase">
-              You Chose:
+              {t('cp3_you_chose')}
             </div>
             <div className="text-sm sm:text-base font-bold text-amber-200">
               {data.povQuestion.options[selectedPovOption].text}
             </div>
             <div className="p-4 bg-amber-950/40 rounded-xl border border-amber-500/40 text-xs sm:text-sm text-stone-200 leading-relaxed">
-              📜 <strong>Archaeological & Historical Insight:</strong><br />
+              📜 <strong>{t('cp3_historical_insight')}</strong><br />
               {data.povQuestion.options[selectedPovOption].historicalAnalysis}
             </div>
           </div>
@@ -266,10 +268,10 @@ export default function Checkpoint3SpecialFlow({
           <div className="p-4 bg-emerald-950/40 border border-emerald-500/40 rounded-2xl flex items-center justify-between">
             <div className="flex items-center space-x-2 text-emerald-300 text-xs font-bold">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span>Checkpoint #3 Secret Decoded! (+130 XP Total)</span>
+              <span>{t('cp3_completed_badge')}</span>
             </div>
             <span className="text-xs font-black text-emerald-400 bg-emerald-500/20 px-2.5 py-1 rounded-full border border-emerald-500/40">
-              PASSED 🏆
+              {t('passed_badge')}
             </span>
           </div>
 
@@ -277,7 +279,7 @@ export default function Checkpoint3SpecialFlow({
             onClick={handleFinishCheckpoint}
             className="w-full py-4 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:brightness-110 text-stone-950 font-black text-sm sm:text-base rounded-2xl shadow-xl transition-all flex items-center justify-center space-x-2"
           >
-            <span>{isLastCheckpoint ? 'Claim Hunt Trophy' : 'Unlock Next Checkpoint'}</span>
+            <span>{isLastCheckpoint ? t('claim_trophy_btn') : t('next_checkpoint_btn')}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>

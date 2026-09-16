@@ -5,10 +5,12 @@ import HuntCard from '../components/hunt/HuntCard';
 import IndiaHeritageMap from '../components/map/IndiaHeritageMap';
 import { Compass, Search, Award, MapPin, Sparkles, Filter, Landmark, BookOpen, Volume2, ShieldCheck, Star } from 'lucide-react';
 import { useGameProgress } from '../context/GameProgressContext';
+import { useLanguage } from '../context/LanguageContext';
 import { soundEffects } from '../utils/soundEffects';
 
 export default function HomePage() {
   const { totalScore, badges, completedHunts, currentRank } = useGameProgress();
+  const { t } = useLanguage();
   const [selectedState, setSelectedState] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -30,15 +32,18 @@ export default function HomePage() {
         <div className="relative z-10 max-w-3xl space-y-6">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs md:text-sm font-semibold">
             <Sparkles className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: '6s' }} />
-            <span>Interactive Archaeological Expedition</span>
+            <span>{t('hero_badge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-amber-100 font-serif leading-tight tracking-tight">
-            Discover India’s Timeless Wonders Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200">Riddles & Quests</span>
+            {t('hero_title_1')}{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200">
+              {t('hero_title_highlight')}
+            </span>
           </h1>
 
           <p className="text-stone-300 text-base md:text-lg leading-relaxed font-sans">
-            Step into the shoes of an ancient detective. Explore <strong>20 historic monuments</strong> and <strong>129 interactive checkpoints</strong> across India. Solve archaeological riddles, observe stone secrets, and earn official explorer certificates!
+            {t('hero_desc')}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -48,7 +53,7 @@ export default function HomePage() {
               className="px-6 py-3.5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-400 hover:to-amber-600 active:scale-95 text-stone-950 font-black rounded-2xl shadow-xl transition-all inline-flex items-center space-x-2 text-base"
             >
               <Compass className="w-5 h-5 text-stone-950" />
-              <span>Choose Your Expedition</span>
+              <span>{t('btn_choose_expedition')}</span>
             </a>
             <Link
               to="/map"
@@ -56,7 +61,7 @@ export default function HomePage() {
               className="px-6 py-3.5 bg-stone-900/80 hover:bg-stone-800 active:scale-95 text-amber-200 border border-amber-500/40 font-bold rounded-2xl transition-all inline-flex items-center space-x-2 text-base"
             >
               <MapPin className="w-5 h-5 text-amber-400" />
-              <span>View India Map</span>
+              <span>{t('btn_view_map')}</span>
             </Link>
           </div>
         </div>
@@ -65,19 +70,19 @@ export default function HomePage() {
         <div className="mt-8 pt-6 border-t border-stone-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-amber-200">
           <div className="p-3 bg-stone-950/60 rounded-xl border border-stone-800">
             <div className="text-2xl font-black text-amber-400">20</div>
-            <div className="text-xs text-stone-400 font-semibold uppercase">Heritage Sites</div>
+            <div className="text-xs text-stone-400 font-semibold uppercase">{t('stat_heritage_sites')}</div>
           </div>
           <div className="p-3 bg-stone-950/60 rounded-xl border border-stone-800">
             <div className="text-2xl font-black text-amber-400">129</div>
-            <div className="text-xs text-stone-400 font-semibold uppercase">Curated Checkpoints</div>
+            <div className="text-xs text-stone-400 font-semibold uppercase">{t('stat_checkpoints')}</div>
           </div>
           <div className="p-3 bg-stone-950/60 rounded-xl border border-stone-800">
             <div className="text-2xl font-black text-amber-400">8</div>
-            <div className="text-xs text-stone-400 font-semibold uppercase">States of India</div>
+            <div className="text-xs text-stone-400 font-semibold uppercase">{t('stat_states')}</div>
           </div>
           <div className="p-3 bg-stone-950/60 rounded-xl border border-stone-800">
             <div className="text-2xl font-black text-emerald-400">{completedHunts.length} / 20</div>
-            <div className="text-xs text-stone-400 font-semibold uppercase">Hunts Solved</div>
+            <div className="text-xs text-stone-400 font-semibold uppercase">{t('stat_hunts_solved')}</div>
           </div>
         </div>
       </section>
@@ -88,9 +93,9 @@ export default function HomePage() {
           <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
             <Volume2 className="w-5 h-5" />
           </div>
-          <h3 className="text-lg font-bold text-amber-100 font-serif">Voice Narrator</h3>
+          <h3 className="text-lg font-bold text-amber-100 font-serif">{t('feat_voice_title')}</h3>
           <p className="text-stone-400 text-sm leading-relaxed">
-            Listen to ancient legends and riddles read aloud with an encouraging voice guide powered by Web Speech synthesis.
+            {t('feat_voice_desc')}
           </p>
         </div>
 
@@ -98,9 +103,9 @@ export default function HomePage() {
           <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
             <Compass className="w-5 h-5" />
           </div>
-          <h3 className="text-lg font-bold text-amber-100 font-serif">GPS Radar & Virtual Mode</h3>
+          <h3 className="text-lg font-bold text-amber-100 font-serif">{t('feat_gps_title')}</h3>
           <p className="text-stone-400 text-sm leading-relaxed">
-            Walk to real monument coordinates on-site, or use the <em>Virtual Explorer Simulator</em> to play from your classroom or home.
+            {t('feat_gps_desc')}
           </p>
         </div>
 
@@ -108,9 +113,9 @@ export default function HomePage() {
           <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
             <Award className="w-5 h-5" />
           </div>
-          <h3 className="text-lg font-bold text-amber-100 font-serif">Printable Official Certificates</h3>
+          <h3 className="text-lg font-bold text-amber-100 font-serif">{t('feat_cert_title')}</h3>
           <p className="text-stone-400 text-sm leading-relaxed">
-            Complete all checkpoints of any monument to earn an official printable Certificate of Heritage Mastery.
+            {t('feat_cert_desc')}
           </p>
         </div>
       </section>
@@ -120,17 +125,17 @@ export default function HomePage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h2 className="text-2xl md:text-3xl font-extrabold text-amber-100 font-serif">
-              Pan-India Expedition Map
+              {t('map_section_title')}
             </h2>
             <p className="text-stone-400 text-sm">
-              Click on any pin across India to preview the treasure hunt and jump directly into the adventure.
+              {t('map_section_desc')}
             </p>
           </div>
           <Link
             to="/map"
             className="text-amber-400 hover:text-amber-300 font-bold text-sm inline-flex items-center space-x-1"
           >
-            <span>Open Fullscreen Map</span>
+            <span>{t('btn_fullscreen_map')}</span>
             <span>→</span>
           </Link>
         </div>
@@ -143,7 +148,7 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h2 className="text-2xl md:text-3xl font-extrabold text-amber-100 font-serif">
-              All 20 Heritage Quests
+              {t('catalog_title')}
             </h2>
             <p className="text-stone-400 text-sm">
               Filter by State or search for your favorite fort, temple, or royal palace.
@@ -157,7 +162,7 @@ export default function HomePage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search monuments or riddles..."
+              placeholder={t('search_placeholder')}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stone-900 border border-stone-700 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 text-sm"
             />
           </div>

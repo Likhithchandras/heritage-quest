@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Compass, Map, Shield, Trophy, User, LogIn, LogOut, Sparkles, QrCode } from 'lucide-react';
+import { Compass, Map, Shield, Trophy, User, LogIn, LogOut, Sparkles } from 'lucide-react';
 import { useGameProgress } from '../../context/GameProgressContext';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { soundEffects } from '../../utils/soundEffects';
 
 export default function Navbar() {
@@ -10,12 +11,13 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { totalScore, currentRank } = useGameProgress();
   const { currentUser, isAuthenticated, logout } = useAuth();
+  const { t } = useLanguage();
 
   const navLinks = [
-    { name: 'Monuments', path: '/home', icon: Compass },
-    { name: 'India Map', path: '/map', icon: Map },
-    { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
-    { name: 'Passport', path: '/passport', icon: Shield },
+    { name: t('nav_monuments'), path: '/home', icon: Compass },
+    { name: t('nav_map'), path: '/map', icon: Map },
+    { name: t('nav_leaderboard'), path: '/leaderboard', icon: Trophy },
+    { name: t('nav_passport'), path: '/passport', icon: Shield },
   ];
 
   const handleLogout = () => {
@@ -37,12 +39,12 @@ export default function Navbar() {
           </div>
           <div>
             <div className="font-serif font-black text-lg tracking-tight text-amber-100 flex items-center gap-1.5">
-              <span>HERITAGE QUEST</span>
+              <span>{t('app_title')}</span>
               <span className="text-[10px] font-sans font-bold px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded border border-amber-500/40">
                 INDIA
               </span>
             </div>
-            <div className="text-[11px] text-stone-400 font-medium">Archaeological Treasure Hunt</div>
+            <div className="text-[11px] text-stone-400 font-medium">{t('app_subtitle')}</div>
           </div>
         </Link>
 
@@ -54,7 +56,7 @@ export default function Navbar() {
               const isActive = location.pathname === link.path;
               return (
                 <Link
-                  key={link.name}
+                  key={link.path}
                   to={link.path}
                   onClick={() => soundEffects.playClick()}
                   className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
@@ -106,7 +108,7 @@ export default function Navbar() {
                 title="Sign Out to Login Gate"
               >
                 <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline text-[11px] font-semibold">Exit</span>
+                <span className="hidden sm:inline text-[11px] font-semibold">{t('nav_signout')}</span>
               </button>
             </div>
           ) : (
@@ -116,7 +118,7 @@ export default function Navbar() {
               className="inline-flex items-center space-x-1 px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow transition-all"
             >
               <LogIn className="w-3.5 h-3.5" />
-              <span>Sign In</span>
+              <span>{t('nav_signin')}</span>
             </Link>
           )}
         </div>
