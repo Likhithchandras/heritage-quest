@@ -1,4 +1,4 @@
-﻿import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { LANGUAGES, TRANSLATIONS } from '../data/translations';
 import { speechNarrator } from '../utils/speechNarrator';
 
@@ -18,11 +18,15 @@ export function LanguageProvider({ children }) {
   }, [currentLang]);
 
   const t = (key) => {
+    if (!key) return '';
     const langDict = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
     if (langDict && langDict[key]) {
       return langDict[key];
     }
-    return TRANSLATIONS.en[key] || key;
+    if (TRANSLATIONS.en && TRANSLATIONS.en[key]) {
+      return TRANSLATIONS.en[key];
+    }
+    return '';
   };
 
   const changeLanguage = (code) => {

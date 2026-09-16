@@ -84,7 +84,7 @@ export default function HuntCard({ hunt }) {
               {hunt.name}
             </h3>
             <p className="text-sm font-semibold text-amber-400 font-serif">
-              {t('quest_label')} {hunt.huntIdea}
+              {hunt.huntIdea}
             </p>
           </div>
 
